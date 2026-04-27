@@ -1,0 +1,899 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-04-27",
+  "activities": [
+    {
+      "id": 1,
+      "title": "城市迷路挑战",
+      "category": "outdoor",
+      "tags": [
+        "fire",
+        "air",
+        "刺激",
+        "脑洞"
+      ],
+      "ageRange": [
+        16,
+        50
+      ],
+      "people": "1-3 人",
+      "place": "城市街头",
+      "duration": "2-4 小时",
+      "difficulty": 2,
+      "desc": "在陌生地铁站随机下车，手机关机，只靠直觉找路回家。沿途拍下三件最有趣的东西。"
+    },
+    {
+      "id": 2,
+      "title": "日出徒步小山头",
+      "category": "outdoor",
+      "tags": [
+        "earth",
+        "fire",
+        "治愈",
+        "健康"
+      ],
+      "ageRange": [
+        18,
+        65
+      ],
+      "people": "1-5 人",
+      "place": "郊外山路",
+      "duration": "3-5 小时",
+      "difficulty": 3,
+      "desc": "凌晨四点出发，赶在太阳之前爬到山顶，看光一寸一寸染上云层。带热巧克力更绝。"
+    },
+    {
+      "id": 3,
+      "title": "河堤骑行野餐",
+      "category": "outdoor",
+      "tags": [
+        "earth",
+        "water",
+        "治愈",
+        "社交"
+      ],
+      "ageRange": [
+        10,
+        70
+      ],
+      "people": "2-6 人",
+      "place": "河边绿道",
+      "duration": "半天",
+      "difficulty": 2,
+      "desc": "租辆自行车沿着河骑，找一块草地铺上野餐垫，带上三明治、水果和一本薄薄的书。"
+    },
+    {
+      "id": 4,
+      "title": "夜观星空计划",
+      "category": "outdoor",
+      "tags": [
+        "air",
+        "water",
+        "治愈",
+        "安静"
+      ],
+      "ageRange": [
+        12,
+        70
+      ],
+      "people": "1-4 人",
+      "place": "郊外/山顶",
+      "duration": "3-6 小时",
+      "difficulty": 2,
+      "desc": "找一个光污染低的地方，下载星空 App，认出十个星座。运气好能看到流星。"
+    },
+    {
+      "id": 5,
+      "title": "城市徒步 20 公里",
+      "category": "sport",
+      "tags": [
+        "fire",
+        "earth",
+        "挑战",
+        "健康"
+      ],
+      "ageRange": [
+        18,
+        50
+      ],
+      "people": "1-3 人",
+      "place": "城市街道",
+      "duration": "6-8 小时",
+      "difficulty": 4,
+      "desc": "从城市一头走到另一头，沿途记录每一家让你想进去的小店。脚会很疼，但人会很爽。"
+    },
+    {
+      "id": 6,
+      "title": "皮划艇湖面漂流",
+      "category": "adventure",
+      "tags": [
+        "water",
+        "fire",
+        "刺激",
+        "社交"
+      ],
+      "ageRange": [
+        16,
+        55
+      ],
+      "people": "1-2 人",
+      "place": "湖泊/河流",
+      "duration": "2-4 小时",
+      "difficulty": 3,
+      "desc": "划着小艇荡在水面，中途找个小岛停下来打个盹，水花拍打艇身的声音比 ASMR 好听。"
+    },
+    {
+      "id": 7,
+      "title": "公园追鸽子",
+      "category": "outdoor",
+      "tags": [
+        "air",
+        "治愈",
+        "沙雕"
+      ],
+      "ageRange": [
+        3,
+        99
+      ],
+      "people": "1-5 人",
+      "place": "城市公园",
+      "duration": "1 小时",
+      "difficulty": 1,
+      "desc": "纯粹、幼稚、治愈。带一袋麦片，追着鸽子跑，拍下它们炸开的瞬间。记得别真踩到。"
+    },
+    {
+      "id": 8,
+      "title": "荒野露营过一夜",
+      "category": "adventure",
+      "tags": [
+        "earth",
+        "fire",
+        "挑战",
+        "治愈"
+      ],
+      "ageRange": [
+        18,
+        55
+      ],
+      "people": "2-6 人",
+      "place": "营地",
+      "duration": "1-2 天",
+      "difficulty": 4,
+      "desc": "搭帐篷、生篝火、烤棉花糖，半夜被风吹醒看星空，早上被鸟叫醒。够原始够舒服。"
+    },
+    {
+      "id": 9,
+      "title": "陶艺拉坯课",
+      "category": "creative",
+      "tags": [
+        "earth",
+        "water",
+        "手作",
+        "治愈"
+      ],
+      "ageRange": [
+        10,
+        65
+      ],
+      "people": "1-4 人",
+      "place": "陶艺工作室",
+      "duration": "2-3 小时",
+      "difficulty": 2,
+      "desc": "亲手捏一个杯子，失败也没关系——歪歪扭扭的才最像你。一周后上釉取回。"
+    },
+    {
+      "id": 10,
+      "title": "自制香氛蜡烛",
+      "category": "creative",
+      "tags": [
+        "water",
+        "治愈",
+        "手作"
+      ],
+      "ageRange": [
+        14,
+        60
+      ],
+      "people": "1-3 人",
+      "place": "家里/工作室",
+      "duration": "2 小时",
+      "difficulty": 2,
+      "desc": "挑一款自己最上头的精油，调配专属香味，倒进喜欢的小杯子里。点燃时成就感爆棚。"
+    },
+    {
+      "id": 11,
+      "title": "一个人看午夜场",
+      "category": "solo",
+      "tags": [
+        "air",
+        "water",
+        "安静",
+        "独处"
+      ],
+      "ageRange": [
+        16,
+        70
+      ],
+      "people": "1 人",
+      "place": "电影院",
+      "duration": "2-3 小时",
+      "difficulty": 1,
+      "desc": "买最后一场的票，整个影厅可能就你一个。散场时街道空荡，像电影没结束。"
+    },
+    {
+      "id": 12,
+      "title": "剧本杀组局",
+      "category": "social",
+      "tags": [
+        "air",
+        "fire",
+        "脑洞",
+        "热闹"
+      ],
+      "ageRange": [
+        16,
+        45
+      ],
+      "people": "4-8 人",
+      "place": "剧本杀店",
+      "duration": "3-5 小时",
+      "difficulty": 3,
+      "desc": "挑个本格/情感/机制本，好好演一次不是自己的人生。散场时大家都有点上头。"
+    },
+    {
+      "id": 13,
+      "title": "城市拼图挑战",
+      "category": "indoor",
+      "tags": [
+        "earth",
+        "air",
+        "安静",
+        "脑洞"
+      ],
+      "ageRange": [
+        8,
+        70
+      ],
+      "people": "1-3 人",
+      "place": "家里",
+      "duration": "3-6 小时",
+      "difficulty": 3,
+      "desc": "买一盒 1000 片拼图，放喜欢的播客，灯调暖。完成那一刻比熬完剧还爽。"
+    },
+    {
+      "id": 14,
+      "title": "DIY 拍立得写真",
+      "category": "creative",
+      "tags": [
+        "fire",
+        "air",
+        "手作",
+        "记录"
+      ],
+      "ageRange": [
+        14,
+        45
+      ],
+      "people": "2-4 人",
+      "place": "家里/公园",
+      "duration": "2-3 小时",
+      "difficulty": 1,
+      "desc": "互拍，当天冲出来，写上日期和一句话，贴进本子。五年后翻到会哭。"
+    },
+    {
+      "id": 15,
+      "title": "水彩涂鸦夜",
+      "category": "creative",
+      "tags": [
+        "water",
+        "air",
+        "手作",
+        "治愈"
+      ],
+      "ageRange": [
+        6,
+        80
+      ],
+      "people": "1-3 人",
+      "place": "家里",
+      "duration": "1-2 小时",
+      "difficulty": 1,
+      "desc": "不追求像，就乱画。颜色在纸上晕开的瞬间，比任何冥想都管用。"
+    },
+    {
+      "id": 16,
+      "title": "自制披萨派对",
+      "category": "food",
+      "tags": [
+        "fire",
+        "earth",
+        "社交",
+        "手作"
+      ],
+      "ageRange": [
+        8,
+        60
+      ],
+      "people": "2-8 人",
+      "place": "家里",
+      "duration": "2-3 小时",
+      "difficulty": 2,
+      "desc": "从和面开始，每人一张饼，想放啥放啥——菠萝党和反菠萝党可以当场打一架。"
+    },
+    {
+      "id": 17,
+      "title": "盲盒式煮面",
+      "category": "food",
+      "tags": [
+        "fire",
+        "沙雕",
+        "脑洞"
+      ],
+      "ageRange": [
+        14,
+        50
+      ],
+      "people": "1-2 人",
+      "place": "家里",
+      "duration": "1 小时",
+      "difficulty": 1,
+      "desc": "冰箱里随机抓五样东西扔进泡面里，不准反悔。结果可能是神作，也可能是噩梦。"
+    },
+    {
+      "id": 18,
+      "title": "陌生人晚餐",
+      "category": "social",
+      "tags": [
+        "air",
+        "fire",
+        "脑洞",
+        "热闹"
+      ],
+      "ageRange": [
+        20,
+        45
+      ],
+      "people": "4-6 人",
+      "place": "餐厅/家里",
+      "duration": "2-3 小时",
+      "difficulty": 3,
+      "desc": "每人带一位对方都不认识的朋友，桌上禁止聊工作。三小时后桌上全是新朋友。"
+    },
+    {
+      "id": 19,
+      "title": "K 歌到嘶哑",
+      "category": "social",
+      "tags": [
+        "fire",
+        "air",
+        "热闹",
+        "放纵"
+      ],
+      "ageRange": [
+        15,
+        60
+      ],
+      "people": "3-10 人",
+      "place": "KTV",
+      "duration": "3-4 小时",
+      "difficulty": 1,
+      "desc": "点一首高中时代最中二的歌，跪着唱完。第二天嗓子哑得像粉笔划过黑板，但值。"
+    },
+    {
+      "id": 20,
+      "title": "桌游马拉松",
+      "category": "social",
+      "tags": [
+        "air",
+        "earth",
+        "脑洞",
+        "热闹"
+      ],
+      "ageRange": [
+        12,
+        55
+      ],
+      "people": "3-8 人",
+      "place": "桌游店/家里",
+      "duration": "4-8 小时",
+      "difficulty": 2,
+      "desc": "从狼人杀打到大富翁，中途叫外卖。输的人表演一个童年尴尬瞬间。"
+    },
+    {
+      "id": 21,
+      "title": "密室逃脱",
+      "category": "social",
+      "tags": [
+        "fire",
+        "air",
+        "刺激",
+        "脑洞"
+      ],
+      "ageRange": [
+        14,
+        50
+      ],
+      "people": "3-6 人",
+      "place": "密室店",
+      "duration": "1-2 小时",
+      "difficulty": 3,
+      "desc": "恐怖/烧脑/机械三选一。团队配合差一点都出不来，特别考验队友的情商。"
+    },
+    {
+      "id": 22,
+      "title": "夜市扫街 Battle",
+      "category": "food",
+      "tags": [
+        "fire",
+        "water",
+        "热闹",
+        "美食"
+      ],
+      "ageRange": [
+        10,
+        65
+      ],
+      "people": "2-6 人",
+      "place": "夜市",
+      "duration": "3 小时",
+      "difficulty": 1,
+      "desc": "分组，每人 50 块预算，比谁在夜市淘到最惊艳的那一口。冠军奖品由输家请甜品。"
+    },
+    {
+      "id": 23,
+      "title": "泡一下午书店",
+      "category": "solo",
+      "tags": [
+        "air",
+        "water",
+        "安静",
+        "独处"
+      ],
+      "ageRange": [
+        12,
+        80
+      ],
+      "people": "1 人",
+      "place": "书店",
+      "duration": "3-4 小时",
+      "difficulty": 1,
+      "desc": "随意抽五本没听过的书，每本读十页。喜欢的那本带回家，不喜欢的也是一次邂逅。"
+    },
+    {
+      "id": 24,
+      "title": "深夜骑行",
+      "category": "solo",
+      "tags": [
+        "air",
+        "water",
+        "治愈",
+        "独处"
+      ],
+      "ageRange": [
+        18,
+        50
+      ],
+      "people": "1 人",
+      "place": "城市街道",
+      "duration": "1-2 小时",
+      "difficulty": 1,
+      "desc": "凌晨一点骑车出去晃一圈，街灯、夜风、偶尔路过的夜班车。城市这时候才完全属于你。"
+    },
+    {
+      "id": 25,
+      "title": "单人观影马拉松",
+      "category": "solo",
+      "tags": [
+        "water",
+        "air",
+        "独处",
+        "治愈"
+      ],
+      "ageRange": [
+        16,
+        70
+      ],
+      "people": "1 人",
+      "place": "家里",
+      "duration": "一整天",
+      "difficulty": 1,
+      "desc": "选一位导演，从处女作刷到最新作。窗帘拉严，外卖备好，跟现实断联一天。"
+    },
+    {
+      "id": 26,
+      "title": "去澡堂子泡一下午",
+      "category": "healing",
+      "tags": [
+        "water",
+        "治愈",
+        "独处"
+      ],
+      "ageRange": [
+        18,
+        70
+      ],
+      "people": "1-2 人",
+      "place": "浴场",
+      "duration": "3-4 小时",
+      "difficulty": 1,
+      "desc": "大池子里躺着，蒸一蒸、刮一刮、睡一觉。出来感觉被重置了一遍，轻飘飘回家。"
+    },
+    {
+      "id": 27,
+      "title": "写一封不寄出的信",
+      "category": "solo",
+      "tags": [
+        "water",
+        "治愈",
+        "独处",
+        "安静"
+      ],
+      "ageRange": [
+        12,
+        80
+      ],
+      "people": "1 人",
+      "place": "家里/咖啡馆",
+      "duration": "1 小时",
+      "difficulty": 1,
+      "desc": "给十年前的自己、去世的亲人、暗恋过的人……写出来就行，寄不寄都无所谓。"
+    },
+    {
+      "id": 28,
+      "title": "正念冥想 45 分钟",
+      "category": "healing",
+      "tags": [
+        "water",
+        "air",
+        "治愈",
+        "安静"
+      ],
+      "ageRange": [
+        14,
+        90
+      ],
+      "people": "1 人",
+      "place": "家里",
+      "duration": "1 小时",
+      "difficulty": 2,
+      "desc": "关灯，盘腿，跟着引导音频走。走神没关系，拉回来就行。结束后世界会安静一点。"
+    },
+    {
+      "id": 29,
+      "title": "蹦极一次",
+      "category": "adventure",
+      "tags": [
+        "fire",
+        "air",
+        "刺激",
+        "挑战"
+      ],
+      "ageRange": [
+        18,
+        45
+      ],
+      "people": "1-2 人",
+      "place": "蹦极塔",
+      "duration": "半天",
+      "difficulty": 5,
+      "desc": "人生一定要体验一次腿软到站不住的感觉。跳下去那一瞬间，其他烦恼都显得太轻了。"
+    },
+    {
+      "id": 30,
+      "title": "室内攀岩",
+      "category": "sport",
+      "tags": [
+        "fire",
+        "earth",
+        "挑战",
+        "健康"
+      ],
+      "ageRange": [
+        12,
+        50
+      ],
+      "people": "1-4 人",
+      "place": "攀岩馆",
+      "duration": "2 小时",
+      "difficulty": 3,
+      "desc": "像解谜一样找到上墙的路径。手会酸，脑子会转，爬到顶那一下整个人会轻飘飘的。"
+    },
+    {
+      "id": 31,
+      "title": "羽毛球大战",
+      "category": "sport",
+      "tags": [
+        "fire",
+        "air",
+        "热闹",
+        "健康"
+      ],
+      "ageRange": [
+        8,
+        65
+      ],
+      "people": "2-4 人",
+      "place": "球场",
+      "duration": "1-2 小时",
+      "difficulty": 2,
+      "desc": "和老朋友约场球，打到汗流浃背，场边可乐冰镇。比任何昂贵的运动都快乐。"
+    },
+    {
+      "id": 32,
+      "title": "骑马一小时",
+      "category": "adventure",
+      "tags": [
+        "earth",
+        "fire",
+        "刺激",
+        "独特"
+      ],
+      "ageRange": [
+        12,
+        55
+      ],
+      "people": "1-3 人",
+      "place": "马场",
+      "duration": "半天",
+      "difficulty": 3,
+      "desc": "坐上去之前会怕，下来之后会上瘾。第二天大腿会痛三天，但心一直在飞。"
+    },
+    {
+      "id": 33,
+      "title": "博物馆夜场",
+      "category": "cultural",
+      "tags": [
+        "earth",
+        "air",
+        "安静",
+        "脑洞"
+      ],
+      "ageRange": [
+        10,
+        80
+      ],
+      "people": "1-3 人",
+      "place": "博物馆",
+      "duration": "2-3 小时",
+      "difficulty": 1,
+      "desc": "挑一个展，不听讲解，只凭直觉走。在某一件文物前停下来十分钟，看出它的故事。"
+    },
+    {
+      "id": 34,
+      "title": "跟着路线打卡老城",
+      "category": "cultural",
+      "tags": [
+        "earth",
+        "water",
+        "治愈",
+        "文化"
+      ],
+      "ageRange": [
+        10,
+        70
+      ],
+      "people": "1-4 人",
+      "place": "老城区",
+      "duration": "半天",
+      "difficulty": 1,
+      "desc": "找一份城市 Citywalk 路线，跟着走一遍，听一听老巷子里的故事。回来感觉城市变厚了。"
+    },
+    {
+      "id": 35,
+      "title": "看一场独立乐队的 Livehouse",
+      "category": "cultural",
+      "tags": [
+        "fire",
+        "air",
+        "热闹",
+        "独特"
+      ],
+      "ageRange": [
+        16,
+        50
+      ],
+      "people": "1-4 人",
+      "place": "Livehouse",
+      "duration": "3 小时",
+      "difficulty": 1,
+      "desc": "买张没听过的乐队的票，站在一米之外听他们嘶吼。散场手里攥着的票根是今天的勋章。"
+    },
+    {
+      "id": 36,
+      "title": "话剧 / 脱口秀开放麦",
+      "category": "cultural",
+      "tags": [
+        "air",
+        "fire",
+        "脑洞",
+        "独特"
+      ],
+      "ageRange": [
+        16,
+        55
+      ],
+      "people": "1-4 人",
+      "place": "剧场",
+      "duration": "2 小时",
+      "difficulty": 1,
+      "desc": "开放麦便宜、真实、偶有神仙。你会遇到一个叫不出名字但让你笑崩的人。"
+    },
+    {
+      "id": 37,
+      "title": "自己给自己办展",
+      "category": "creative",
+      "tags": [
+        "air",
+        "fire",
+        "脑洞",
+        "手作"
+      ],
+      "ageRange": [
+        14,
+        60
+      ],
+      "people": "1 人",
+      "place": "家里",
+      "duration": "一天",
+      "difficulty": 2,
+      "desc": "把自己拍过的照片打印出来，用便利贴在墙上布置成一个展，取个装模作样的主题名。"
+    },
+    {
+      "id": 38,
+      "title": "对着镜子即兴脱口秀 10 分钟",
+      "category": "solo",
+      "tags": [
+        "fire",
+        "air",
+        "沙雕",
+        "脑洞"
+      ],
+      "ageRange": [
+        12,
+        60
+      ],
+      "people": "1 人",
+      "place": "家里",
+      "duration": "30 分钟",
+      "difficulty": 1,
+      "desc": "关上门，对着镜子胡说八道十分钟。你会发现自己其实比想象的有意思得多。"
+    },
+    {
+      "id": 39,
+      "title": "随机坐一趟没坐过的公交",
+      "category": "solo",
+      "tags": [
+        "air",
+        "water",
+        "脑洞",
+        "沙雕"
+      ],
+      "ageRange": [
+        14,
+        70
+      ],
+      "people": "1 人",
+      "place": "公交路线",
+      "duration": "2-3 小时",
+      "difficulty": 1,
+      "desc": "从起点坐到终点，中途不许下车。看看城市的哪个褶皱里还藏着你没见过的生活。"
+    },
+    {
+      "id": 40,
+      "title": "旧物改造大作战",
+      "category": "creative",
+      "tags": [
+        "earth",
+        "手作",
+        "脑洞"
+      ],
+      "ageRange": [
+        10,
+        60
+      ],
+      "people": "1-3 人",
+      "place": "家里",
+      "duration": "2-4 小时",
+      "difficulty": 2,
+      "desc": "翻出家里三件不用的破烂，强制改造成新东西。麻袋做成包，旧 T 恤剪成围裙。"
+    },
+    {
+      "id": 41,
+      "title": "盲选播客听两小时",
+      "category": "solo",
+      "tags": [
+        "air",
+        "脑洞",
+        "独处"
+      ],
+      "ageRange": [
+        14,
+        70
+      ],
+      "people": "1 人",
+      "place": "任何地方",
+      "duration": "2 小时",
+      "difficulty": 1,
+      "desc": "选一档你完全陌生的行业的播客，硬听两小时。大脑会被装进一个全新的世界。"
+    },
+    {
+      "id": 42,
+      "title": "给一家小店写真心推荐语",
+      "category": "social",
+      "tags": [
+        "water",
+        "earth",
+        "治愈",
+        "独特"
+      ],
+      "ageRange": [
+        14,
+        60
+      ],
+      "people": "1 人",
+      "place": "街头小店",
+      "duration": "1-2 小时",
+      "difficulty": 1,
+      "desc": "找家你真的喜欢、但知道的人还不多的小店，认真写一段 500 字的推荐发出去。老板会记住你。"
+    },
+    {
+      "id": 43,
+      "title": "自制一杯失败概率 70% 的鸡尾酒",
+      "category": "food",
+      "tags": [
+        "fire",
+        "water",
+        "手作",
+        "沙雕"
+      ],
+      "ageRange": [
+        18,
+        55
+      ],
+      "people": "1-3 人",
+      "place": "家里",
+      "duration": "1 小时",
+      "difficulty": 2,
+      "desc": "冰箱里有什么放什么。好喝了是天才，难喝了就当洗杯子。过程比结果重要。"
+    },
+    {
+      "id": 44,
+      "title": "拍一条 30 秒的无聊短片",
+      "category": "creative",
+      "tags": [
+        "air",
+        "脑洞",
+        "手作"
+      ],
+      "ageRange": [
+        10,
+        50
+      ],
+      "people": "1-3 人",
+      "place": "任何地方",
+      "duration": "2 小时",
+      "difficulty": 2,
+      "desc": "主题随便：一个水壶的一天、猫在阳光下发呆。拍完剪出来，配个 BGM，发给最懂你的朋友。"
+    },
+    {
+      "id": 45,
+      "title": "一天不用手机挑战",
+      "category": "healing",
+      "tags": [
+        "earth",
+        "water",
+        "治愈",
+        "挑战"
+      ],
+      "ageRange": [
+        14,
+        60
+      ],
+      "people": "1 人",
+      "place": "任何地方",
+      "duration": "一天",
+      "difficulty": 4,
+      "desc": "早上把手机放进抽屉，傍晚再拿出来。这一天会慢得让你想起小时候的暑假。"
+    }
+  ]
+}
