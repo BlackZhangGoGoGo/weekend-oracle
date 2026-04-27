@@ -8,6 +8,11 @@
   const wizard = $("wizard");
   const sparkles = $("sparkles");
 
+  // 新：全屏施法覆盖层
+  const castingOverlay = $("castingOverlay");
+  const castingSparkles = $("castingSparkles");
+  const castingPhase = $("castingPhase");
+
   const inputCard = $("inputCard");
   const resultCard = $("resultCard");
 
@@ -398,30 +403,78 @@
   }
 
   // ============ 施法动画 ============
+  // ============ 施法动画 ============
+  // 施法过程中轮播的提示文案，营造"真的在占卜"的节奏感
+  const CASTING_PHASES = [
+    "魔法小人正在占卜中",
+    "正在解读星座能量",
+    "数字在水晶球里排列",
+    "活动正在从宇宙浮现"
+  ];
+
   function startCasting() {
+    // 老位置的小人也继续动（页面滚回去也能看到）
     wizard.classList.remove("idle");
     wizard.classList.add("casting");
 
-    // 生成粒子
+    // 显示全屏覆盖层
+    castingOverlay.classList.remove("hidden");
+    castingOverlay.setAttribute("aria-hidden", "false");
+
+    // 阶段文案轮播
+    let phaseIdx = 0;
+    if (castingPhase) castingPhase.textContent = CASTING_PHASES[0];
+    const phaseInterval = setInterval(() => {
+      phaseIdx = (phaseIdx + 1) % CASTING_PHASES.length;
+      if (castingPhase) castingPhase.textContent = CASTING_PHASES[phaseIdx];
+    }, 600);
+
+    // 粒子：两处同时喷，但覆盖层那边的更密更大
     const particleInterval = setInterval(() => {
-      const s = document.createElement("div");
-      s.className = "sparkle";
+      spawnSparkle(sparkles, { small: true });
+      // 覆盖层里每次出 2 颗，更有节日感
+      spawnSparkle(castingSparkles, { small: false });
+      spawnSparkle(castingSparkles, { small: false });
+    }, 70);
+
+    return () => {
+      clearInterval(particleInterval);
+      clearInterval(phaseInterval);
+      wizard.classList.remove("casting");
+      wizard.classList.add("idle");
+      // 淡出覆盖层
+      castingOverlay.classList.add("hidden");
+      castingOverlay.setAttribute("aria-hidden", "true");
+    };
+  }
+
+  function spawnSparkle(container, { small }) {
+    if (!container) return;
+    const s = document.createElement("div");
+    s.className = "sparkle";
+    if (small) {
+      // 老容器里的小粒子（视觉一致）
       const startX = 50 + (Math.random() - 0.5) * 20;
       const startY = 50 + (Math.random() - 0.5) * 20;
       s.style.left = startX + "%";
       s.style.top = startY + "%";
       s.style.setProperty("--dx", ((Math.random() - 0.5) * 120) + "px");
       s.style.setProperty("--dy", (-80 - Math.random() * 60) + "px");
-      s.style.background = Math.random() > 0.5 ? "#ffd86b" : "#ff7ae6";
-      sparkles.appendChild(s);
-      setTimeout(() => s.remove(), 1200);
-    }, 80);
-
-    return () => {
-      clearInterval(particleInterval);
-      wizard.classList.remove("casting");
-      wizard.classList.add("idle");
-    };
+    } else {
+      // 覆盖层中央向四周喷射
+      s.style.left = "50%";
+      s.style.top = "50%";
+      const angle = Math.random() * Math.PI * 2;
+      const dist = 80 + Math.random() * 160;
+      s.style.setProperty("--dx", Math.cos(angle) * dist + "px");
+      s.style.setProperty("--dy", Math.sin(angle) * dist + "px");
+    }
+    const colors = ["#ffd86b", "#ff7ae6", "#8b5cf6", "#fff"];
+    const c = colors[Math.floor(Math.random() * colors.length)];
+    s.style.background = c;
+    s.style.color = c;
+    container.appendChild(s);
+    setTimeout(() => s.remove(), 1300);
   }
 
   // ============ 渲染结果 ============
@@ -444,6 +497,11 @@
     inputCard.classList.add("hidden");
     resultCard.classList.remove("hidden");
     lastRecommendedId = activity.id;
+
+    // 手机上结果出来后滚回页面顶部，让用户看到魔法小人 + 结果卡
+    if (typeof window !== "undefined" && window.scrollTo) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   }
 
   // ============ 主流程 ============

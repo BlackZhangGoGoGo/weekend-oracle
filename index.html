@@ -12,6 +12,37 @@
 <body>
   <div class="stars"></div>
 
+  <!-- 施法中全屏覆盖层（召唤时出现，小人居中放大，粒子喷射） -->
+  <div class="casting-overlay hidden" id="castingOverlay" aria-hidden="true">
+    <div class="casting-stage">
+      <div class="casting-wizard" id="castingWizard">
+        <div class="hat"><div class="hat-star">★</div></div>
+        <div class="head">
+          <div class="eye left"></div>
+          <div class="eye right"></div>
+          <div class="mouth"></div>
+        </div>
+        <div class="body-wrap">
+          <div class="body"></div>
+          <div class="arm left"></div>
+          <div class="arm right">
+            <div class="wand"><div class="wand-tip"></div></div>
+          </div>
+        </div>
+        <div class="legs">
+          <div class="leg left"></div>
+          <div class="leg right"></div>
+        </div>
+      </div>
+      <div class="casting-sparkles" id="castingSparkles"></div>
+      <div class="casting-text">
+        <span class="dot">✨</span>
+        <span id="castingPhase">魔法小人正在占卜中</span>
+        <span class="dots"><i></i><i></i><i></i></span>
+      </div>
+    </div>
+  </div>
+
   <main class="app">
     <header class="hero">
       <h1 class="title">周末活动占卜屋</h1>
