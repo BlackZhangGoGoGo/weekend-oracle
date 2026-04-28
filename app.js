@@ -38,6 +38,11 @@
 
   let lastInput = null;
   let lastRecommendedId = null;
+  // 最近 N 次推荐过的 id 队列（用于"再来一个"时避免重复，保证 5 次内不重样）
+  const RECENT_QUEUE_SIZE = 5;
+  let recentRecommendedIds = [];
+  // "再来一个"点击计数器，用于每次点击时轮换 pickIndex（打破同输入下的定值）
+  let againClickCount = 0;
 
   // 初始化库计数（数据异步加载完成后再刷新）
   function refreshLibCount() {
@@ -330,8 +335,13 @@
       });
     }
 
-    // 6. 避免上次推荐
-    if (activity.id === lastRecommendedId) score -= 40;
+    // 6. 避免最近 N 次推荐过的（让"再来一个"也能涌出新面孔，但只是降权，不强制踢出 top）
+    if (recentRecommendedIds.includes(activity.id)) {
+      // 越近的扣得越多
+      const recencyIndex = recentRecommendedIds.lastIndexOf(activity.id);
+      const recency = recentRecommendedIds.length - recencyIndex; // 1 = 最近一次
+      score -= 12 * recency;
+    }
 
     // 7. 数字 + 年龄 + 日期共同做扰动——任何一个输入变了都会重排序
     const dayStamp = weekendInfo
@@ -352,13 +362,40 @@
       score: scoreActivity(a, input)
     })).sort((x, y) => y.score - x.score);
 
-    // 取前 5 名，用 数字 + 年龄 + 当日日期 共同决定最终选哪个
-    const top = scored.slice(0, 5);
+    // 取前 8 名做候选池（之前是 5，扩大让"再来一个"有更多花样）
+    const POOL_SIZE = 8;
+    const top = scored.slice(0, Math.min(POOL_SIZE, scored.length));
+
     const dayStamp = input.weekendInfo
       ? input.weekendInfo.today.getDate()
       : 0;
-    const pickIndex = (input.numbers[0] + input.numbers[2] + input.age + dayStamp) % top.length;
-    return top[pickIndex].activity;
+    // 基准索引：保证首次召唤时输入不同结果不同
+    const baseIndex = (input.numbers[0] + input.numbers[2] + input.age + dayStamp) % top.length;
+
+    // "再来一个"轮换：每次点击后 againClickCount 自增，让 pickIndex 跨步前进
+    // 步长用一个和 top.length 互素的常数（3），避免回到原点
+    const stride = 3;
+    const startIdx = (baseIndex + againClickCount * stride) % top.length;
+
+    // 从 startIdx 顺序往后找：跳过最近 N 次出过的 id；如果整圈都被跳过，就允许重复
+    for (let i = 0; i < top.length; i++) {
+      const idx = (startIdx + i) % top.length;
+      const candidate = top[idx].activity;
+      if (!recentRecommendedIds.includes(candidate.id)) {
+        return candidate;
+      }
+    }
+    // 兜底：全队都重了，直接返回起点（顺便清空队列重新开始）
+    recentRecommendedIds = [];
+    return top[startIdx].activity;
+  }
+
+  // 把刚推荐的 id 推进最近队列
+  function pushRecent(id) {
+    recentRecommendedIds.push(id);
+    if (recentRecommendedIds.length > RECENT_QUEUE_SIZE) {
+      recentRecommendedIds.shift();
+    }
   }
 
   // ============ 金句池 ============
@@ -872,6 +909,7 @@
     inputCard.classList.add("hidden");
     resultCard.classList.remove("hidden");
     lastRecommendedId = activity.id;
+    pushRecent(activity.id);
 
     // 手机上结果出来后滚回页面顶部，让用户看到魔法小人 + 结果卡
     if (typeof window !== "undefined" && window.scrollTo) {
@@ -894,6 +932,9 @@
     // 推算"这个周末"——按点击召唤的当下时刻算
     v.data.weekendInfo = getWeekendInfo(new Date());
     lastInput = v.data;
+    // 重新召唤：清空最近队列和"再来一个"计数，让体验像全新的一次
+    recentRecommendedIds = [];
+    againClickCount = 0;
 
     summonBtn.disabled = true;
     summonBtn.querySelector("span").textContent = "✨ 占卜中...";
@@ -916,6 +957,7 @@
   // "再来一个"——换一个推荐（沿用上次的 weekendInfo，确保仍是给这个周末的）
   againBtn.addEventListener("click", () => {
     if (!lastInput) return;
+    againClickCount++; // 每点一次都推进轮换步长
     resultCard.classList.add("hidden");
     const stopCasting = startCasting();
     setTimeout(() => {
