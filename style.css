@@ -505,6 +505,38 @@ button, input, select, label { touch-action: manipulation; }
   margin-bottom: 12px;
   flex-wrap: wrap;
 }
+
+/* 周末日期徽标 */
+.weekend-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff5c2;
+  background: linear-gradient(135deg, rgba(255, 216, 107, 0.22), rgba(139, 92, 246, 0.28));
+  border: 1px solid rgba(255, 216, 107, 0.45);
+  border-radius: 999px;
+  box-shadow: 0 0 16px rgba(255, 216, 107, 0.18);
+  letter-spacing: 0.3px;
+  animation: weekendBadgeIn 0.5s ease-out;
+}
+.weekend-badge .wb-icon {
+  font-size: 14px;
+  filter: drop-shadow(0 0 4px rgba(255, 216, 107, 0.6));
+}
+.weekend-badge .wb-text {
+  white-space: nowrap;
+}
+@keyframes weekendBadgeIn {
+  from { opacity: 0; transform: translateY(-6px) scale(0.9); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (max-width: 380px) {
+  .weekend-badge { font-size: 11px; padding: 5px 10px; }
+}
 .result-tag {
   background: linear-gradient(90deg, var(--accent-2), var(--accent));
   color: #1a1039;

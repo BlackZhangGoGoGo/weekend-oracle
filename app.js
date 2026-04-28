@@ -172,10 +172,99 @@
     return { primary, secondary, sum };
   }
 
+  // ============ 周末日期推算 ============
+  /**
+   * 规则：
+   *   - 用户点击"召唤"当下 new Date()，推出"本周末"的周六、周日具体日期
+   *   - 周一~周四：本周六/周日（即将到来的）
+   *   - 周五：明天就是周六
+   *   - 周六：今天就是周六，明天周日
+   *   - 周日：今天周日，"周六"回看昨天（仍保留周末完整区间）
+   *   - 额外返回：与周末的"距离"（0-3 天）、是否处于周末中、季节
+   */
+  function getWeekendInfo(now = new Date()) {
+    const day = now.getDay(); // 0=Sun 1=Mon ... 6=Sat
+    let sat, sun;
+    if (day === 0) {
+      // 今天周日：周日就是 now，周六回看昨天
+      sun = new Date(now);
+      sat = new Date(now);
+      sat.setDate(now.getDate() - 1);
+    } else if (day === 6) {
+      // 今天周六：周六就是 now，周日 = sat + 1
+      sat = new Date(now);
+      sun = new Date(sat);
+      sun.setDate(sat.getDate() + 1);
+    } else {
+      // 周一至周五：推到最近的周六，再 +1 天得周日（用 sat 克隆，保证跨月正确）
+      sat = new Date(now);
+      sat.setDate(now.getDate() + (6 - day));
+      sun = new Date(sat);
+      sun.setDate(sat.getDate() + 1);
+    }
+    // 距离周末的天数（周一=5，周五=1，周六/周日=0）
+    let daysUntilWeekend;
+    if (day === 0 || day === 6) daysUntilWeekend = 0;
+    else daysUntilWeekend = 6 - day;
+
+    const season = getSeason(now.getMonth() + 1);
+    const fmt = (d) => `${d.getMonth() + 1}月${d.getDate()}日`;
+
+    return {
+      today: now,
+      saturday: sat,
+      sunday: sun,
+      satLabel: fmt(sat),
+      sunLabel: fmt(sun),
+      isWeekend: day === 0 || day === 6,
+      isSaturday: day === 6,
+      isSunday: day === 0,
+      daysUntilWeekend,
+      weekdayName: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"][day],
+      month: now.getMonth() + 1,
+      season
+    };
+  }
+
+  function getSeason(month) {
+    if (month >= 3 && month <= 5) return "春";
+    if (month >= 6 && month <= 8) return "夏";
+    if (month >= 9 && month <= 11) return "秋";
+    return "冬";
+  }
+
+  // 周末气质偏好：周六偏外放，周日偏收心，工作日心向周末
+  function getWeekendMoodBonus(info) {
+    // 返回 { tags: [...], detract: [...] }
+    if (info.isSaturday) {
+      return { tags: ["热闹", "社交", "刺激", "挑战", "运动", "脑洞"], detract: [] };
+    }
+    if (info.isSunday) {
+      return { tags: ["治愈", "安静", "独处", "手作", "健康", "创意"], detract: ["刺激"] };
+    }
+    // 工作日：越临近周末越躁，离得远就偏期待型
+    if (info.daysUntilWeekend <= 2) {
+      return { tags: ["热闹", "社交", "脑洞", "创意"], detract: [] };
+    }
+    return { tags: ["创意", "脑洞", "手作"], detract: [] };
+  }
+
+  // 季节偏好：春夏推户外，秋治愈，冬室内
+  function getSeasonMoodBonus(season) {
+    switch (season) {
+      case "春": return { tags: ["户外", "运动", "创意", "治愈"], detract: [] };
+      case "夏": return { tags: ["户外", "运动", "刺激", "社交"], detract: [] };
+      case "秋": return { tags: ["治愈", "手作", "创意", "独处"], detract: [] };
+      case "冬": return { tags: ["手作", "治愈", "安静", "热闹"], detract: ["户外"] };
+      default:   return { tags: [], detract: [] };
+    }
+  }
+
   function scoreActivity(activity, input) {
     let score = 0;
     const element = window.ZODIAC_ELEMENT[input.zodiac];
     const { primary, secondary, sum } = computeMoodTags(input.numbers);
+    const weekendInfo = input.weekendInfo;
 
     // 1. 星座元素匹配
     if (activity.tags.includes(element)) score += 30;
@@ -222,13 +311,36 @@
       if (activity.tags.includes("刺激") || activity.tags.includes("挑战")) score += 5;
     }
 
+    // 5b. 周末时节权重（新增）——让点击的日期直接影响结果
+    if (weekendInfo) {
+      const weekendBonus = getWeekendMoodBonus(weekendInfo);
+      weekendBonus.tags.forEach(t => {
+        if (activity.tags.includes(t)) score += 10;
+      });
+      weekendBonus.detract.forEach(t => {
+        if (activity.tags.includes(t)) score -= 8;
+      });
+      // 季节权重
+      const seasonBonus = getSeasonMoodBonus(weekendInfo.season);
+      seasonBonus.tags.forEach(t => {
+        if (activity.tags.includes(t) || activity.category === t) score += 6;
+      });
+      seasonBonus.detract.forEach(t => {
+        if (activity.category === t) score -= 8;
+      });
+    }
+
     // 6. 避免上次推荐
     if (activity.id === lastRecommendedId) score -= 40;
 
-    // 7. 数字 + 年龄共同做扰动——任何一个输入变了都会重排序
+    // 7. 数字 + 年龄 + 日期共同做扰动——任何一个输入变了都会重排序
+    const dayStamp = weekendInfo
+      ? weekendInfo.today.getDate() + weekendInfo.month * 31
+      : 0;
     const jitter = (input.numbers[0] * input.numbers[1] * input.numbers[2]
                     + activity.id * 7
-                    + input.age * 3) % 11;
+                    + input.age * 3
+                    + dayStamp) % 11;
     score += jitter;
 
     return score;
@@ -240,9 +352,12 @@
       score: scoreActivity(a, input)
     })).sort((x, y) => y.score - x.score);
 
-    // 取前 5 名，用 数字 + 年龄 共同决定最终选哪个——这样年龄变了结果也会变
+    // 取前 5 名，用 数字 + 年龄 + 当日日期 共同决定最终选哪个
     const top = scored.slice(0, 5);
-    const pickIndex = (input.numbers[0] + input.numbers[2] + input.age) % top.length;
+    const dayStamp = input.weekendInfo
+      ? input.weekendInfo.today.getDate()
+      : 0;
+    const pickIndex = (input.numbers[0] + input.numbers[2] + input.age + dayStamp) % top.length;
     return top[pickIndex].activity;
   }
 
@@ -376,30 +491,93 @@
   }
 
   // ============ 解读文案 ============
+  /**
+   * 丰富版解读：
+   *   - 周末日期前置（"本周六 X月X日"）
+   *   - 星座元素 + 年龄段气质 + 数字节奏 + 季节宜忌 融合
+   *   - 总长度控制在 ≤200 字（中文字符计）
+   */
   function generateReason(input, activity) {
     const element = window.ZODIAC_ELEMENT[input.zodiac];
     const elName = window.ELEMENT_DESC[element].name;
     const elTrait = window.ELEMENT_DESC[element].trait;
     const { primary, sum } = computeMoodTags(input.numbers);
-    const numStr = input.numbers.join(" · ");
+    const numStr = input.numbers.join("·");
+    const info = input.weekendInfo;
 
-    // 性别对应称呼（仅用于口吻，不影响推荐逻辑）
     const callMap = {
-      female: "这位小姐姐",
-      male: "这位小哥",
-      neutral: "这位朋友"
+      female: "小姐姐",
+      male: "小哥",
+      neutral: "朋友"
     };
     const call = callMap[input.gender] || callMap.neutral;
 
-    // 随机选择句式，避免每次都一模一样
-    const templates = [
-      `${call}，${input.zodiac}是${elName}星座，骨子里${elTrait}。你挑的 ${numStr}，总和 ${sum}，落在"${primary[0]}"这一格——魔法棒稍微一挥，就指到了这件事上。`,
-      `${input.age} 岁的${input.zodiac}，今天三颗数字（${numStr}）给${call}敲出了"${primary[0]}·${primary[1]}"的节奏。这件事，就是为这个节奏量身定的。`,
-      `${call}的星座属${elName}（${elTrait}），加上 ${numStr} 三个数字的气场——魔法小人掐指一算，是时候来点"${primary[0]}"的戏码了。`,
-      `${input.zodiac}藏着${elTrait}的灵魂，${numStr} 这串数字把${call}拉向了"${primary[0]}"的方向。魔法棒的水晶球里，就浮出了这件事。`
-    ];
-    const pick = templates[(sum + activity.id) % templates.length];
-    return pick;
+    // 年龄段简短气质描述
+    const ageTone = (() => {
+      if (input.age <= 17) return "正年轻，专属精力值拉满";
+      if (input.age <= 25) return "年轻气盛，适合折腾点大的";
+      if (input.age <= 35) return "正是浪得起也稳得住的时候";
+      if (input.age <= 45) return "该给自己一点心安的节奏了";
+      if (input.age <= 60) return "舒坦，比热闹重要";
+      return "松弛，比什么都值钱";
+    })();
+
+    // 周末引子（根据今天是工作日/周六/周日，以及和周末的距离）
+    let weekendLead;
+    if (!info) {
+      weekendLead = `${input.zodiac}·${input.age}岁的${call}，`;
+    } else if (info.isSaturday) {
+      weekendLead = `今天就是周六（${info.satLabel}），${input.zodiac}的${call}，`;
+    } else if (info.isSunday) {
+      weekendLead = `周日（${info.sunLabel}）到了，${input.zodiac}的${call}，`;
+    } else if (info.daysUntilWeekend === 1) {
+      weekendLead = `再撑一天就是周六（${info.satLabel}），${input.zodiac}的${call}先把这事定下：`;
+    } else {
+      weekendLead = `本周末（${info.satLabel} 周六 / ${info.sunLabel} 周日）还有 ${info.daysUntilWeekend} 天，${input.zodiac}的${call}，`;
+    }
+
+    // 季节宜句
+    const seasonLine = info
+      ? ({
+          "春": "眼下春风正好，户外比室内多三分活。",
+          "夏": "正值盛夏，太阳底下也有人替你撑腰。",
+          "秋": "秋意渐浓，适合把心思往回收一点。",
+          "冬": "天冷归天冷，屋里也能热热闹闹。"
+        })[info.season] || ""
+      : "";
+
+    // 周末宜忌（和推荐气质挂钩）
+    const weekendVibe = info
+      ? (info.isSunday
+          ? `周日的你宜"${primary[0]}"，忌把行程排太满。`
+          : info.isSaturday
+            ? `周六的你宜"${primary[0]}·${primary[1]}"，放开了整。`
+            : `到了周末，你属"${primary[0]}·${primary[1]}"的频率。`)
+      : `你的数字 ${numStr}（总和 ${sum}）落在"${primary[0]}"这一格。`;
+
+    // 核心句
+    const core = `${element ? elName + "座的灵魂" : "你"}本就${elTrait}，${ageTone}。`;
+
+    // 落到活动上
+    const landing = `魔法棒一挥，${activity.title}——就是为这份心情写的剧本。`;
+
+    // 组装：周末引子 + 核心 + 周末宜忌 + 季节 + 落地
+    let text = `${weekendLead}${core}${weekendVibe}${seasonLine}${landing}`;
+
+    // 200 字保护（中文按字符数）。超了就逐段砍最容易牺牲的
+    if ([...text].length > 200) {
+      // 先去掉季节句
+      text = `${weekendLead}${core}${weekendVibe}${landing}`;
+    }
+    if ([...text].length > 200) {
+      // 再去掉核心后半（ageTone）
+      text = `${weekendLead}${elName ? elName + "座骨子里" + elTrait + "。" : ""}${weekendVibe}${landing}`;
+    }
+    if ([...text].length > 200) {
+      // 实在超就硬截
+      text = [...text].slice(0, 198).join("") + "…";
+    }
+    return text;
   }
 
   // ============ 施法动画 ============
@@ -653,7 +831,31 @@
   // ============ 渲染结果 ============
   const DIFFICULTY_STAR = (n) => "★".repeat(n) + "☆".repeat(5 - n);
 
+  function renderWeekendBadge(info) {
+    // 在结果卡标题上方插一条"这个周末"徽标；若已存在则更新
+    if (!info) return;
+    const header = document.querySelector("#resultCard .result-header");
+    if (!header) return;
+    let badge = document.getElementById("weekendBadge");
+    if (!badge) {
+      badge = document.createElement("div");
+      badge.id = "weekendBadge";
+      badge.className = "weekend-badge";
+      header.parentNode.insertBefore(badge, header);
+    }
+    let label;
+    if (info.isSaturday) {
+      label = `今天就是周六 · ${info.satLabel}`;
+    } else if (info.isSunday) {
+      label = `今天就是周日 · ${info.sunLabel}`;
+    } else {
+      label = `这个周末 · ${info.satLabel} 周六 / ${info.sunLabel} 周日`;
+    }
+    badge.innerHTML = `<span class="wb-icon">📅</span><span class="wb-text">${label}</span>`;
+  }
+
   function showResult(activity, input) {
+    renderWeekendBadge(input.weekendInfo);
     resultCategory.textContent = window.CATEGORY_NAME[activity.category] || activity.category;
     resultTitle.textContent = activity.title;
     resultDesc.textContent = activity.desc;
@@ -689,6 +891,8 @@
       return;
     }
     errorTip.textContent = "";
+    // 推算"这个周末"——按点击召唤的当下时刻算
+    v.data.weekendInfo = getWeekendInfo(new Date());
     lastInput = v.data;
 
     summonBtn.disabled = true;
@@ -709,7 +913,7 @@
 
   summonBtn.addEventListener("click", handleSummon);
 
-  // "再来一个"——换一个推荐
+  // "再来一个"——换一个推荐（沿用上次的 weekendInfo，确保仍是给这个周末的）
   againBtn.addEventListener("click", () => {
     if (!lastInput) return;
     resultCard.classList.add("hidden");
