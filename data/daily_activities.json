@@ -374,6 +374,84 @@
       "duration": "1-2 小时",
       "difficulty": 2,
       "desc": "挑一首小学就会唱的歌，把歌词改成你最近一周的日常。唱给室友或朋友听，笑到打滚。"
+    },
+    {
+      "id": 65,
+      "title": "读一本跟你职业无关的书",
+      "category": "solo",
+      "tags": [
+        "air",
+        "脑洞",
+        "独处"
+      ],
+      "ageRange": [
+        18,
+        80
+      ],
+      "people": "1 人",
+      "place": "任何地方",
+      "duration": "数天",
+      "difficulty": 2,
+      "desc": "选一本你完全不懂的领域（天文、园艺、考古），硬啃一周。大脑会长出你没见过的枝。"
+    },
+    {
+      "id": 66,
+      "title": "去一次专业美发换造型",
+      "category": "healing",
+      "tags": [
+        "fire",
+        "air",
+        "独特",
+        "挑战"
+      ],
+      "ageRange": [
+        16,
+        55
+      ],
+      "people": "1 人",
+      "place": "理发店",
+      "duration": "2-3 小时",
+      "difficulty": 2,
+      "desc": "剪一个你从来没敢试的发型，染一个平时绝不会选的颜色。照镜子那一下，感觉换了个灵魂。"
+    },
+    {
+      "id": 67,
+      "title": "把衣柜整理成 ins 风",
+      "category": "indoor",
+      "tags": [
+        "earth",
+        "手作",
+        "治愈"
+      ],
+      "ageRange": [
+        14,
+        60
+      ],
+      "people": "1 人",
+      "place": "家里",
+      "duration": "半天",
+      "difficulty": 2,
+      "desc": "衣服按色系分、包按大小排、配饰单独立牌。整完像开了个小店，心里也变干净。"
+    },
+    {
+      "id": 68,
+      "title": "和老朋友来一场视频夜聊",
+      "category": "social",
+      "tags": [
+        "water",
+        "air",
+        "治愈",
+        "热闹"
+      ],
+      "ageRange": [
+        16,
+        80
+      ],
+      "people": "2-5 人",
+      "place": "家里",
+      "duration": "2-3 小时",
+      "difficulty": 1,
+      "desc": "约上三年没正经聊过的老友视频，规则：不聊工作不聊对象，只聊那些「还记不记得当年」。"
     }
   ]
 }

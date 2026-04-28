@@ -16,6 +16,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const { execSync } = require("child_process");
 
 const ROOT = path.resolve(__dirname, "..");
 const DATA_DIR = path.join(ROOT, "data");
@@ -217,6 +218,41 @@ async function main() {
   log(`【${theme.name}】追加 ${newActivities.length} 条：` +
       newActivities.map(a => a.title).join("、") +
       `  | 总库：${base.activities.length + daily.activities.length} 条`);
+
+  // 自动提交并推送到远端（可通过 NO_GIT_PUSH=1 跳过）
+  autoCommitAndPush(theme, newActivities, base.activities.length + daily.activities.length);
+}
+
+/* ========== 自动提交 & 推送 ==========
+ * 失败不抛异常，只记录日志，避免打断定时任务
+ */
+function autoCommitAndPush(theme, newActivities, totalCount) {
+  if (process.env.NO_GIT_PUSH === "1") {
+    log("已跳过 git 推送（NO_GIT_PUSH=1）");
+    return;
+  }
+  try {
+    const run = (cmd) => execSync(cmd, { cwd: ROOT, stdio: ["ignore", "pipe", "pipe"] }).toString().trim();
+
+    // 只 add 当前变更的数据文件，避免把未知文件意外带上
+    run(`git add "${path.relative(ROOT, DAILY_FILE)}"`);
+
+    // 没有实际可提交变更就退出
+    const staged = run(`git diff --cached --name-only`);
+    if (!staged) {
+      log("git: 没有待提交变更，跳过。");
+      return;
+    }
+
+    const titles = newActivities.map(a => a.title).join("、");
+    const msg = `chore: 每日补活动 ${theme.name} +${newActivities.length} 总库${totalCount} [${titles}]`;
+    run(`git commit -m ${JSON.stringify(msg)}`);
+    run(`git push origin HEAD`);
+    log(`git: 已提交并推送 —— ${msg}`);
+  } catch (e) {
+    const stderr = (e.stderr && e.stderr.toString && e.stderr.toString()) || "";
+    log("git 推送失败（不影响数据落盘）：" + (e.message || "") + " " + stderr);
+  }
 }
 
 main().catch(err => {
