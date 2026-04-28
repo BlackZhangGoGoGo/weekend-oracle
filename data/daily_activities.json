@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-04-27",
+  "updated_at": "2026-04-28",
   "activities": [
     {
       "id": 46,
@@ -99,6 +99,106 @@
       "duration": "1 小时",
       "difficulty": 2,
       "desc": "不写工作，写你这辈子干过的所有奇怪爱好、半途而废的项目、遇到的神人。写完会很感动。"
+    },
+    {
+      "id": 51,
+      "title": "和陌生猫咪交朋友",
+      "category": "healing",
+      "tags": [
+        "water",
+        "earth",
+        "治愈",
+        "独处"
+      ],
+      "ageRange": [
+        6,
+        80
+      ],
+      "people": "1 人",
+      "place": "小区/街巷",
+      "duration": "1 小时",
+      "difficulty": 2,
+      "desc": "带点冻干蹲在小区角落，有耐心的话一只都能处成朋友。被舔手的那一下，一周都值了。"
+    },
+    {
+      "id": 52,
+      "title": "把房间挪成新布局",
+      "category": "indoor",
+      "tags": [
+        "earth",
+        "air",
+        "手作",
+        "脑洞"
+      ],
+      "ageRange": [
+        16,
+        55
+      ],
+      "people": "1-2 人",
+      "place": "家里",
+      "duration": "半天",
+      "difficulty": 3,
+      "desc": "床换个方向，桌子挪一下。新视角会骗过大脑，让你觉得搬了新家。"
+    },
+    {
+      "id": 53,
+      "title": "去当一次临时义工",
+      "category": "social",
+      "tags": [
+        "earth",
+        "water",
+        "治愈",
+        "独特"
+      ],
+      "ageRange": [
+        16,
+        70
+      ],
+      "people": "1-3 人",
+      "place": "公益组织/救助站",
+      "duration": "半天",
+      "difficulty": 2,
+      "desc": "流浪动物救助、敬老院、环境清洁——选一个能当天报名的，半天给你的感动顶半年。"
+    },
+    {
+      "id": 54,
+      "title": "老电影 + 老唱片之夜",
+      "category": "cultural",
+      "tags": [
+        "earth",
+        "water",
+        "治愈",
+        "安静"
+      ],
+      "ageRange": [
+        16,
+        80
+      ],
+      "people": "1-3 人",
+      "place": "家里",
+      "duration": "3 小时",
+      "difficulty": 1,
+      "desc": "挑一部 90 年代前的电影，放一张老 CD 当 BGM。时间在房间里慢下来了。"
+    },
+    {
+      "id": 55,
+      "title": "去博物馆只看一件展品",
+      "category": "cultural",
+      "tags": [
+        "air",
+        "earth",
+        "安静",
+        "独特"
+      ],
+      "ageRange": [
+        12,
+        80
+      ],
+      "people": "1-2 人",
+      "place": "博物馆",
+      "duration": "2 小时",
+      "difficulty": 1,
+      "desc": "挑定一件展品，绕着它看 40 分钟，查它的前世今生。然后你就拥有了一个亲切的朋友。"
     }
   ]
 }
