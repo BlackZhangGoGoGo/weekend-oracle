@@ -33,10 +33,19 @@ fi
 TODAY=$(date "+%Y-%m-%d")
 # update.log 尾行格式：[时间] 【主题】追加 N 条：A、B、C  | 总库：X 条
 LAST_LOG=$(tail -1 data/update.log 2>/dev/null || echo "")
-COUNT=$(echo "$LAST_LOG" | grep -oE "追加 [0-9]+ 条" | grep -oE "[0-9]+" || echo "?")
-THEME=$(echo "$LAST_LOG" | grep -oE "【[^】]+】" | tr -d '【】' || echo "")
-TITLES=$(echo "$LAST_LOG" | sed -E 's/.*追加 [0-9]+ 条：([^|]+)\|.*/\1/' | xargs)
-TOTAL=$(echo "$LAST_LOG" | grep -oE "总库：[0-9]+" | grep -oE "[0-9]+" || echo "?")
+# 用 Node 解析最后一行，避免 shell 下中文正则踩坑
+PARSED=$(/opt/homebrew/bin/node -e '
+  const line = process.argv[1] || "";
+  const theme = (line.match(/【([^】]+)】/) || [,""])[1];
+  const count = (line.match(/追加\s*(\d+)\s*条/) || [,"?"])[1];
+  const titles = (line.match(/追加\s*\d+\s*条：([^|]+)/) || [,""])[1].trim();
+  const total = (line.match(/总库[：:]\s*(\d+)/) || [,"?"])[1];
+  console.log([theme, count, titles, total].join("\x1f"));
+' "$LAST_LOG")
+THEME=$(echo "$PARSED" | awk -F $'\x1f' '{print $1}')
+COUNT=$(echo "$PARSED" | awk -F $'\x1f' '{print $2}')
+TITLES=$(echo "$PARSED" | awk -F $'\x1f' '{print $3}')
+TOTAL=$(echo "$PARSED" | awk -F $'\x1f' '{print $4}')
 
 COMMIT_MSG="chore: 每日补活动 · $TODAY · ${THEME} · +${COUNT} 条 · 总库 ${TOTAL}"
 echo "[3/4] 准备提交：$COMMIT_MSG" >> "$LOG"
