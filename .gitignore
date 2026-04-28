@@ -11,6 +11,11 @@
 
 # 运行日志（保留 data 下的 JSON，不保留 log）
 data/update.log
+data/auto_publish.log
+
+# WorkBuddy / CodeBuddy 本地私有数据
+.workbuddy/
+.codebuddy/
 
 # Node 依赖（脚本目前不依赖 npm 包，但以后若用到）
 node_modules/

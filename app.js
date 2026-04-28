@@ -412,6 +412,172 @@
     "活动正在从宇宙浮现"
   ];
 
+  // ============ 魔法音效（Web Audio 合成，零资源） ============
+  // 设计思路：
+  //  - 低频"嗡嗡"持续垫底：营造魔法阵蓄能的氛围
+  //  - 中高频"风铃"叮咚：每隔一小段时间随机叮一下，像水晶球里的光点
+  //  - 结束时一段"叮~✨"上升音阶：揭晓时刻的仪式感
+  //  - 全部用振荡器 + 包络合成，不引入任何音频文件
+  const SOUND_KEY = "weekendOracle:soundEnabled";
+  const soundToggleBtn = $("soundToggle");
+  let soundEnabled = localStorage.getItem(SOUND_KEY) !== "0"; // 默认开
+  let audioCtx = null;
+  let castingNodes = null; // 当前施法中的节点，便于中途停掉
+
+  function syncSoundUI() {
+    if (!soundToggleBtn) return;
+    soundToggleBtn.textContent = soundEnabled ? "🔊" : "🔇";
+    soundToggleBtn.classList.toggle("muted", !soundEnabled);
+    soundToggleBtn.setAttribute(
+      "title",
+      soundEnabled ? "施法音效：开（点一下关闭）" : "施法音效：关（点一下开启）"
+    );
+  }
+  syncSoundUI();
+
+  if (soundToggleBtn) {
+    soundToggleBtn.addEventListener("click", () => {
+      soundEnabled = !soundEnabled;
+      localStorage.setItem(SOUND_KEY, soundEnabled ? "1" : "0");
+      syncSoundUI();
+      // 如果关闭时正在播放，立刻停掉
+      if (!soundEnabled && castingNodes) {
+        stopCastingSound(0);
+      }
+    });
+  }
+
+  function ensureAudioCtx() {
+    if (!audioCtx) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      audioCtx = new AC();
+    }
+    // 某些浏览器 ctx 初始挂起，需要 resume（用户点击后调用没问题）
+    if (audioCtx.state === "suspended") {
+      audioCtx.resume().catch(() => {});
+    }
+    return audioCtx;
+  }
+
+  // 启动施法背景音：一个低频的嗡嗡垫底 + 随机"叮"
+  function startCastingSound() {
+    if (!soundEnabled) return;
+    const ctx = ensureAudioCtx();
+    if (!ctx) return;
+
+    const now = ctx.currentTime;
+    const master = ctx.createGain();
+    master.gain.setValueAtTime(0, now);
+    master.gain.linearRampToValueAtTime(0.25, now + 0.15);
+    master.connect(ctx.destination);
+
+    // 1) 低频嗡嗡：两个略有偏差的正弦做成厚一点的 pad
+    const pad1 = ctx.createOscillator();
+    const pad2 = ctx.createOscillator();
+    pad1.type = "sine";
+    pad2.type = "sine";
+    pad1.frequency.value = 110;   // A2
+    pad2.frequency.value = 110 * 1.01; // 轻微失谐更有"魔法感"
+    const padGain = ctx.createGain();
+    padGain.gain.value = 0.35;
+    pad1.connect(padGain);
+    pad2.connect(padGain);
+
+    // 低通滤波，让嗡嗡更柔和
+    const lp = ctx.createBiquadFilter();
+    lp.type = "lowpass";
+    lp.frequency.value = 700;
+    padGain.connect(lp);
+    lp.connect(master);
+
+    pad1.start(now);
+    pad2.start(now);
+
+    // 2) 随机"叮咚"：每隔 180~340ms 来一下，音高在五声音阶里挑
+    const scale = [523.25, 587.33, 659.25, 783.99, 880]; // C5 D5 E5 G5 A5
+    let dingTimeout;
+    function scheduleDing() {
+      if (!soundEnabled || !castingNodes) return;
+      const f = scale[Math.floor(Math.random() * scale.length)];
+      playBell(ctx, master, f, 0.12);
+      dingTimeout = setTimeout(scheduleDing, 180 + Math.random() * 160);
+    }
+    dingTimeout = setTimeout(scheduleDing, 200);
+
+    castingNodes = {
+      ctx,
+      master,
+      pad1,
+      pad2,
+      stopDing: () => clearTimeout(dingTimeout)
+    };
+  }
+
+  // 停止施法背景音（fadeOut 秒内淡出）
+  function stopCastingSound(fadeOut = 0.25) {
+    if (!castingNodes) return;
+    const { ctx, master, pad1, pad2, stopDing } = castingNodes;
+    stopDing();
+    const now = ctx.currentTime;
+    try {
+      master.gain.cancelScheduledValues(now);
+      master.gain.setValueAtTime(master.gain.value, now);
+      master.gain.linearRampToValueAtTime(0, now + fadeOut);
+      pad1.stop(now + fadeOut + 0.02);
+      pad2.stop(now + fadeOut + 0.02);
+    } catch (e) { /* ignore */ }
+    castingNodes = null;
+  }
+
+  // 一次"叮"：三角波 + 快速包络模拟铃声
+  function playBell(ctx, destination, freq, duration) {
+    const now = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    osc.type = "triangle";
+    osc.frequency.value = freq;
+
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0, now);
+    g.gain.linearRampToValueAtTime(0.22, now + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+    osc.connect(g);
+    g.connect(destination);
+    osc.start(now);
+    osc.stop(now + duration + 0.02);
+  }
+
+  // 揭晓时的上升音阶"叮~✨"
+  function playRevealChime() {
+    if (!soundEnabled) return;
+    const ctx = ensureAudioCtx();
+    if (!ctx) return;
+    const master = ctx.createGain();
+    master.gain.value = 0.5;
+    master.connect(ctx.destination);
+
+    const notes = [659.25, 783.99, 987.77, 1318.51]; // E5 G5 B5 E6
+    notes.forEach((f, i) => {
+      setTimeout(() => playBell(ctx, master, f, 0.45), i * 90);
+    });
+    // 80ms 的软"whoosh"——用短促的白噪声模拟
+    const noiseBuf = ctx.createBuffer(1, ctx.sampleRate * 0.25, ctx.sampleRate);
+    const data = noiseBuf.getChannelData(0);
+    for (let i = 0; i < data.length; i++) {
+      data[i] = (Math.random() * 2 - 1) * (1 - i / data.length);
+    }
+    const noise = ctx.createBufferSource();
+    noise.buffer = noiseBuf;
+    const nGain = ctx.createGain();
+    nGain.gain.value = 0.15;
+    const hp = ctx.createBiquadFilter();
+    hp.type = "highpass";
+    hp.frequency.value = 1200;
+    noise.connect(hp); hp.connect(nGain); nGain.connect(master);
+    noise.start();
+  }
+
   function startCasting() {
     // 老位置的小人也继续动（页面滚回去也能看到）
     wizard.classList.remove("idle");
@@ -420,6 +586,9 @@
     // 显示全屏覆盖层
     castingOverlay.classList.remove("hidden");
     castingOverlay.setAttribute("aria-hidden", "false");
+
+    // 启动魔法音效
+    startCastingSound();
 
     // 阶段文案轮播
     let phaseIdx = 0;
@@ -445,6 +614,10 @@
       // 淡出覆盖层
       castingOverlay.classList.add("hidden");
       castingOverlay.setAttribute("aria-hidden", "true");
+
+      // 音效：先停背景嗡嗡，再叠加一段揭晓音阶
+      stopCastingSound(0.2);
+      playRevealChime();
     };
   }
 
