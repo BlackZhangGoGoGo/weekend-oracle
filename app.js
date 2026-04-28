@@ -534,6 +534,44 @@
    *   - 星座元素 + 年龄段气质 + 数字节奏 + 季节宜忌 融合
    *   - 总长度控制在 ≤200 字（中文字符计）
    */
+  // 数字 1~9 的小性格标签（用来给输入数字做解读）
+  const DIGIT_TRAIT = {
+    1: "独行",
+    2: "双人同频",
+    3: "灵感炸开",
+    4: "稳稳的踏实",
+    5: "说走就走",
+    6: "温柔",
+    7: "神秘感",
+    8: "顺风顺水",
+    9: "圆满收束"
+  };
+
+  // 数字总和（3~27）的节奏段位
+  function numberSumVibe(sum) {
+    if (sum <= 8)  return "慢节奏，今天适合把步子放小一点";
+    if (sum <= 14) return "中等热度，起伏刚刚好";
+    if (sum <= 20) return "能量在线，适合给自己加一点戏";
+    return "高能量，今天不折腾一下白过";
+  }
+
+  // 拼一句"数字解读"——三个数字 + 总和节奏，带轻微轮换，不至于每次都一模一样
+  function buildNumberLine(numbers) {
+    const [a, b, c] = numbers;
+    const ta = DIGIT_TRAIT[a] || "";
+    const tb = DIGIT_TRAIT[b] || "";
+    const tc = DIGIT_TRAIT[c] || "";
+    const sum = a + b + c;
+    const vibe = numberSumVibe(sum);
+
+    const templates = [
+      `你挑的 ${a}·${b}·${c}——一个管"${ta}"、一个管"${tb}"、一个管"${tc}"，凑成 ${sum}，${vibe}。`,
+      `${a}·${b}·${c} 三个数字（"${ta}"+"${tb}"+"${tc}"）加起来 ${sum}，${vibe}。`,
+      `数字 ${a}、${b}、${c} 分别指向"${ta}""${tb}""${tc}"，总和 ${sum}，${vibe}。`
+    ];
+    return templates[sum % templates.length];
+  }
+
   function generateReason(input, activity) {
     const element = window.ZODIAC_ELEMENT[input.zodiac];
     const elName = window.ELEMENT_DESC[element].name;
@@ -558,6 +596,9 @@
       if (input.age <= 60) return "舒坦，比热闹重要";
       return "松弛，比什么都值钱";
     })();
+
+    // 数字解读（新增）
+    const numberLine = buildNumberLine(input.numbers);
 
     // 周末引子（根据今天是工作日/周六/周日，以及和周末的距离）
     let weekendLead;
@@ -598,17 +639,21 @@
     // 落到活动上
     const landing = `魔法棒一挥，${activity.title}——就是为这份心情写的剧本。`;
 
-    // 组装：周末引子 + 核心 + 周末宜忌 + 季节 + 落地
-    let text = `${weekendLead}${core}${weekendVibe}${seasonLine}${landing}`;
+    // 组装：周末引子 + 核心 + 数字解读 + 周末宜忌 + 季节 + 落地
+    let text = `${weekendLead}${core}${numberLine}${weekendVibe}${seasonLine}${landing}`;
 
     // 200 字保护（中文按字符数）。超了就逐段砍最容易牺牲的
     if ([...text].length > 200) {
       // 先去掉季节句
-      text = `${weekendLead}${core}${weekendVibe}${landing}`;
+      text = `${weekendLead}${core}${numberLine}${weekendVibe}${landing}`;
     }
     if ([...text].length > 200) {
-      // 再去掉核心后半（ageTone）
-      text = `${weekendLead}${elName ? elName + "座骨子里" + elTrait + "。" : ""}${weekendVibe}${landing}`;
+      // 再去掉核心句（保留数字解读，因为这是本轮新增的重点）
+      text = `${weekendLead}${numberLine}${weekendVibe}${landing}`;
+    }
+    if ([...text].length > 200) {
+      // 再砍周末宜忌
+      text = `${weekendLead}${numberLine}${landing}`;
     }
     if ([...text].length > 200) {
       // 实在超就硬截
