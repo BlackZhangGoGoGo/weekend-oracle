@@ -278,6 +278,102 @@
       "duration": "1 小时",
       "difficulty": 2,
       "desc": "手机打开录音，自言自语 20 分钟——今天发生了啥、想了啥、怕了啥。一年后听会很上头。"
+    },
+    {
+      "id": 60,
+      "title": "老照片数字化小项目",
+      "category": "indoor",
+      "tags": [
+        "earth",
+        "手作",
+        "治愈"
+      ],
+      "ageRange": [
+        18,
+        70
+      ],
+      "people": "1 人",
+      "place": "家里",
+      "duration": "3 小时",
+      "difficulty": 2,
+      "desc": "找出家里的老相册，一张张拍下来存云盘，顺手记上时间地点。翻到小时候会突然想哭。"
+    },
+    {
+      "id": 61,
+      "title": "一个人去吃会转的寿司",
+      "category": "solo",
+      "tags": [
+        "water",
+        "独处",
+        "美食"
+      ],
+      "ageRange": [
+        14,
+        70
+      ],
+      "people": "1 人",
+      "place": "回转寿司店",
+      "duration": "1 小时",
+      "difficulty": 1,
+      "desc": "坐在传送带前，挑喜欢的就拿。没人跟你说话的那一小时，是属于你的小仪式。"
+    },
+    {
+      "id": 62,
+      "title": "做一张自己的年度歌单",
+      "category": "creative",
+      "tags": [
+        "air",
+        "water",
+        "独处",
+        "手作"
+      ],
+      "ageRange": [
+        12,
+        60
+      ],
+      "people": "1 人",
+      "place": "家里",
+      "duration": "2 小时",
+      "difficulty": 1,
+      "desc": "从今年听过的里面挑 20 首，按心情排序。封面自己拍一张。发给闺蜜/兄弟。"
+    },
+    {
+      "id": 63,
+      "title": "一整天只说谢谢挑战",
+      "category": "solo",
+      "tags": [
+        "water",
+        "脑洞",
+        "沙雕"
+      ],
+      "ageRange": [
+        14,
+        50
+      ],
+      "people": "1 人",
+      "place": "任何地方",
+      "duration": "一天",
+      "difficulty": 3,
+      "desc": "除了日常必要表达，回复全用「谢谢」。你会发现很多对话其实真的只用「谢谢」就够了。"
+    },
+    {
+      "id": 64,
+      "title": "给一首老歌重填词",
+      "category": "creative",
+      "tags": [
+        "air",
+        "脑洞",
+        "手作"
+      ],
+      "ageRange": [
+        14,
+        60
+      ],
+      "people": "1-2 人",
+      "place": "任何地方",
+      "duration": "1-2 小时",
+      "difficulty": 2,
+      "desc": "挑一首小学就会唱的歌，把歌词改成你最近一周的日常。唱给室友或朋友听，笑到打滚。"
     }
   ]
 }
