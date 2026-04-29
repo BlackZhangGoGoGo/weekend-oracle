@@ -609,6 +609,104 @@
       "duration": "1-2 小时",
       "difficulty": 1,
       "desc": "六点起床去一趟本地菜市场，听摊主吆喝，闻鲜鱼和刚出炉包子的味，买一把花五块钱插家里。"
+    },
+    {
+      "id": 77,
+      "title": "拍一个家人的纪录片",
+      "category": "creative",
+      "tags": [
+        "earth",
+        "water",
+        "治愈",
+        "手作"
+      ],
+      "ageRange": [
+        16,
+        60
+      ],
+      "people": "1-2 人",
+      "place": "家里",
+      "duration": "半天",
+      "difficulty": 2,
+      "desc": "用手机拍一段 3 分钟的家人做家务/做饭的视频，配一段简单旁白。五年后再看是宝。"
+    },
+    {
+      "id": 78,
+      "title": "录一段 10 年后打开的自拍视频",
+      "category": "solo",
+      "tags": [
+        "air",
+        "水",
+        "独处",
+        "记录"
+      ],
+      "ageRange": [
+        10,
+        80
+      ],
+      "people": "1 人",
+      "place": "家里",
+      "duration": "30 分钟",
+      "difficulty": 1,
+      "desc": "对着镜头讲一段给 10 年后的自己，说现在有多累、在期待什么。标记好日期存进云盘。"
+    },
+    {
+      "id": 79,
+      "title": "24 小时独处挑战",
+      "category": "healing",
+      "tags": [
+        "water",
+        "独处",
+        "挑战"
+      ],
+      "ageRange": [
+        18,
+        60
+      ],
+      "people": "1 人",
+      "place": "家里",
+      "duration": "一天",
+      "difficulty": 3,
+      "desc": "一天不和任何人说话、不打电话、不发消息。看你能跟自己相处多久不尴尬。"
+    },
+    {
+      "id": 80,
+      "title": "去菜场学做一道当地菜",
+      "category": "food",
+      "tags": [
+        "earth",
+        "手作",
+        "独特"
+      ],
+      "ageRange": [
+        16,
+        70
+      ],
+      "people": "1-2 人",
+      "place": "菜市场/家里",
+      "duration": "半天",
+      "difficulty": 3,
+      "desc": "问摊主这菜怎么做，回家照着做。可能会翻车但过程特别鲜活。"
+    },
+    {
+      "id": 81,
+      "title": "去跑一个 5 公里",
+      "category": "sport",
+      "tags": [
+        "fire",
+        "health",
+        "健康",
+        "挑战"
+      ],
+      "ageRange": [
+        14,
+        55
+      ],
+      "people": "1-3 人",
+      "place": "公园/跑道",
+      "duration": "1 小时",
+      "difficulty": 2,
+      "desc": "不求快，求完整跑完。跑完靠在栏杆上呼吸的那一下，是今天最清澈的三分钟。"
     }
   ]
 }
