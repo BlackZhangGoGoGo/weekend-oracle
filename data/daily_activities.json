@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-04-28",
+  "updated_at": "2026-04-29",
   "activities": [
     {
       "id": 46,
@@ -452,6 +452,104 @@
       "duration": "2-3 小时",
       "difficulty": 1,
       "desc": "约上三年没正经聊过的老友视频，规则：不聊工作不聊对象，只聊那些「还记不记得当年」。"
+    },
+    {
+      "id": 69,
+      "title": "给自己办一场退休预演",
+      "category": "solo",
+      "tags": [
+        "water",
+        "脑洞",
+        "独处"
+      ],
+      "ageRange": [
+        22,
+        60
+      ],
+      "people": "1 人",
+      "place": "家里",
+      "duration": "一天",
+      "difficulty": 2,
+      "desc": "把手机静音塞抽屉，安排一整天做你退休后想干的事（发呆、钓鱼、看云）。提前过过瘾。"
+    },
+    {
+      "id": 70,
+      "title": "盲选咖啡豆 + 手冲自学",
+      "category": "food",
+      "tags": [
+        "earth",
+        "water",
+        "手作",
+        "治愈"
+      ],
+      "ageRange": [
+        18,
+        60
+      ],
+      "people": "1-2 人",
+      "place": "家里",
+      "duration": "1 小时",
+      "difficulty": 2,
+      "desc": "随机挑一款没喝过产地的豆子，跟着视频手冲一次。闻香那一下会觉得自己很酷。"
+    },
+    {
+      "id": 71,
+      "title": "去陌生街区吃早餐",
+      "category": "food",
+      "tags": [
+        "water",
+        "air",
+        "治愈",
+        "独特"
+      ],
+      "ageRange": [
+        14,
+        70
+      ],
+      "people": "1-2 人",
+      "place": "城市另一头",
+      "duration": "2 小时",
+      "difficulty": 1,
+      "desc": "坐地铁去完全陌生的区，在居民楼下找一家没招牌的早餐铺，吃一碗本地人才排的那种。"
+    },
+    {
+      "id": 72,
+      "title": "办一场 3 人小型展",
+      "category": "creative",
+      "tags": [
+        "air",
+        "fire",
+        "脑洞",
+        "手作"
+      ],
+      "ageRange": [
+        18,
+        45
+      ],
+      "people": "3-5 人",
+      "place": "家里/咖啡店",
+      "duration": "一下午",
+      "difficulty": 3,
+      "desc": "和两个朋友各出 5 张照片/画作，在一面墙上布置成小展。朋友圈发招待通知，邀请大家来喝酒。"
+    },
+    {
+      "id": 73,
+      "title": "跟着天气 App 的建议出门",
+      "category": "outdoor",
+      "tags": [
+        "air",
+        "脑洞",
+        "沙雕"
+      ],
+      "ageRange": [
+        14,
+        60
+      ],
+      "people": "1 人",
+      "place": "户外",
+      "duration": "2 小时",
+      "difficulty": 1,
+      "desc": "打开天气 App，看看它推荐你今天适合干嘛，强制执行。意外地经常是个好主意。"
     }
   ]
 }
