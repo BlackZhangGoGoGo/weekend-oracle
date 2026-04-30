@@ -766,7 +766,84 @@
       "duration": "一天",
       "difficulty": 2,
       "desc": "早上起床不照镜子，出门不整理头发。你会发现，注意力从外貌挪开后，世界变大了一圈。"
+    },
+    {
+      "id": 85,
+      "title": "玩一下午小时候的老游戏",
+      "category": "healing",
+      "tags": [
+        "earth",
+        "治愈",
+        "独处"
+      ],
+      "ageRange": [
+        12,
+        50
+      ],
+      "people": "1-3 人",
+      "place": "家里",
+      "duration": "3 小时",
+      "difficulty": 1,
+      "desc": "找出那款你小时候玩爆了的游戏，从头再打一遍。会突然明白当年为什么那么上头。"
+    },
+    {
+      "id": 86,
+      "title": "手账一周挑战",
+      "category": "creative",
+      "tags": [
+        "earth",
+        "water",
+        "手作",
+        "记录"
+      ],
+      "ageRange": [
+        10,
+        60
+      ],
+      "people": "1 人",
+      "place": "家里",
+      "duration": "每天 20 分钟",
+      "difficulty": 2,
+      "desc": "连续 7 天在本子上画 + 写今天的一件小事。一周后回看，你会发现生活没你想的那么无聊。"
+    },
+    {
+      "id": 87,
+      "title": "去看一场儿童剧",
+      "category": "cultural",
+      "tags": [
+        "air",
+        "治愈",
+        "独特"
+      ],
+      "ageRange": [
+        18,
+        60
+      ],
+      "people": "1-3 人",
+      "place": "剧场",
+      "duration": "2 小时",
+      "difficulty": 1,
+      "desc": "一个成年人独自/结伴去看儿童剧，特别解压。出来会笑着说：小孩真幸福。"
+    },
+    {
+      "id": 88,
+      "title": "城市跑酷式 Citywalk",
+      "category": "sport",
+      "tags": [
+        "fire",
+        "air",
+        "挑战",
+        "健康"
+      ],
+      "ageRange": [
+        14,
+        45
+      ],
+      "people": "1-3 人",
+      "place": "老城区",
+      "duration": "3-4 小时",
+      "difficulty": 3,
+      "desc": "从你家一路走到市中心，规则：每条街都要拐一下。结束时看地图会被自己路线逗笑。"
     }
   ]
-} ]
 }
