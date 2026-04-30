@@ -1,0 +1,567 @@
+/**
+ * 溜娃方案库（初版）
+ *
+ * 字段说明：
+ * - name：方案名
+ * - city：适用城市（"通用" 代表任何城市都能找到类似场所）
+ * - type：场景类型（户外/自然/博物馆/游乐/科技/水上/手作/动物/运动/室内游乐）
+ * - ageMin / ageMax：适合年龄区间
+ * - trip：适合的出行方式数组（solo 独带 / family 家庭 / group 结伴）
+ * - duration：建议停留时长
+ * - cost：预算（免费 / 低 / 中 / 中高 / 高）
+ * - indoor：是否室内（true 室内，false 户外，"both" 半室内半户外）
+ * - tags：标签数组（显示用）
+ * - desc：一两句话介绍
+ * - tips：实用建议
+ */
+const KIDS_SPOTS = [
+  // ========== 北京 ==========
+  {
+    name: "奥林匹克森林公园",
+    city: "北京",
+    type: "户外",
+    ageMin: 2, ageMax: 12,
+    trip: ["solo", "family", "group"],
+    duration: "半天",
+    cost: "免费",
+    indoor: false,
+    tags: ["自然", "野餐", "遛娃友好"],
+    desc: "北京最大的城市森林公园，草坪开阔、骑行道平缓，娃放风筝撒野最合适。",
+    tips: "带滑板车/平衡车效果翻倍，南园更热闹北园更清净。"
+  },
+  {
+    name: "中国科学技术馆",
+    city: "北京",
+    type: "科技",
+    ageMin: 4, ageMax: 14,
+    trip: ["family", "group"],
+    duration: "3-4小时",
+    cost: "低",
+    indoor: true,
+    tags: ["科普", "互动", "涨知识"],
+    desc: "儿童科学乐园+主展厅能玩一整天，互动展项多到娃不想走。",
+    tips: "官网提前预约，工作日比周末舒服太多。"
+  },
+  {
+    name: "北京动物园+海洋馆",
+    city: "北京",
+    type: "动物",
+    ageMin: 2, ageMax: 10,
+    trip: ["family", "group"],
+    duration: "大半天",
+    cost: "中",
+    indoor: "both",
+    tags: ["熊猫", "海豚", "老牌"],
+    desc: "熊猫馆和海洋馆基本是娃的必去清单，老牌经典但确实好用。",
+    tips: "海洋馆夏天凉快冬天暖和，动物园记得先看熊猫再看其他。"
+  },
+  {
+    name: "北京汽车博物馆",
+    city: "北京",
+    type: "博物馆",
+    ageMin: 3, ageMax: 12,
+    trip: ["solo", "family", "group"],
+    duration: "2-3小时",
+    cost: "低",
+    indoor: true,
+    tags: ["车迷", "互动", "男宝最爱"],
+    desc: "男宝圣地，真车+模拟驾驶+未来汽车，雨天备选神器。",
+    tips: "周一闭馆，提前官网预约免费票。"
+  },
+
+  // ========== 上海 ==========
+  {
+    name: "上海自然博物馆",
+    city: "上海",
+    type: "博物馆",
+    ageMin: 3, ageMax: 14,
+    trip: ["solo", "family", "group"],
+    duration: "3-4小时",
+    cost: "低",
+    indoor: true,
+    tags: ["恐龙", "自然", "雨天必备"],
+    desc: "恐龙化石+动物标本+互动展项，娃能看三小时不带重样的。",
+    tips: "必须官方预约，工作日人少，地铁13号线自然博物馆站直达。"
+  },
+  {
+    name: "上海迪士尼乐园",
+    city: "上海",
+    type: "游乐",
+    ageMin: 3, ageMax: 14,
+    trip: ["family", "group"],
+    duration: "一整天",
+    cost: "高",
+    indoor: false,
+    tags: ["顶流", "拍照", "仪式感"],
+    desc: "娃的梦想之地，也是爸妈钱包的试炼场。",
+    tips: "买早享卡或尊享卡能省一半排队时间，夏季下午准备雨衣。"
+  },
+  {
+    name: "世纪公园 / 共青森林公园",
+    city: "上海",
+    type: "户外",
+    ageMin: 1, ageMax: 10,
+    trip: ["solo", "family", "group"],
+    duration: "半天",
+    cost: "免费",
+    indoor: false,
+    tags: ["草坪", "野餐", "骑行"],
+    desc: "市区遛娃金牌公园组合，野餐垫+泡泡机+滑板车一条龙。",
+    tips: "世纪公园现在免费开放，建议七号门附近大草坪扎营。"
+  },
+  {
+    name: "上海海昌海洋公园",
+    city: "上海",
+    type: "动物",
+    ageMin: 2, ageMax: 12,
+    trip: ["family", "group"],
+    duration: "一整天",
+    cost: "中高",
+    indoor: "both",
+    tags: ["海洋", "表演", "近郊"],
+    desc: "海洋馆+游乐园二合一，虎鲸表演是记忆点。",
+    tips: "地铁16号线直达，门票提前一天美团买。"
+  },
+
+  // ========== 广州 ==========
+  {
+    name: "广州长隆野生动物世界",
+    city: "广州",
+    type: "动物",
+    ageMin: 2, ageMax: 12,
+    trip: ["family", "group"],
+    duration: "一整天",
+    cost: "中高",
+    indoor: false,
+    tags: ["国内顶级", "考拉", "熊猫三胞胎"],
+    desc: "国内最能打的动物园没有之一，考拉和熊猫三胞胎是王牌。",
+    tips: "一定坐小火车+缆车，夏天早上9点入园才不晒崩。"
+  },
+  {
+    name: "广东省博物馆",
+    city: "广州",
+    type: "博物馆",
+    ageMin: 5, ageMax: 14,
+    trip: ["solo", "family", "group"],
+    duration: "2-3小时",
+    cost: "免费",
+    indoor: true,
+    tags: ["免费", "恐龙厅", "自然"],
+    desc: "免费的省级博物馆，恐龙厅和海洋厅对小朋友友好到极致。",
+    tips: "周一闭馆，官方预约。带娃避开历史厅直奔自然展区。"
+  },
+  {
+    name: "海珠湿地公园",
+    city: "广州",
+    type: "自然",
+    ageMin: 2, ageMax: 10,
+    trip: ["solo", "family", "group"],
+    duration: "半天",
+    cost: "低",
+    indoor: false,
+    tags: ["观鸟", "骑行", "溜娃平价"],
+    desc: "广州最大的城市湿地，骑行观鸟都很能打。",
+    tips: "建议租双人自行车从1期进，带水和驱蚊水。"
+  },
+
+  // ========== 深圳 ==========
+  {
+    name: "深圳湾公园",
+    city: "深圳",
+    type: "户外",
+    ageMin: 1, ageMax: 14,
+    trip: ["solo", "family", "group"],
+    duration: "半天",
+    cost: "免费",
+    indoor: false,
+    tags: ["海边", "观鸟", "骑行"],
+    desc: "一边是海一边是城市天际线，黄昏去拍照也带娃两不误。",
+    tips: "下午4点后风大凉爽，东段适合跑跳，西段观鸟最佳。"
+  },
+  {
+    name: "深圳欢乐海岸盒子乐园",
+    city: "深圳",
+    type: "室内游乐",
+    ageMin: 1, ageMax: 8,
+    trip: ["solo", "family"],
+    duration: "2-3小时",
+    cost: "中",
+    indoor: true,
+    tags: ["下雨神器", "家长躺平", "室内"],
+    desc: "超大室内亲子乐园，爸妈能找到座位娃能自己嗨。",
+    tips: "穿防滑袜（必须），周末最好下午3点后去避开高峰。"
+  },
+  {
+    name: "深圳野生动物园",
+    city: "深圳",
+    type: "动物",
+    ageMin: 2, ageMax: 10,
+    trip: ["family", "group"],
+    duration: "一整天",
+    cost: "中",
+    indoor: false,
+    tags: ["老牌", "海洋天地", "全家适配"],
+    desc: "深圳溜娃老牌顶流，动物+海洋表演一天搞定。",
+    tips: "建议反向游览避开大部队，带伞既遮阳又挡雨。"
+  },
+  {
+    name: "少年宫 · 科学馆",
+    city: "深圳",
+    type: "科技",
+    ageMin: 4, ageMax: 12,
+    trip: ["solo", "family", "group"],
+    duration: "2-3小时",
+    cost: "免费",
+    indoor: true,
+    tags: ["免费", "科普", "市中心"],
+    desc: "地铁直达的免费科技馆，雨天/炎夏的救命稻草。",
+    tips: "公众号提前预约，周末人多建议早上开馆就去。"
+  },
+
+  // ========== 杭州 ==========
+  {
+    name: "杭州动物园 + 虎跑",
+    city: "杭州",
+    type: "动物",
+    ageMin: 2, ageMax: 10,
+    trip: ["family", "group"],
+    duration: "半天",
+    cost: "低",
+    indoor: false,
+    tags: ["老牌", "性价比", "树林"],
+    desc: "西湖南线玩法组合，动物园平价又好逛。",
+    tips: "带水打虎跑泉，动物园下午3点后光线温柔好拍照。"
+  },
+  {
+    name: "浙江省自然博物院杭州馆",
+    city: "杭州",
+    type: "博物馆",
+    ageMin: 3, ageMax: 14,
+    trip: ["solo", "family", "group"],
+    duration: "2-3小时",
+    cost: "免费",
+    indoor: true,
+    tags: ["免费", "恐龙", "互动"],
+    desc: "免费但满配，地球馆和生命馆对小朋友极其友好。",
+    tips: "官方预约，工作日很清静。"
+  },
+
+  // ========== 成都 ==========
+  {
+    name: "大熊猫繁育研究基地",
+    city: "成都",
+    type: "动物",
+    ageMin: 2, ageMax: 14,
+    trip: ["solo", "family", "group"],
+    duration: "半天",
+    cost: "低",
+    indoor: false,
+    tags: ["熊猫", "顶流", "必去"],
+    desc: "来成都带娃不看熊猫说不过去，早上看最活跃。",
+    tips: "8:00前入园，10点后熊猫全部开始躺平。"
+  },
+  {
+    name: "成都浣花溪公园",
+    city: "成都",
+    type: "户外",
+    ageMin: 1, ageMax: 10,
+    trip: ["solo", "family", "group"],
+    duration: "半天",
+    cost: "免费",
+    indoor: false,
+    tags: ["草坪", "骑行", "野餐"],
+    desc: "市中心最适合野餐放风的公园，河边草坪超大。",
+    tips: "租儿童电动车40元/小时，带野餐垫和泡泡机。"
+  },
+
+  // ========== 武汉 ==========
+  {
+    name: "武汉园博园",
+    city: "武汉",
+    type: "户外",
+    ageMin: 2, ageMax: 12,
+    trip: ["family", "group"],
+    duration: "半天",
+    cost: "低",
+    indoor: false,
+    tags: ["大草坪", "园林", "骑行"],
+    desc: "大到能骑车的公园，春秋季遛娃天花板。",
+    tips: "建议从北门进，必租亲子电瓶车。"
+  },
+  {
+    name: "湖北省博物馆",
+    city: "武汉",
+    type: "博物馆",
+    ageMin: 6, ageMax: 14,
+    trip: ["solo", "family", "group"],
+    duration: "2-3小时",
+    cost: "免费",
+    indoor: true,
+    tags: ["免费", "编钟", "文物控"],
+    desc: "免费但含金量超高，稍大点的娃能看得津津有味。",
+    tips: "必约票，编钟表演记得查当天场次。"
+  },
+
+  // ========== 通用（任何城市都找得到类似场所）==========
+  {
+    name: "城市图书馆少儿区",
+    city: "通用",
+    type: "室内游乐",
+    ageMin: 1, ageMax: 10,
+    trip: ["solo", "family", "group"],
+    duration: "2小时",
+    cost: "免费",
+    indoor: true,
+    tags: ["免费", "安静", "雨天必备"],
+    desc: "几乎每个城市都有，免费凉爽还能借绘本回家，独带娃性价比拉满。",
+    tips: "带个保温杯，有的图书馆禁食，先查好开放时间。"
+  },
+  {
+    name: "本地商场亲子乐园",
+    city: "通用",
+    type: "室内游乐",
+    ageMin: 1, ageMax: 8,
+    trip: ["solo", "family"],
+    duration: "2-3小时",
+    cost: "中",
+    indoor: true,
+    tags: ["下雨神器", "吃喝一体", "爸妈友好"],
+    desc: "奈尔宝/玩具反斗城/Meland这种室内娃场，爸妈能歇娃能嗨。",
+    tips: "工作日会便宜一半，周末最好避开11-14点饭点高峰。"
+  },
+  {
+    name: "市属植物园 / 花卉公园",
+    city: "通用",
+    type: "自然",
+    ageMin: 1, ageMax: 10,
+    trip: ["solo", "family", "group"],
+    duration: "半天",
+    cost: "低",
+    indoor: false,
+    tags: ["花草", "散步", "拍照"],
+    desc: "每个城市都有的神器：树荫+草坪+小桥流水，娃跑爸妈躺。",
+    tips: "春秋最佳，记得涂防晒和驱蚊。"
+  },
+  {
+    name: "城市近郊农家乐/采摘园",
+    city: "通用",
+    type: "自然",
+    ageMin: 3, ageMax: 12,
+    trip: ["family", "group"],
+    duration: "大半天",
+    cost: "中",
+    indoor: false,
+    tags: ["采摘", "农家菜", "周末专属"],
+    desc: "草莓/蓝莓/葡萄/柿子按季节来，娃边摘边吃最治愈。",
+    tips: "当季才好玩，建议出发前电话确认开放和价格。"
+  },
+  {
+    name: "城市运动中心/亲子游泳馆",
+    city: "通用",
+    type: "运动",
+    ageMin: 3, ageMax: 14,
+    trip: ["family", "group"],
+    duration: "2小时",
+    cost: "中",
+    indoor: true,
+    tags: ["消耗体力", "室内", "天气无关"],
+    desc: "消耗娃体力的硬通货，游完泳吃个饭回家睡两小时。",
+    tips: "带两条大毛巾，娃3岁以下建议选专门的亲子戏水池。"
+  },
+  {
+    name: "绘本馆 / 儿童书店",
+    city: "通用",
+    type: "手作",
+    ageMin: 1, ageMax: 8,
+    trip: ["solo", "family"],
+    duration: "2小时",
+    cost: "低",
+    indoor: true,
+    tags: ["安静", "亲子阅读", "独带友好"],
+    desc: "独带娃救星，娃自己看书爸妈能喘口气。",
+    tips: "多数绘本馆支持按月办卡比单次划算。"
+  },
+  {
+    name: "陶艺/烘焙 DIY 手作馆",
+    city: "通用",
+    type: "手作",
+    ageMin: 3, ageMax: 12,
+    trip: ["family", "group"],
+    duration: "2-3小时",
+    cost: "中",
+    indoor: true,
+    tags: ["DIY", "有成品", "朋友圈素材"],
+    desc: "做个陶碗烤个饼干，带回家能吹一周的仪式感。",
+    tips: "大众点评搜'亲子DIY'，提前一天预约。"
+  },
+  {
+    name: "城市天文馆 / 科技馆",
+    city: "通用",
+    type: "科技",
+    ageMin: 4, ageMax: 14,
+    trip: ["solo", "family", "group"],
+    duration: "3小时",
+    cost: "低",
+    indoor: true,
+    tags: ["涨知识", "互动", "雨天首选"],
+    desc: "大部分城市都有，互动展项能让娃一直嘎嘎叫。",
+    tips: "球幕电影/天象厅场次有限，买票时一起订。"
+  },
+  {
+    name: "本地水上乐园（夏季）",
+    city: "通用",
+    type: "水上",
+    ageMin: 3, ageMax: 12,
+    trip: ["family", "group"],
+    duration: "一整天",
+    cost: "中高",
+    indoor: false,
+    tags: ["夏日专属", "消暑", "体力消耗"],
+    desc: "夏天独一档的遛娃王牌，娃玩一天晚上秒睡。",
+    tips: "一定穿防晒泳衣，下午4点后光线温柔最舒服。"
+  },
+  {
+    name: "本地农场/马场/亲子牧场",
+    city: "通用",
+    type: "动物",
+    ageMin: 2, ageMax: 10,
+    trip: ["family", "group"],
+    duration: "半天",
+    cost: "中",
+    indoor: false,
+    tags: ["喂动物", "骑小马", "结伴友好"],
+    desc: "喂羊驼骑矮脚马，小朋友抱团玩超出预期。",
+    tips: "大众点评搜'亲子牧场'，周末最好提前订。"
+  },
+  {
+    name: "海洋馆/水族馆",
+    city: "通用",
+    type: "动物",
+    ageMin: 1, ageMax: 12,
+    trip: ["solo", "family", "group"],
+    duration: "3小时",
+    cost: "中",
+    indoor: true,
+    tags: ["室内", "适合各年龄", "爆款"],
+    desc: "不挑天气的溜娃稳妥之选，2岁以下也能看看灯光。",
+    tips: "官方/小程序票比现场便宜30%，避开周末中午场。"
+  }
+];
+
+/**
+ * 按条件筛选 + 打分
+ */
+function pickKidsSpots(input) {
+  const { city, trip, age, boyCount, girlCount } = input;
+  const totalKids = boyCount + girlCount;
+
+  const scored = KIDS_SPOTS.map(spot => {
+    let score = 0;
+    let reasons = [];
+
+    // 城市匹配
+    if (spot.city === city) { score += 50; reasons.push("本地专属"); }
+    else if (spot.city === "通用") { score += 20; }
+    else { score -= 10; } // 其他城市的推荐降权（但不完全排除）
+
+    // 年龄匹配
+    if (age >= spot.ageMin && age <= spot.ageMax) {
+      score += 30;
+      reasons.push(`适合 ${spot.ageMin}-${spot.ageMax} 岁`);
+    } else {
+      const offset = age < spot.ageMin ? spot.ageMin - age : age - spot.ageMax;
+      score -= offset * 8;
+    }
+
+    // 出行方式匹配
+    if (spot.trip.includes(trip)) { score += 20; }
+    else { score -= 15; }
+
+    // 独带娃：加分给"家长省力"的（室内 + 预算可控 + 独带适配）
+    if (trip === "solo") {
+      if (spot.indoor === true) { score += 10; reasons.push("室内好照看"); }
+      if (spot.cost === "免费" || spot.cost === "低") { score += 5; }
+      if (totalKids >= 2) {
+        // 独带多娃：更偏向封闭/室内场所
+        if (spot.indoor === true) score += 8;
+        else if (spot.indoor === false) score -= 8;
+      }
+    }
+
+    // 结伴出行：加分给"开阔场地+娃多能一起玩"的
+    if (trip === "group") {
+      if (spot.indoor === false || spot.indoor === "both") { score += 8; reasons.push("人多放得开"); }
+      if (["户外", "自然", "动物", "游乐", "水上"].includes(spot.type)) score += 6;
+    }
+
+    // 家庭出行：中规中矩，轻微偏好综合型
+    if (trip === "family") {
+      if (["游乐", "动物", "自然", "博物馆"].includes(spot.type)) score += 4;
+    }
+
+    // 娃数量：2个及以上更偏爱场地大的
+    if (totalKids >= 2 && (spot.indoor === false || spot.indoor === "both")) score += 4;
+
+    // 男宝女宝比例微调
+    if (boyCount > girlCount && ["科技", "博物馆", "运动"].includes(spot.type)) score += 3;
+    if (girlCount > boyCount && ["手作", "自然", "动物"].includes(spot.type)) score += 3;
+
+    return { spot, score, reasons };
+  });
+
+  scored.sort((a, b) => b.score - a.score);
+
+  // 取前 6 个，再从里面随机挑 3 个，避免每次都一样
+  const top = scored.slice(0, Math.min(6, scored.length));
+  const picked = [];
+  const pool = [...top];
+  while (picked.length < 3 && pool.length > 0) {
+    const idx = Math.floor(Math.random() * pool.length);
+    picked.push(pool.splice(idx, 1)[0]);
+  }
+  return picked;
+}
+
+/**
+ * 根据条件生成出门前的小贴士
+ */
+function buildKidsTips(input) {
+  const { trip, age, boyCount, girlCount } = input;
+  const totalKids = boyCount + girlCount;
+  const tips = [];
+
+  if (trip === "solo") {
+    tips.push("独带娃首选室内/封闭场地，别选需要同时盯多个方向的地方。");
+    tips.push("背包清单：湿巾、备用衣服、小零食、创可贴、一个能当水杯的保温杯。");
+    if (totalKids >= 2) tips.push("两个娃以上独带，强烈建议用牵引绳/腕带，别心软。");
+  }
+  if (trip === "family") {
+    tips.push("一家人出行可以分工：一人主攻娃、一人负责后勤，轮岗不崩溃。");
+    tips.push("午饭时间提前半小时出发，避开餐厅高峰和娃发脾气的临界点。");
+  }
+  if (trip === "group") {
+    tips.push("结伴出行提前拉群约地点，娃能一起玩的场所大家都解放。");
+    tips.push("建议 AA 某个家庭负责订餐/订票，分工清晰才不乱。");
+  }
+
+  if (age <= 2) {
+    tips.push("2 岁以内：首选推车能进的场所，避开太晒/太吵/光线刺激的地方。");
+    tips.push("奶瓶/尿布/湿巾备双份，路上堵车比想象长。");
+  } else if (age <= 5) {
+    tips.push("3-5 岁：每 1.5 小时安排一次休息+零食补给，不然临门崩溃。");
+    tips.push("带一件玩具/绘本当备用，排队时救命。");
+  } else if (age <= 12) {
+    tips.push("6-12 岁：可以让娃提前参与决策（看哪个展、吃什么），参与感降低耍赖概率。");
+    tips.push("带水、防晒、简单药品（晕车药/创可贴/退烧贴）。");
+  } else {
+    tips.push("13 岁+：把部分决定权交给娃，爸妈负责后勤和氛围组。");
+  }
+
+  tips.push("出门前 10 分钟让娃先上次厕所，能省下一半找卫生间的时间。");
+  return tips;
+}
+
+// 暴露到全局，方便 kids.js 使用
+window.KIDS_SPOTS = KIDS_SPOTS;
+window.pickKidsSpots = pickKidsSpots;
+window.buildKidsTips = buildKidsTips;

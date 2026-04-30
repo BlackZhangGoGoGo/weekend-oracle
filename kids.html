@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="theme-color" content="#1a1039" />
+<title>溜娃神器 🧸 · 周末占卜屋</title>
+<link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="stars"></div>
+
+  <main class="app">
+    <header class="hero">
+      <h1 class="title">溜娃神器 🧸</h1>
+      <p class="subtitle">告诉我娃的情况，我给你一份周末出行锦囊</p>
+      <a href="./index.html" class="back-link" aria-label="返回占卜屋">‹ 返回占卜屋</a>
+    </header>
+
+    <!-- 输入卡 -->
+    <section class="card input-card" id="kidsInputCard">
+      <!-- 城市 -->
+      <div class="field">
+        <label for="kidsCity">所在城市</label>
+        <select id="kidsCity">
+          <option value="">请选择城市</option>
+          <option value="北京">🏛️ 北京</option>
+          <option value="上海">🌆 上海</option>
+          <option value="广州">🌴 广州</option>
+          <option value="深圳">🏙️ 深圳</option>
+          <option value="杭州">🌁 杭州</option>
+          <option value="成都">🐼 成都</option>
+          <option value="武汉">🌉 武汉</option>
+          <option value="南京">🏯 南京</option>
+          <option value="苏州">🪷 苏州</option>
+          <option value="西安">🏰 西安</option>
+          <option value="重庆">🌃 重庆</option>
+          <option value="其他">📍 其他城市（通用推荐）</option>
+        </select>
+      </div>
+
+      <!-- 出行方式 -->
+      <div class="field">
+        <label>出行方式</label>
+        <div class="trip-row" id="kidsTripRow">
+          <label class="trip-chip">
+            <input type="radio" name="trip" value="solo" />
+            <span>👤 独自带娃</span>
+          </label>
+          <label class="trip-chip">
+            <input type="radio" name="trip" value="family" checked />
+            <span>👨‍👩‍👧 家庭出行</span>
+          </label>
+          <label class="trip-chip">
+            <input type="radio" name="trip" value="group" />
+            <span>👥 结伴出行</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- 宝宝数量 -->
+      <div class="field">
+        <label>宝宝数量</label>
+        <div class="kids-count-row">
+          <div class="count-box">
+            <span class="count-label">👦 男宝</span>
+            <div class="count-stepper" data-target="boyCount">
+              <button type="button" class="step-btn" data-step="-1">−</button>
+              <span class="count-value" id="boyCount">0</span>
+              <button type="button" class="step-btn" data-step="1">+</button>
+            </div>
+          </div>
+          <div class="count-box">
+            <span class="count-label">👧 女宝</span>
+            <div class="count-stepper" data-target="girlCount">
+              <button type="button" class="step-btn" data-step="-1">−</button>
+              <span class="count-value" id="girlCount">1</span>
+              <button type="button" class="step-btn" data-step="1">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 宝宝年龄 -->
+      <div class="field">
+        <label for="kidsAge">宝宝年龄（取最小娃的年龄即可）</label>
+        <div class="age-row">
+          <input id="kidsAge" type="number" min="0" max="16" placeholder="例如 4" />
+          <span class="age-unit">岁</span>
+        </div>
+        <div class="age-tags" id="ageTags">
+          <span class="age-tag" data-age="1">👶 1岁内</span>
+          <span class="age-tag" data-age="2">🍼 2岁</span>
+          <span class="age-tag" data-age="4">🎈 3-5岁</span>
+          <span class="age-tag" data-age="7">🎒 6-8岁</span>
+          <span class="age-tag" data-age="10">🛴 9-12岁</span>
+          <span class="age-tag" data-age="14">🎮 13岁+</span>
+        </div>
+      </div>
+
+      <button id="kidsSummonBtn" class="summon-btn">
+        <span>🪄 召唤遛娃方案</span>
+      </button>
+      <p id="kidsErrorTip" class="error-tip"></p>
+    </section>
+
+    <!-- 结果 -->
+    <section class="kids-result hidden" id="kidsResult">
+      <div class="kids-result-header">
+        <h2>为你挑了 <span id="kidsResultCount">3</span> 个方案 🎯</h2>
+        <p class="kids-result-sub" id="kidsResultSub"></p>
+      </div>
+      <div class="kids-spot-list" id="kidsSpotList"></div>
+      <div class="kids-tips card" id="kidsTipsCard">
+        <div class="kids-tips-title">🎒 出门前小贴士</div>
+        <ul id="kidsTipsList"></ul>
+      </div>
+      <div class="actions">
+        <button id="kidsAgainBtn" class="secondary-btn">换一批方案 🔄</button>
+        <button id="kidsResetBtn" class="ghost-btn">重新填写</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>🧸 by 员工A · 娃开心了，爸妈才能坐会儿</span>
+  </footer>
+
+  <script src="./kids-spots.js"></script>
+  <script src="./kids.js"></script>
+</body>
+</html>
