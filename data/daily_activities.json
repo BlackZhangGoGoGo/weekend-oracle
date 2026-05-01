@@ -1081,6 +1081,85 @@
       "duration": "半天",
       "difficulty": 3,
       "desc": "地图上那种没名字的绿点，往往最好玩。带水带干粮，能走多远走多远。"
+    },
+    {
+      "id": 101,
+      "title": "图书馆蹲一下午",
+      "category": "solo",
+      "tags": [
+        "air",
+        "water",
+        "安静",
+        "独处"
+      ],
+      "ageRange": [
+        8,
+        90
+      ],
+      "people": "1 人",
+      "place": "图书馆",
+      "duration": "3-4 小时",
+      "difficulty": 1,
+      "desc": "挑一个陌生领域的书架，随机抽三本翻。没有 WiFi 的安静里，脑子会长出一点新东西。"
+    },
+    {
+      "id": 102,
+      "title": "去一家寺庙待一下午",
+      "category": "healing",
+      "tags": [
+        "earth",
+        "water",
+        "治愈",
+        "安静"
+      ],
+      "ageRange": [
+        12,
+        90
+      ],
+      "people": "1-2 人",
+      "place": "寺庙",
+      "duration": "3 小时",
+      "difficulty": 1,
+      "desc": "不一定要拜，就坐在大殿旁的台阶上听钟、闻香、看檐角。出来时心里的噪音少了一半。"
+    },
+    {
+      "id": 103,
+      "title": "给家里加一盏颜色暖灯",
+      "category": "healing",
+      "tags": [
+        "water",
+        "治愈",
+        "手作"
+      ],
+      "ageRange": [
+        16,
+        70
+      ],
+      "people": "1 人",
+      "place": "家里",
+      "duration": "1 小时",
+      "difficulty": 1,
+      "desc": "换一盏 2700K 的灯泡或者加一盏落地灯。冷光变暖光那一下，整个房间都在叹气说谢谢。"
+    },
+    {
+      "id": 104,
+      "title": "给老板/同事偷偷发一封表扬信",
+      "category": "social",
+      "tags": [
+        "water",
+        "air",
+        "治愈",
+        "沙雕"
+      ],
+      "ageRange": [
+        22,
+        55
+      ],
+      "people": "1 人",
+      "place": "家里",
+      "duration": "30 分钟",
+      "difficulty": 1,
+      "desc": "正经写一封「你真的很棒」的匿名邮件。对方会愣一下，然后一整天脚步都变轻。"
     }
   ]
 }
