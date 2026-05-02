@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-05-01",
+  "updated_at": "2026-05-02",
   "activities": [
     {
       "id": 46,
@@ -1160,6 +1160,105 @@
       "duration": "30 分钟",
       "difficulty": 1,
       "desc": "正经写一封「你真的很棒」的匿名邮件。对方会愣一下，然后一整天脚步都变轻。"
+    },
+    {
+      "id": 105,
+      "title": "深夜城市徒步 10 公里",
+      "category": "outdoor",
+      "tags": [
+        "fire",
+        "air",
+        "挑战",
+        "独特"
+      ],
+      "ageRange": [
+        18,
+        45
+      ],
+      "people": "1-3 人",
+      "place": "城市街道",
+      "duration": "3 小时",
+      "difficulty": 3,
+      "desc": "凌晨 0 点从家出发，走到地图上 10km 外的某个地标再打车回来。没人的城市是另一个城市。"
+    },
+    {
+      "id": 106,
+      "title": "去郊区露营过一夜",
+      "category": "adventure",
+      "tags": [
+        "earth",
+        "挑战",
+        "独特"
+      ],
+      "ageRange": [
+        16,
+        55
+      ],
+      "people": "2-4 人",
+      "place": "郊区营地",
+      "duration": "一整晚",
+      "difficulty": 3,
+      "desc": "开车 1 小时到山脚下，搭个帐篷、烧堆小火。半夜出去撒尿那一下的星空，城里十年都看不到。"
+    },
+    {
+      "id": 107,
+      "title": "连续 24 小时看日出 + 日落",
+      "category": "adventure",
+      "tags": [
+        "earth",
+        "air",
+        "挑战",
+        "独特"
+      ],
+      "ageRange": [
+        16,
+        55
+      ],
+      "people": "1-3 人",
+      "place": "看得到地平线的地方",
+      "duration": "一整天",
+      "difficulty": 3,
+      "desc": "5 点爬起来等日出，晚上再爬到高处等日落。一天之内头尾接起来，会有种这一天特别长的错觉。"
+    },
+    {
+      "id": 108,
+      "title": "一个人开车去看海",
+      "category": "adventure",
+      "tags": [
+        "water",
+        "earth",
+        "独特",
+        "独处"
+      ],
+      "ageRange": [
+        20,
+        60
+      ],
+      "people": "1 人",
+      "place": "最近的海边",
+      "duration": "一整天",
+      "difficulty": 3,
+      "desc": "不订酒店、不做攻略，单程 300 公里内的海边都行。到了就在防波堤上坐两小时，再一个人开回来。"
+    },
+    {
+      "id": 109,
+      "title": "深夜便利店马拉松",
+      "category": "adventure",
+      "tags": [
+        "fire",
+        "earth",
+        "挑战",
+        "沙雕"
+      ],
+      "ageRange": [
+        18,
+        40
+      ],
+      "people": "1-2 人",
+      "place": "城市各区便利店",
+      "duration": "5 小时",
+      "difficulty": 3,
+      "desc": "定一个规则：一晚上打卡 10 家不同品牌的 24 小时便利店，每家买一样东西。凌晨 3 点的城市和收银员都格外温柔。"
     }
   ]
 }
