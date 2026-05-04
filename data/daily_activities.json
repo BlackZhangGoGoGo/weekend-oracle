@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-05-03",
+  "updated_at": "2026-05-04",
   "activities": [
     {
       "id": 46,
@@ -1299,6 +1299,103 @@
       "duration": "一整天",
       "difficulty": 4,
       "desc": "借一辆公路车，规划一条 50km 的单程路线，中途只在一家路边店吃饭。回家腿像别人的，但人超爽。"
+    },
+    {
+      "id": 112,
+      "title": "泡一壶茶发 2 小时呆",
+      "category": "healing",
+      "tags": [
+        "water",
+        "治愈",
+        "安静",
+        "独处"
+      ],
+      "ageRange": [
+        16,
+        80
+      ],
+      "people": "1 人",
+      "place": "家里/阳台",
+      "duration": "2 小时",
+      "difficulty": 1,
+      "desc": "烧一壶水，挑一款你最喜欢的茶，关掉所有屏幕。就看茶叶慢慢舒展。两小时后你会觉得被重新格式化。"
+    },
+    {
+      "id": 113,
+      "title": "只开一盏灯看一部老片",
+      "category": "healing",
+      "tags": [
+        "water",
+        "治愈",
+        "独处"
+      ],
+      "ageRange": [
+        16,
+        80
+      ],
+      "people": "1 人",
+      "place": "家里",
+      "duration": "2 小时",
+      "difficulty": 1,
+      "desc": "关掉顶灯，留一盏暖色落地灯。挑一部你看过三遍以上的老电影再看一次。熟悉的台词是这个世界上最便宜的拥抱。"
+    },
+    {
+      "id": 114,
+      "title": "一杯热牛奶 + 10 分钟冥想",
+      "category": "healing",
+      "tags": [
+        "water",
+        "治愈",
+        "安静"
+      ],
+      "ageRange": [
+        12,
+        90
+      ],
+      "people": "1 人",
+      "place": "家里",
+      "duration": "30 分钟",
+      "difficulty": 1,
+      "desc": "微波炉热一杯牛奶，加一点蜂蜜。喝完闭眼做 10 分钟呼吸练习，其它啥也不干。周一晚上能这么过一次，就不算亏。"
+    },
+    {
+      "id": 115,
+      "title": "睡前泡脚 + 精油按摩",
+      "category": "healing",
+      "tags": [
+        "water",
+        "治愈",
+        "安静"
+      ],
+      "ageRange": [
+        18,
+        80
+      ],
+      "people": "1 人",
+      "place": "家里",
+      "duration": "40 分钟",
+      "difficulty": 1,
+      "desc": "热水加一点姜片或艾草，泡 20 分钟，再用身体乳自己按摩小腿。周一晚这一下，整个下半夜睡得像被按了复位键。"
+    },
+    {
+      "id": 116,
+      "title": "一小时正念散步",
+      "category": "healing",
+      "tags": [
+        "water",
+        "air",
+        "治愈",
+        "安静"
+      ],
+      "ageRange": [
+        14,
+        80
+      ],
+      "people": "1 人",
+      "place": "小区/公园",
+      "duration": "1 小时",
+      "difficulty": 1,
+      "desc": "走路时只留意脚底的触感、风、气味，手机调到勿扰。走完会有种轻轻的、被洗过的感觉。"
     }
   ]
 }
