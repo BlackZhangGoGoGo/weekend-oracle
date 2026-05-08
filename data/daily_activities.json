@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-05-07",
+  "updated_at": "2026-05-08",
   "activities": [
     {
       "id": 46,
@@ -1705,6 +1705,65 @@
       "duration": "1-2 小时",
       "difficulty": 2,
       "desc": "用麻绳、废筷子或铁丝给你家蔫了的那盆绿植搭一个小支架。植物挺起来那一下，你会有点想哭。"
+    },
+    {
+      "id": 133,
+      "title": "亲手缝一个小布包",
+      "category": "creative",
+      "tags": [
+        "earth",
+        "手作",
+        "治愈"
+      ],
+      "ageRange": [
+        10,
+        65
+      ],
+      "people": "1 人",
+      "place": "家里",
+      "duration": "2-3 小时",
+      "difficulty": 2,
+      "desc": "买一块棉麻布、一根针、一轴线，照着 B 站的视频缝一个不规则小布包。针脚歪了也没关系，能装钥匙就算毕业。"
+    },
+    {
+      "id": 134,
+      "title": "做一组手写明信片",
+      "category": "creative",
+      "tags": [
+        "earth",
+        "water",
+        "手作",
+        "治愈"
+      ],
+      "ageRange": [
+        12,
+        80
+      ],
+      "people": "1 人",
+      "place": "家里",
+      "duration": "2 小时",
+      "difficulty": 1,
+      "desc": "买一沓空白明信片，挑 5 个想念但没联系的人，每张写一段不发朋友圈才会说的话。贴邮票寄出，世界会慢一点。"
+    },
+    {
+      "id": 135,
+      "title": "手冲一支属于自己的香水",
+      "category": "creative",
+      "tags": [
+        "earth",
+        "water",
+        "手作",
+        "独特"
+      ],
+      "ageRange": [
+        18,
+        55
+      ],
+      "people": "1-2 人",
+      "place": "家里",
+      "duration": "2 小时",
+      "difficulty": 3,
+      "desc": "买一套新手调香套装，按心情挑前中后调比例。瓶身贴一张手写标签，写上这个味道叫什么。独一份，卖断货也没人有。"
     }
   ]
 }
