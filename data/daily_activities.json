@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-05-08",
+  "updated_at": "2026-05-09",
   "activities": [
     {
       "id": 46,
@@ -1764,6 +1764,66 @@
       "duration": "2 小时",
       "difficulty": 3,
       "desc": "买一套新手调香套装，按心情挑前中后调比例。瓶身贴一张手写标签，写上这个味道叫什么。独一份，卖断货也没人有。"
+    },
+    {
+      "id": 136,
+      "title": "跟渔民出海半天",
+      "category": "adventure",
+      "tags": [
+        "water",
+        "earth",
+        "挑战",
+        "独特"
+      ],
+      "ageRange": [
+        16,
+        60
+      ],
+      "people": "1-2 人",
+      "place": "沿海渔港",
+      "duration": "半天",
+      "difficulty": 4,
+      "desc": "提前打听能不能跟船，清晨五点上船，看渔民怎么撒网收网。晕船也值——这不是景区能给你的东西。"
+    },
+    {
+      "id": 137,
+      "title": "24 小时不用手机挑战",
+      "category": "adventure",
+      "tags": [
+        "water",
+        "air",
+        "挑战",
+        "独特"
+      ],
+      "ageRange": [
+        16,
+        60
+      ],
+      "people": "1 人",
+      "place": "任何地方",
+      "duration": "一天",
+      "difficulty": 4,
+      "desc": "手机锁进抽屉 24 小时，纸笔当备忘录，面基靠约好的时间点。你会重新意识到——原来一天这么长。"
+    },
+    {
+      "id": 138,
+      "title": "独自去一个从没去过的城市 overnight",
+      "category": "adventure",
+      "tags": [
+        "earth",
+        "air",
+        "挑战",
+        "独特"
+      ],
+      "ageRange": [
+        18,
+        55
+      ],
+      "people": "1 人",
+      "place": "2-3 小时高铁圈",
+      "duration": "一天一夜",
+      "difficulty": 4,
+      "desc": "早班高铁出去，订一间最便宜的民宿住一晚，第二天最晚那班回来。不做攻略，走到哪算哪。"
     }
   ]
 }
