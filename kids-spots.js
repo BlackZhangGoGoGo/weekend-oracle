@@ -566,6 +566,59 @@ const KIDS_SPOTS = [
     tags: ["艺术","拍照","咖啡"],
     desc: "厂房改造的文创园，娃可以画涂鸦墙看小展，爸妈喝咖啡。",
     tips: "周末有市集，下午 3 点后人流舒服。"
+  },
+  // —— 2026-05-13 自动追加 ——
+  {
+    name: "广州正佳极地海洋世界",
+    city: "广州",
+    type: "动物",
+    ageMin: 1, ageMax: 12,
+    trip: ["family","group"],
+    duration: "3-4小时",
+    cost: "中",
+    indoor: true,
+    tags: ["室内","极地动物","市中心"],
+    desc: "市中心商场里的海洋馆，逛吃看动物一站搞定，雨天救星。",
+    tips: "美团购票更划算，周末避开下午饭点高峰。"
+  },
+  {
+    name: "仙湖植物园",
+    city: "深圳",
+    type: "自然",
+    ageMin: 2, ageMax: 12,
+    trip: ["solo","family","group"],
+    duration: "半天",
+    cost: "免费",
+    indoor: false,
+    tags: ["大草坪","古化石","踩水"],
+    desc: "免费但内容超丰富，化石森林+蝴蝶谷+大草坪一应俱全。",
+    tips: "需提前 7 天预约，开车导航停车场提前到。"
+  },
+  {
+    name: "广州塔 + 海心沙",
+    city: "广州",
+    type: "户外",
+    ageMin: 4, ageMax: 12,
+    trip: ["family","group"],
+    duration: "半天",
+    cost: "中",
+    indoor: "both",
+    tags: ["地标","夜景","拍照"],
+    desc: "白天江边吹风，傍晚看灯光秀，娃能体验「这就是城市」。",
+    tips: "下午 4 点出发刚好接住夕阳和夜景。"
+  },
+  {
+    name: "莲花山公园",
+    city: "深圳",
+    type: "户外",
+    ageMin: 1, ageMax: 12,
+    trip: ["solo","family","group"],
+    duration: "半天",
+    cost: "免费",
+    indoor: false,
+    tags: ["放风筝","大草坪","市中心"],
+    desc: "市中心免费公园天花板，山顶大草坪是放风筝圣地。",
+    tips: "西门进山顶最近，下午风更大风筝更好放。"
   }
 ];
 
