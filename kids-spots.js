@@ -446,6 +446,127 @@ const KIDS_SPOTS = [
     desc: "不挑天气的溜娃稳妥之选，2岁以下也能看看灯光。",
     tips: "官方/小程序票比现场便宜30%，避开周末中午场。"
   }
+,
+  // —— 2026-05-11 自动追加 ——
+  {
+    name: "亲子木工坊",
+    city: "通用",
+    type: "手作",
+    ageMin: 5, ageMax: 12,
+    trip: ["family","group"],
+    duration: "2-3小时",
+    cost: "中",
+    indoor: true,
+    tags: ["DIY","锻炼专注","男宝爱"],
+    desc: "娃自己锯木头钉钉子做小板凳，专注力一下子被点燃。",
+    tips: "穿耐脏衣服，提前问好工具是否儿童版。"
+  },
+  {
+    name: "城市里的儿童剧场",
+    city: "通用",
+    type: "博物馆",
+    ageMin: 3, ageMax: 10,
+    trip: ["family","group"],
+    duration: "1.5小时",
+    cost: "中",
+    indoor: true,
+    tags: ["互动剧","周末专属","雨天"],
+    desc: "周末很多剧场都有亲子互动剧，娃看得咯咯笑爸妈也乐。",
+    tips: "大麦/猫眼搜「亲子剧」，提前 1-2 周抢前排。"
+  },
+  {
+    name: "北京古动物馆",
+    city: "北京",
+    type: "博物馆",
+    ageMin: 4, ageMax: 12,
+    trip: ["solo","family"],
+    duration: "1.5小时",
+    cost: "免费",
+    indoor: true,
+    tags: ["恐龙","免费","小而精"],
+    desc: "西直门附近藏着的恐龙化石小馆，不用人挤人，看得清又便宜。",
+    tips: "周一闭馆，需现场实名预约。"
+  },
+  // —— 2026-05-12 自动追加 ——
+  {
+    name: "亲子绘画/油画 DIY 工作室",
+    city: "通用",
+    type: "手作",
+    ageMin: 4, ageMax: 12,
+    trip: ["solo","family","group"],
+    duration: "2-3小时",
+    cost: "中",
+    indoor: true,
+    tags: ["DIY","成品带回家","雨天"],
+    desc: "随手就能在城市里找到，画完一幅油画带回家，仪式感满分。",
+    tips: "提前预约，建议挑工作日下午体验。"
+  },
+  {
+    name: "蹦床公园",
+    city: "通用",
+    type: "运动",
+    ageMin: 4, ageMax: 14,
+    trip: ["family","group"],
+    duration: "2小时",
+    cost: "中",
+    indoor: true,
+    tags: ["室内","消耗体力","一蹦回血"],
+    desc: "娃跳一小时晚上秒睡，爸妈解放神器。",
+    tips: "需穿防滑袜（场馆有售），饭前去最佳避免跳吐。"
+  },
+  {
+    name: "城市暮色 Citywalk 路线",
+    city: "通用",
+    type: "户外",
+    ageMin: 5, ageMax: 12,
+    trip: ["solo","family","group"],
+    duration: "2小时",
+    cost: "免费",
+    indoor: false,
+    tags: ["免费","傍晚","亲子聊天"],
+    desc: "选一条没走过的小巷，下午 5 点出发走到天黑，路上聊聊学校的事。",
+    tips: "夏天涂防晒，冬天加件外套，不要走太远。"
+  },
+  // —— 2026-05-13 自动追加 ——
+  {
+    name: "前海石公园",
+    city: "深圳",
+    type: "户外",
+    ageMin: 1, ageMax: 12,
+    trip: ["family","group"],
+    duration: "半天",
+    cost: "免费",
+    indoor: false,
+    tags: ["海边","草坪","新晋"],
+    desc: "深圳新晋遛娃地标，超大草坪+海边风车，免费且好停车。",
+    tips: "周末下午风大凉爽，带防晒和泡泡机。"
+  },
+  {
+    name: "白云山",
+    city: "广州",
+    type: "自然",
+    ageMin: 5, ageMax: 12,
+    trip: ["family","group"],
+    duration: "半天",
+    cost: "低",
+    indoor: false,
+    tags: ["徒步","缆车","市民登山"],
+    desc: "广州人后花园，缆车上山徒步下山，强度可控适合娃。",
+    tips: "穿运动鞋，山顶天气稍凉带件薄外套。"
+  },
+  {
+    name: "OCT 创意文化园",
+    city: "深圳",
+    type: "户外",
+    ageMin: 4, ageMax: 12,
+    trip: ["family","group"],
+    duration: "半天",
+    cost: "低",
+    indoor: "both",
+    tags: ["艺术","拍照","咖啡"],
+    desc: "厂房改造的文创园，娃可以画涂鸦墙看小展，爸妈喝咖啡。",
+    tips: "周末有市集，下午 3 点后人流舒服。"
+  }
 ];
 
 /**
