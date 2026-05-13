@@ -497,6 +497,20 @@ button, input, select, label { touch-action: manipulation; }
   min-height: 18px;
 }
 
+/* 输入校验失败：红框 + 轻微抖动，方便用户一眼发现是哪一项要改 */
+.field input.invalid,
+.number-row input.invalid {
+  border-color: #ff6b6b !important;
+  box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.25);
+  animation: shake-invalid 0.36s cubic-bezier(.36,.07,.19,.97) both;
+}
+@keyframes shake-invalid {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-3px); }
+  40%, 60% { transform: translateX(3px); }
+}
+
 /* ============ 结果卡 ============ */
 .result-header {
   display: flex;

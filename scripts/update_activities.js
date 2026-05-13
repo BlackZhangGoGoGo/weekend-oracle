@@ -126,7 +126,61 @@ const SEED_POOL = [
   { title: "去一家寺庙待一下午",     category: "healing", tags: ["earth", "water", "治愈", "安静"], ageRange: [12, 90], people: "1-2 人", place: "寺庙", duration: "3 小时", difficulty: 1, desc: "不一定要拜，就坐在大殿旁的台阶上听钟、闻香、看檐角。出来时心里的噪音少了一半。" },
   { title: "跟着天气 App 的建议出门", category: "outdoor", tags: ["air", "脑洞", "沙雕"], ageRange: [14, 60], people: "1 人", place: "户外", duration: "2 小时", difficulty: 1, desc: "打开天气 App，看看它推荐你今天适合干嘛，强制执行。意外地经常是个好主意。" },
   { title: "给自己写一份明年心愿清单", category: "solo", tags: ["water", "air", "独处", "记录"], ageRange: [14, 80], people: "1 人", place: "家里", duration: "1 小时", difficulty: 1, desc: "写 20 条你希望明年完成的事，大到小、现实到幻想都行。封存到信封里，明年这天开。" },
-  { title: "做一次「家门口」旅行",     category: "adventure", tags: ["earth", "air", "独特", "脑洞"], ageRange: [10, 70], people: "1-4 人", place: "家附近 3km", duration: "半天", difficulty: 1, desc: "假装自己是来本地旅游的游客。用游客视角走一遍你熟悉的街区，会发现很多东西你从没看见过。" }
+  { title: "做一次「家门口」旅行",     category: "adventure", tags: ["earth", "air", "独特", "脑洞"], ageRange: [10, 70], people: "1-4 人", place: "家附近 3km", duration: "半天", difficulty: 1, desc: "假装自己是来本地旅游的游客。用游客视角走一遍你熟悉的街区，会发现很多东西你从没看见过。" },
+  { title: "去郊区露营过一夜",       category: "adventure", tags: ["earth", "挑战", "独特"], ageRange: [16, 55], people: "2-4 人", place: "郊区营地", duration: "一整晚", difficulty: 3, desc: "开车 1 小时到山脚下，搭个帐篷、烧堆小火。半夜出去撒尿那一下的星空，城里十年都看不到。" },
+  { title: "骑行 50 公里挑战",       category: "sport", tags: ["fire", "earth", "挑战", "独特"], ageRange: [18, 50], people: "1-3 人", place: "城市外环/郊区", duration: "一整天", difficulty: 4, desc: "借一辆公路车，规划一条 50km 的单程路线，中途只在一家路边店吃饭。回家腿像别人的，但人超爽。" },
+  { title: "一个人开车去看海",       category: "adventure", tags: ["water", "earth", "独特", "独处"], ageRange: [20, 60], people: "1 人", place: "最近的海边", duration: "一整天", difficulty: 3, desc: "不订酒店、不做攻略，单程 300 公里内的海边都行。到了就在防波堤上坐两小时，再一个人开回来。" },
+  { title: "深夜城市徒步 10 公里",   category: "outdoor", tags: ["fire", "air", "挑战", "独特"], ageRange: [18, 45], people: "1-3 人", place: "城市街道", duration: "3 小时", difficulty: 3, desc: "凌晨 0 点从家出发，走到地图上 10km 外的某个地标再打车回来。没人的城市是另一个城市。" },
+  { title: "连续 24 小时看日出 + 日落",category: "adventure", tags: ["earth", "air", "挑战", "独特"], ageRange: [16, 55], people: "1-3 人", place: "看得到地平线的地方", duration: "一整天", difficulty: 3, desc: "5 点爬起来等日出，晚上再爬到高处等日落。一天之内头尾接起来，会有种这一天特别长的错觉。" },
+  { title: "去一个没听过的小镇住一晚", category: "adventure", tags: ["earth", "water", "独特", "挑战"], ageRange: [18, 60], people: "1-3 人", place: "2 小时车程外的小镇", duration: "一整天", difficulty: 3, desc: "高铁或大巴 2 小时内的无名小镇，订最便宜的民宿住一晚。吃镇上最热闹的那家馆子，第二天早起再溜达一圈回来。" },
+  { title: "深夜便利店马拉松",        category: "adventure", tags: ["fire", "earth", "挑战", "沙雕"], ageRange: [18, 40], people: "1-2 人", place: "城市各区便利店", duration: "5 小时", difficulty: 3, desc: "定一个规则：一晚上打卡 10 家不同品牌的 24 小时便利店，每家买一样东西。凌晨 3 点的城市和收银员都格外温柔。" },
+  { title: "泡一壶茶发 2 小时呆",     category: "healing", tags: ["water", "治愈", "安静", "独处"], ageRange: [16, 80], people: "1 人", place: "家里/阳台", duration: "2 小时", difficulty: 1, desc: "烧一壶水，挑一款你最喜欢的茶，关掉所有屏幕。就看茶叶慢慢舒展。两小时后你会觉得被重新格式化。" },
+  { title: "睡前泡脚 + 精油按摩",     category: "healing", tags: ["water", "治愈", "安静"], ageRange: [18, 80], people: "1 人", place: "家里", duration: "40 分钟", difficulty: 1, desc: "热水加一点姜片或艾草，泡 20 分钟，再用身体乳自己按摩小腿。周一晚这一下，整个下半夜睡得像被按了复位键。" },
+  { title: "去公园长椅上睡一觉",       category: "healing", tags: ["water", "air", "治愈", "独处"], ageRange: [14, 70], people: "1 人", place: "公园", duration: "1 小时", difficulty: 1, desc: "带一本书假装看，实际上闭眼听风和鸟叫。阳光晒着，没人认识你，比床上还好睡。" },
+  { title: "写一封给自己的治愈信",     category: "solo", tags: ["water", "治愈", "独处", "记录"], ageRange: [14, 80], people: "1 人", place: "家里", duration: "40 分钟", difficulty: 1, desc: "拿纸笔，写一封信给正处在低谷的那个自己。允许抱怨，允许哭，最后一句一定要写「没关系」。写完封起来。" },
+  { title: "一小时正念散步",           category: "healing", tags: ["water", "air", "治愈", "安静"], ageRange: [14, 80], people: "1 人", place: "小区/公园", duration: "1 小时", difficulty: 1, desc: "走路时只留意脚底的触感、风、气味，手机调到勿扰。走完会有种轻轻的、被洗过的感觉。" },
+  { title: "整理一周的乱摊子",         category: "indoor", tags: ["earth", "治愈", "手作"], ageRange: [14, 70], people: "1 人", place: "家里", duration: "2 小时", difficulty: 2, desc: "把上周堆在椅子上的衣服、桌上的杯子、包里的小票都收一下。周一把空间清空，本周的脑子也跟着清空。" },
+  { title: "只开一盏灯看一部老片",     category: "healing", tags: ["water", "治愈", "独处"], ageRange: [16, 80], people: "1 人", place: "家里", duration: "2 小时", difficulty: 1, desc: "关掉顶灯，留一盏暖色落地灯。挑一部你看过三遍以上的老电影再看一次。熟悉的台词是这个世界上最便宜的拥抱。" },
+  { title: "一杯热牛奶 + 10 分钟冥想", category: "healing", tags: ["water", "治愈", "安静"], ageRange: [12, 90], people: "1 人", place: "家里", duration: "30 分钟", difficulty: 1, desc: "微波炉热一杯牛奶，加一点蜂蜜。喝完闭眼做 10 分钟呼吸练习，其它啥也不干。周一晚上能这么过一次，就不算亏。" },
+
+  /* —— 周二·脑洞探险 候选补充 —— */
+  { title: "随机坐一辆公交到终点站",   category: "adventure", tags: ["air", "脑洞", "独特"], ageRange: [14, 60], people: "1-2 人", place: "公交线", duration: "半天", difficulty: 2, desc: "在站台前闭眼指一辆公交，上去坐到底。终点站往往是这个城市最被忽略的地方，你会捡到一段意外的故事。" },
+  { title: "一天用左手生活挑战",       category: "solo", tags: ["air", "脑洞", "挑战", "沙雕"], ageRange: [10, 60], people: "1 人", place: "任何地方", duration: "一天", difficulty: 3, desc: "从刷牙到吃饭到打字，全部换成左手（如果你是左撇子那就反过来）。大脑会以为自己被换了一个壳。" },
+  { title: "造一个假身份过一下午",     category: "solo", tags: ["air", "脑洞", "独特"], ageRange: [16, 50], people: "1 人", place: "陌生街区", duration: "3-4 小时", difficulty: 2, desc: "去一个没人认识你的咖啡馆，给自己起个假名字、假职业、假家乡。和店员/邻座搭一下话。今天你是另一个人。" },
+  { title: "把午饭的食材随机抽签",     category: "food", tags: ["earth", "脑洞", "沙雕"], ageRange: [12, 60], people: "1-3 人", place: "家里", duration: "2 小时", difficulty: 2, desc: "写 10 张食材纸条扔进碗里，闭眼抽 4 张，必须把它们做成一道能下咽的菜。黑暗料理也是创作。" },
+  { title: "用 AI 帮你做一天决定",     category: "solo", tags: ["air", "脑洞", "独特"], ageRange: [16, 55], people: "1 人", place: "任何地方", duration: "一天", difficulty: 2, desc: "今天所有「中午吃啥/穿哪件/走哪条路」都丢给 AI 决定，自己只负责执行。会发现「不用选」其实很轻松。" },
+  { title: "给一件无聊的物品写说明书", category: "creative", tags: ["air", "脑洞", "手作"], ageRange: [10, 60], people: "1 人", place: "家里", duration: "1 小时", difficulty: 2, desc: "挑一支你的牙刷、一只袜子、一把指甲剪，给它写一份煞有介事的产品说明书：起源、用法、禁忌。越正经越好笑。" },
+  { title: "10 分钟解释会 = 你的小课",  category: "social", tags: ["air", "脑洞", "热闹"], ageRange: [14, 55], people: "2-4 人", place: "家里/咖啡馆", duration: "1 小时", difficulty: 2, desc: "约朋友每人讲一个 10 分钟的迷你课，主题随便：怎么挑西瓜、为什么猫怕黄瓜、量子力学入门 30 秒版。讲完会上瘾。" },
+  { title: "倒着写一天的日记",         category: "solo", tags: ["air", "脑洞", "独处", "记录"], ageRange: [12, 70], people: "1 人", place: "家里", duration: "30 分钟", difficulty: 1, desc: "把今天发生的事按从晚到早的顺序写下来。视角一倒，平凡的一天会变得像一部短片。" },
+
+  /* —— 周四·手作时刻 候选补充 —— */
+  { title: "亲手缝一个小布包",         category: "creative", tags: ["earth", "手作", "治愈"], ageRange: [10, 65], people: "1 人", place: "家里", duration: "2-3 小时", difficulty: 2, desc: "买一块棉麻布、一根针、一轴线，照着 B 站的视频缝一个不规则小布包。针脚歪了也没关系，能装钥匙就算毕业。" },
+  { title: "给植物做一个迷你支架",     category: "creative", tags: ["earth", "手作", "独特"], ageRange: [12, 60], people: "1 人", place: "家里", duration: "1-2 小时", difficulty: 2, desc: "用麻绳、废筷子或铁丝给你家蔫了的那盆绿植搭一个小支架。植物挺起来那一下，你会有点想哭。" },
+  { title: "手冲一支属于自己的香水",   category: "creative", tags: ["earth", "water", "手作", "独特"], ageRange: [18, 55], people: "1-2 人", place: "家里", duration: "2 小时", difficulty: 3, desc: "买一套新手调香套装，按心情挑前中后调比例。瓶身贴一张手写标签，写上这个味道叫什么。独一份，卖断货也没人有。" },
+  { title: "用旧 T 恤改一条抹布",      category: "indoor", tags: ["earth", "手作", "治愈"], ageRange: [10, 70], people: "1 人", place: "家里", duration: "40 分钟", difficulty: 1, desc: "衣柜里那几件再也不会穿的 T 恤，一刀剪开缝成方形抹布。物尽其用那一下，有种把时间抚平的感觉。" },
+  { title: "捏一个专属冰箱贴",         category: "creative", tags: ["earth", "手作", "脑洞"], ageRange: [6, 60], people: "1-3 人", place: "家里", duration: "2 小时", difficulty: 1, desc: "软陶 + 烤箱就能搞定，捏你家猫、你最爱的早餐、今天的情绪脸。烤完粘上磁铁，厨房立刻有了故事。" },
+  { title: "自制一本 mini 手工书",     category: "creative", tags: ["earth", "air", "手作", "记录"], ageRange: [10, 65], people: "1 人", place: "家里", duration: "2-3 小时", difficulty: 2, desc: "A4 纸折 8 页小书，封面手绘，里面写三件这周让你笑出声的小事。做完塞进抽屉，一年后会是宝。" },
+  { title: "做一组手写明信片",         category: "creative", tags: ["earth", "water", "手作", "治愈"], ageRange: [12, 80], people: "1 人", place: "家里", duration: "2 小时", difficulty: 1, desc: "买一沓空白明信片，挑 5 个想念但没联系的人，每张写一段不发朋友圈才会说的话。贴邮票寄出，世界会慢一点。" },
+  { title: "给旧家具刷一次新漆",       category: "indoor", tags: ["earth", "手作", "挑战"], ageRange: [18, 60], people: "1-2 人", place: "家里/阳台", duration: "半天", difficulty: 3, desc: "挑家里那个看腻的小边几或椅子，买一罐水性漆，刷一个你一直心动的颜色。干了之后看一整天都觉得自己很牛。" },
+
+  /* —— 周六·深度体验 候选补充 —— */
+  { title: "一日学徒体验",             category: "adventure", tags: ["earth", "挑战", "独特"], ageRange: [16, 55], people: "1 人", place: "面包房/花店/陶艺工作室", duration: "一整天", difficulty: 3, desc: "联系一家小店说想当一天义务学徒，从早开店跟到晚关门。你会发现每个行业都有外人看不懂的细节和上瘾点。" },
+  { title: "24 小时不用手机挑战",       category: "adventure", tags: ["water", "air", "挑战", "独特"], ageRange: [16, 60], people: "1 人", place: "任何地方", duration: "一天", difficulty: 4, desc: "手机锁进抽屉 24 小时，纸笔当备忘录，面基靠约好的时间点。你会重新意识到——原来一天这么长。" },
+  { title: "独自去一个从没去过的城市 overnight", category: "adventure", tags: ["earth", "air", "挑战", "独特"], ageRange: [18, 55], people: "1 人", place: "2-3 小时高铁圈", duration: "一天一夜", difficulty: 4, desc: "早班高铁出去，订一间最便宜的民宿住一晚，第二天最晚那班回来。不做攻略，走到哪算哪。" },
+  { title: "跟渔民出海半天",           category: "adventure", tags: ["water", "earth", "挑战", "独特"], ageRange: [16, 60], people: "1-2 人", place: "沿海渔港", duration: "半天", difficulty: 4, desc: "提前打听能不能跟船，清晨五点上船，看渔民怎么撒网收网。晕船也值——这不是景区能给你的东西。" },
+  { title: "徒步穿越一条真山野路线",    category: "outdoor", tags: ["earth", "fire", "挑战", "健康"], ageRange: [18, 50], people: "2-4 人", place: "成熟徒步线路", duration: "一整天", difficulty: 4, desc: "挑一条 8-15km 有起伏的经典徒步路线，不是公园那种。带够水和干粮，走完腿软心爽。" },
+  { title: "无目的地的公路旅行一天",    category: "adventure", tags: ["air", "fire", "独特", "脑洞"], ageRange: [20, 55], people: "1-4 人", place: "城市外环+周边", duration: "一整天", difficulty: 3, desc: "早上出发，每到一个岔路口扔硬币决定左右。天黑前按导航回家。一天下来你会路过一堆没人推荐的怪地方。" },
+  { title: "连续 6 小时极客式深度工作",  category: "solo", tags: ["air", "挑战", "独处"], ageRange: [20, 55], people: "1 人", place: "家里/图书馆", duration: "6 小时", difficulty: 4, desc: "挑一个你一直想做但从没完整做的项目（写长文/做一个小工具），关全部通知干 6 小时。出来时有种被重启的感觉。" },
+  { title: "体验一次小众运动",          category: "sport", tags: ["fire", "earth", "挑战", "独特"], ageRange: [16, 45], people: "1-3 人", place: "俱乐部/场馆", duration: "3 小时", difficulty: 3, desc: "攀岩/皮划艇/飞盘/街舞/击剑——挑一个你从没碰过的，报一节体验课。身体从没用过的姿势会解锁新的快乐。" },
+  /* —— 周日·独处修复 补充池 2026-05-10 —— */
+  { title: "赖床两小时不愧疚计划",      category: "healing", tags: ["water", "治愈", "独处"], ageRange: [10, 70], people: "1 人", place: "自家被窝", duration: "2 小时", difficulty: 1, desc: "周日早晨闹钟全关，允许自己无目的在床上发呆、翻手机、看天花板。不愧疚就是今天最大的任务。" },
+  { title: "一个人去公园长椅坐满一小时", category: "solo", tags: ["water", "air", "安静", "独处"], ageRange: [12, 80], people: "1 人", place: "街心公园", duration: "1 小时", difficulty: 1, desc: "不带耳机、不刷手机，就坐在长椅上看人来人往。一小时过去你会发现脑子里吵架的人都走了。" },
+  { title: "给身体办一场小型 SPA 日",   category: "healing", tags: ["water", "治愈", "独处"], ageRange: [16, 65], people: "1 人", place: "家里", duration: "3 小时", difficulty: 1, desc: "泡澡+去角质+敷面膜+涂身体乳，配上轻音乐和一杯花茶。一个人住的浴室今天就是顶奢 SPA。" },
+  { title: "手写一封信给三年前的自己",  category: "solo", tags: ["water", "air", "治愈", "独处"], ageRange: [14, 70], people: "1 人", place: "家里", duration: "1 小时", difficulty: 2, desc: "用纸和笔，写一封长信给三年前那个自己。你会发现走到今天，比当时想象的远多了。" },
+  { title: "一个人去看早场电影",        category: "cultural", tags: ["air", "独处", "治愈"], ageRange: [14, 70], people: "1 人", place: "电影院", duration: "2-3 小时", difficulty: 1, desc: "挑周日上午第一场，全场可能就你一个人。银幕那么大却安静得像私人影院，独处的爽感拉满。" },
+  { title: "做一顿只给自己的精致饭",    category: "food", tags: ["earth", "手作", "治愈", "独处"], ageRange: [16, 70], people: "1 人", place: "家里", duration: "2 小时", difficulty: 2, desc: "不凑合、不外卖，为自己做一道平时嫌麻烦的菜，摆盘拍照。一个人吃饭也可以是隆重的。" },
+  { title: "删 100 条无用消息和联系人", category: "solo", tags: ["air", "治愈", "独处"], ageRange: [16, 60], people: "1 人", place: "家里", duration: "1 小时", difficulty: 1, desc: "把微信里沉寂三年的群、再也不会聊的好友、看过就忘的公众号清一清。手机轻了，心也轻了。" },
+  { title: "把周末还没做完的小事逐个划掉", category: "indoor", tags: ["earth", "水", "治愈", "独处"], ageRange: [14, 70], people: "1 人", place: "家里", duration: "2 小时", difficulty: 1, desc: "列出那些拖了两周的小事（换灯泡、退快递、改简历、回那条微信），一口气干完。周一会感谢今天的你。" }
 ];
 
 /* ========== AI 生成（可选，预留接口）==========

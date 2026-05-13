@@ -103,22 +103,78 @@
   });
 
   // ============ 输入校验 ============
+  // 严格判断一个字符串是不是 1~99 的整数（拒绝小数、空格、字母、负号、多余0等）
+  function parseStrictInt(raw) {
+    if (raw === null || raw === undefined) return null;
+    const s = String(raw).trim();
+    if (s === "") return null;
+    // 允许 "1"~"99"，也允许形如 "01"（前导零）
+    if (!/^\d+$/.test(s)) return null;
+    const n = Number(s);
+    if (!Number.isFinite(n)) return null;
+    return n;
+  }
+
   function validateInput() {
-    const age = parseInt(ageEl.value, 10);
-    if (!age || age < 1 || age > 120) {
-      return { ok: false, msg: "年龄填一下呗，1-120 之间" };
+    // 收集出错的元素（用于高亮）
+    const invalidEls = [];
+
+    // —— 年龄 ——
+    const ageRaw = (ageEl.value || "").trim();
+    let ageMsg = "";
+    let age = null;
+    if (ageRaw === "") {
+      ageMsg = "年龄填一下呗，1-120 之间";
+    } else if (!/^\d+$/.test(ageRaw)) {
+      ageMsg = "年龄要填整数哦，1-120 之间";
+    } else {
+      age = Number(ageRaw);
+      if (age < 1 || age > 120) {
+        ageMsg = "年龄要在 1-120 之间";
+      }
     }
+    if (ageMsg) {
+      invalidEls.push(ageEl);
+      return { ok: false, msg: ageMsg, invalidEls };
+    }
+
+    // —— 性别 ——
     const genderEl = document.querySelector('input[name="gender"]:checked');
     const gender = genderEl ? genderEl.value : "neutral";
 
+    // —— 三个数字 —— 逐位精细校验
     const nums = [];
-    for (const input of numInputs) {
-      const v = parseInt(input.value, 10);
-      if (!v || v < 1 || v > 99) {
-        return { ok: false, msg: "三个数字都要填，1-99 之间" };
+    const ordinal = ["第 1 个", "第 2 个", "第 3 个"];
+    for (let i = 0; i < numInputs.length; i++) {
+      const input = numInputs[i];
+      const raw = (input.value || "").trim();
+      const label = ordinal[i] || `第 ${i + 1} 个`;
+
+      if (raw === "") {
+        invalidEls.push(input);
+        return { ok: false, msg: `${label}数字还没填～需要 1-99 的整数`, invalidEls };
+      }
+      // 不允许小数/字母/符号
+      if (!/^\d+$/.test(raw)) {
+        invalidEls.push(input);
+        return {
+          ok: false,
+          msg: `${label}数字格式不对："${raw}"——请填 1-99 的整数`,
+          invalidEls
+        };
+      }
+      const v = parseStrictInt(raw);
+      if (v === null || v < 1 || v > 99) {
+        invalidEls.push(input);
+        return {
+          ok: false,
+          msg: `${label}数字要在 1-99 之间，你填的是 ${raw}`,
+          invalidEls
+        };
       }
       nums.push(v);
     }
+
     return {
       ok: true,
       data: {
@@ -963,14 +1019,47 @@
   }
 
   // ============ 主流程 ============
+  function clearInvalidStyles() {
+    numInputs.forEach(el => el.classList.remove("invalid"));
+    if (ageEl) ageEl.classList.remove("invalid");
+  }
+
+  // 用户一旦开始改输入框，就清掉自己的红框和错误提示
+  function bindAutoClearInvalid() {
+    const watch = (el) => {
+      if (!el) return;
+      el.addEventListener("input", () => {
+        if (el.classList.contains("invalid")) {
+          el.classList.remove("invalid");
+        }
+        if (errorTip.textContent) {
+          errorTip.textContent = "";
+        }
+      });
+    };
+    numInputs.forEach(watch);
+    watch(ageEl);
+  }
+  bindAutoClearInvalid();
+
   function handleSummon() {
     if (!window.ACTIVITY_LIBRARY || window.ACTIVITY_LIBRARY.length === 0) {
       errorTip.textContent = "活动库还在加载中，稍等一下再召唤～";
       return;
     }
+    clearInvalidStyles();
     const v = validateInput();
     if (!v.ok) {
       errorTip.textContent = v.msg;
+      // 高亮出错项 + 聚焦第一个，方便重新输入
+      if (Array.isArray(v.invalidEls) && v.invalidEls.length) {
+        v.invalidEls.forEach(el => el && el.classList.add("invalid"));
+        const first = v.invalidEls[0];
+        if (first && typeof first.focus === "function") {
+          first.focus();
+          if (typeof first.select === "function") first.select();
+        }
+      }
       return;
     }
     errorTip.textContent = "";
