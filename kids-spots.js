@@ -619,6 +619,59 @@ const KIDS_SPOTS = [
     tags: ["放风筝","大草坪","市中心"],
     desc: "市中心免费公园天花板，山顶大草坪是放风筝圣地。",
     tips: "西门进山顶最近，下午风更大风筝更好放。"
+  },
+  // —— 2026-05-14 自动追加 ——
+  {
+    name: "西溪湿地",
+    city: "杭州",
+    type: "自然",
+    ageMin: 2, ageMax: 10,
+    trip: ["family","group"],
+    duration: "半天",
+    cost: "中",
+    indoor: false,
+    tags: ["摇橹船","观鸟","野趣"],
+    desc: "坐摇橹船漂游湿地，娃能看水鸟看鱼看莲，比西湖清净。",
+    tips: "周家村入口最方便，建议预订电瓶船和摇橹船组合。"
+  },
+  {
+    name: "金鸡湖+月光码头",
+    city: "苏州",
+    type: "户外",
+    ageMin: 2, ageMax: 10,
+    trip: ["solo","family","group"],
+    duration: "半天",
+    cost: "免费",
+    indoor: false,
+    tags: ["夜景","免费","湖边"],
+    desc: "晚饭后的遛娃神器，灯光秀+湖边大草坪，挺惬意。",
+    tips: "下午 5 点后去最舒服，可以接着看灯光秀。"
+  },
+  {
+    name: "苏州博物馆",
+    city: "苏州",
+    type: "博物馆",
+    ageMin: 6, ageMax: 14,
+    trip: ["solo","family","group"],
+    duration: "2小时",
+    cost: "免费",
+    indoor: true,
+    tags: ["免费","贝聿铭","颜值"],
+    desc: "贝聿铭设计的博物馆本身就是展品，娃看得不无聊还能涨知识。",
+    tips: "需提前预约，工作日人少。"
+  },
+  {
+    name: "苏州乐园森林世界",
+    city: "苏州",
+    type: "游乐",
+    ageMin: 4, ageMax: 12,
+    trip: ["family","group"],
+    duration: "一整天",
+    cost: "中高",
+    indoor: false,
+    tags: ["主题乐园","森林","近郊"],
+    desc: "森林主题游乐园，娃玩得开心爸妈也凉快。",
+    tips: "美团购票较划算，避开正午高温。"
   }
 ];
 
