@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="theme-color" content="#1a1039" />
+<title>看个电影 🎬 · 周末好玩屋</title>
+<link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="stars"></div>
+
+  <main class="app">
+    <header class="hero">
+      <h1 class="title">看个电影 🎬</h1>
+      <p class="subtitle">告诉我你的状态，我从片库里挑一部最对味的给你</p>
+      <a href="./index.html" class="back-link" aria-label="返回主页">‹ 返回主页</a>
+    </header>
+
+    <!-- 输入卡 -->
+    <section class="card input-card" id="movieInputCard">
+
+      <!-- 时长 -->
+      <div class="field">
+        <label>能看多久</label>
+        <div class="movie-chip-row" data-group="duration">
+          <label class="movie-chip"><input type="radio" name="duration" value="short" /><span>⏱ 90 分钟内</span></label>
+          <label class="movie-chip"><input type="radio" name="duration" value="medium" checked /><span>🎞 100-130 分钟</span></label>
+          <label class="movie-chip"><input type="radio" name="duration" value="long" /><span>🎬 130 分钟以上</span></label>
+          <label class="movie-chip"><input type="radio" name="duration" value="any" /><span>🤷 都行</span></label>
+        </div>
+      </div>
+
+      <!-- 心情 -->
+      <div class="field">
+        <label>当下心情</label>
+        <div class="movie-chip-row" data-group="mood">
+          <label class="movie-chip"><input type="radio" name="mood" value="happy" /><span>😄 开心想笑</span></label>
+          <label class="movie-chip"><input type="radio" name="mood" value="down" /><span>😔 有点丧</span></label>
+          <label class="movie-chip"><input type="radio" name="mood" value="excited" /><span>🔥 想嗨</span></label>
+          <label class="movie-chip"><input type="radio" name="mood" value="calm" checked /><span>😌 平静</span></label>
+          <label class="movie-chip"><input type="radio" name="mood" value="lonely" /><span>🌙 孤独</span></label>
+          <label class="movie-chip"><input type="radio" name="mood" value="stressed" /><span>😩 压力大</span></label>
+          <label class="movie-chip"><input type="radio" name="mood" value="romantic" /><span>💗 想恋爱</span></label>
+          <label class="movie-chip"><input type="radio" name="mood" value="curious" /><span>🧐 想动脑</span></label>
+        </div>
+      </div>
+
+      <!-- 天气 -->
+      <div class="field">
+        <label>外面天气</label>
+        <div class="movie-chip-row" data-group="weather">
+          <label class="movie-chip"><input type="radio" name="weather" value="sunny" /><span>☀️ 晴</span></label>
+          <label class="movie-chip"><input type="radio" name="weather" value="cloudy" checked /><span>☁️ 阴/多云</span></label>
+          <label class="movie-chip"><input type="radio" name="weather" value="rainy" /><span>🌧 雨</span></label>
+          <label class="movie-chip"><input type="radio" name="weather" value="snowy" /><span>❄️ 雪</span></label>
+          <label class="movie-chip"><input type="radio" name="weather" value="hot" /><span>🥵 炎热</span></label>
+          <label class="movie-chip"><input type="radio" name="weather" value="cold" /><span>🥶 寒冷</span></label>
+        </div>
+      </div>
+
+      <!-- 环境 -->
+      <div class="field">
+        <label>观影环境</label>
+        <div class="movie-chip-row" data-group="env">
+          <label class="movie-chip"><input type="radio" name="env" value="dim" checked /><span>🌑 昏暗</span></label>
+          <label class="movie-chip"><input type="radio" name="env" value="bright" /><span>💡 明亮</span></label>
+          <label class="movie-chip"><input type="radio" name="env" value="hot" /><span>🔆 炎热</span></label>
+          <label class="movie-chip"><input type="radio" name="env" value="cool" /><span>🍃 凉爽</span></label>
+        </div>
+      </div>
+
+      <!-- 时段 -->
+      <div class="field">
+        <label>观影时段</label>
+        <div class="movie-chip-row" data-group="time">
+          <label class="movie-chip"><input type="radio" name="time" value="morning" /><span>🌅 上午</span></label>
+          <label class="movie-chip"><input type="radio" name="time" value="afternoon" /><span>🌤 下午</span></label>
+          <label class="movie-chip"><input type="radio" name="time" value="evening" checked /><span>🌆 傍晚</span></label>
+          <label class="movie-chip"><input type="radio" name="time" value="night" /><span>🌃 晚上</span></label>
+          <label class="movie-chip"><input type="radio" name="time" value="latenight" /><span>🌙 深夜</span></label>
+        </div>
+      </div>
+
+      <!-- 人数 -->
+      <div class="field">
+        <label>几个人看</label>
+        <div class="movie-chip-row" data-group="people">
+          <label class="movie-chip"><input type="radio" name="people" value="1" checked /><span>👤 一个人</span></label>
+          <label class="movie-chip"><input type="radio" name="people" value="2" /><span>💑 两个人</span></label>
+          <label class="movie-chip"><input type="radio" name="people" value="3" /><span>👬 三五好友</span></label>
+          <label class="movie-chip"><input type="radio" name="people" value="4" /><span>👨‍👩‍👧 全家</span></label>
+        </div>
+      </div>
+
+      <!-- 年龄 -->
+      <div class="field">
+        <label for="movieAge">你的年龄</label>
+        <div class="age-row">
+          <input id="movieAge" type="number" min="3" max="99" placeholder="例如 28" inputmode="numeric" />
+          <span class="age-unit">岁</span>
+        </div>
+      </div>
+
+      <!-- 星座 -->
+      <div class="field">
+        <label for="movieZodiac">星座（可选）</label>
+        <select id="movieZodiac">
+          <option value="">不告诉你也能选</option>
+          <option value="白羊座">♈ 白羊座</option>
+          <option value="金牛座">♉ 金牛座</option>
+          <option value="双子座">♊ 双子座</option>
+          <option value="巨蟹座">♋ 巨蟹座</option>
+          <option value="狮子座">♌ 狮子座</option>
+          <option value="处女座">♍ 处女座</option>
+          <option value="天秤座">♎ 天秤座</option>
+          <option value="天蝎座">♏ 天蝎座</option>
+          <option value="射手座">♐ 射手座</option>
+          <option value="魔羯座">♑ 魔羯座</option>
+          <option value="水瓶座">♒ 水瓶座</option>
+          <option value="双鱼座">♓ 双鱼座</option>
+        </select>
+      </div>
+
+      <button id="movieSummonBtn" class="summon-btn">
+        <span>🎬 召唤你的电影</span>
+      </button>
+      <p id="movieErrorTip" class="error-tip"></p>
+    </section>
+
+    <!-- 结果 -->
+    <section class="movie-result hidden" id="movieResult">
+      <div class="movie-result-header">
+        <h2>今晚就看它 🎯</h2>
+        <p class="movie-result-sub" id="movieResultSub"></p>
+      </div>
+      <div id="movieMainCard"></div>
+
+      <div class="movie-alt-title">还想再挑挑？也许这两部也合适</div>
+      <div class="movie-alt-list" id="movieAltList"></div>
+
+      <div class="actions">
+        <button id="movieAgainBtn" class="secondary-btn">换一部 🔄</button>
+        <button id="movieResetBtn" class="ghost-btn">重新填写</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>🎬 by 员工A · 周末别再刷短视频了</span>
+  </footer>
+
+  <script src="./movies.js"></script>
+  <script src="./movie.js"></script>
+</body>
+</html>

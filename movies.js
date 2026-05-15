@@ -1,0 +1,572 @@
+/**
+ * 看个电影 · 电影库
+ * 字段说明：
+ *  - duration: 片长（分钟）
+ *  - genres: 类型数组（喜剧/爱情/动作/科幻/动画/悬疑/犯罪/治愈/恐怖/纪录/文艺/家庭/奇幻/冒险）
+ *  - moods: 适合的心情数组（happy/down/excited/calm/lonely/stressed/romantic/curious）
+ *  - weather: 适合的天气数组（sunny/rainy/cloudy/snowy/hot/cold/any）
+ *  - env: 适合环境数组（dim/bright/hot/cool/any）—— dim=昏暗安静，bright=明亮热闹，hot=夏夜，cool=秋冬被窝
+ *  - time: 适合时段数组（morning/afternoon/evening/night/latenight/any）
+ *  - people: 适合人数（1=独自，2=约会/双人，3=三五好友，4=家庭/亲子，9=任意）
+ *  - ageMin/ageMax: 推荐年龄区间
+ *  - zodiac: 特别推给某些星座（可选）
+ *  - rating: 基础口碑分（10 分制）
+ *  - desc: 一句话简介
+ *  - tags: 显示用的小标签
+ *  - poster: emoji 海报（保持像素风）
+ */
+window.MOVIES = [
+  // —— 治愈/温情 ——
+  {
+    id: "spirited-away",
+    title: "千与千寻",
+    year: 2001,
+    duration: 125,
+    genres: ["动画", "奇幻", "治愈", "家庭"],
+    moods: ["down", "lonely", "calm", "curious"],
+    weather: ["rainy", "cloudy", "any"],
+    env: ["dim", "cool", "any"],
+    time: ["evening", "night", "afternoon"],
+    people: [1, 2, 4, 9],
+    ageMin: 6, ageMax: 99,
+    rating: 9.4,
+    desc: "宫崎骏代表作。误入神隐世界的小女孩在汤屋打工，找回名字和勇气。看完会被治愈一整个周末。",
+    tags: ["宫崎骏", "治愈神片", "全年龄"],
+    poster: "🐉"
+  },
+  {
+    id: "your-name",
+    title: "你的名字。",
+    year: 2016,
+    duration: 106,
+    genres: ["动画", "爱情", "奇幻"],
+    moods: ["romantic", "lonely", "down"],
+    weather: ["any"],
+    env: ["dim", "cool"],
+    time: ["evening", "night"],
+    people: [1, 2],
+    ageMin: 12, ageMax: 60,
+    zodiac: ["双鱼座", "巨蟹座", "天秤座"],
+    rating: 8.4,
+    desc: "新海诚交换灵魂式爱情奇遇。画面美到截屏，配乐 RADWIMPS 一响就泪目。",
+    tags: ["新海诚", "约会向", "画面美"],
+    poster: "☄️"
+  },
+  {
+    id: "amelie",
+    title: "天使爱美丽",
+    year: 2001,
+    duration: 122,
+    genres: ["爱情", "喜剧", "文艺", "治愈"],
+    moods: ["lonely", "calm", "down", "romantic"],
+    weather: ["any"],
+    env: ["dim", "bright"],
+    time: ["afternoon", "evening", "night"],
+    people: [1, 2],
+    ageMin: 14, ageMax: 99,
+    rating: 8.7,
+    desc: "巴黎少女艾米丽偷偷给陌生人制造小确幸，画面奶油色，浪漫到颅顶发麻。",
+    tags: ["法式浪漫", "色彩美学", "独自治愈"],
+    poster: "🥐"
+  },
+  {
+    id: "kikis-delivery",
+    title: "魔女宅急便",
+    year: 1989,
+    duration: 103,
+    genres: ["动画", "治愈", "家庭", "冒险"],
+    moods: ["down", "lonely", "calm", "stressed"],
+    weather: ["sunny", "any"],
+    env: ["bright", "any"],
+    time: ["morning", "afternoon"],
+    people: [1, 4, 9],
+    ageMin: 5, ageMax: 99,
+    rating: 8.6,
+    desc: "13 岁小魔女琪琪带着黑猫吉吉去陌生城市修行。一个人迷茫的时候看，会被轻轻推一把。",
+    tags: ["宫崎骏", "成长治愈", "亲子"],
+    poster: "🧹"
+  },
+  {
+    id: "little-forest",
+    title: "小森林：夏秋篇/冬春篇",
+    year: 2014,
+    duration: 111,
+    genres: ["治愈", "文艺", "家庭"],
+    moods: ["stressed", "calm", "lonely"],
+    weather: ["rainy", "snowy", "cold", "any"],
+    env: ["cool", "dim"],
+    time: ["afternoon", "evening", "night"],
+    people: [1],
+    ageMin: 16, ageMax: 99,
+    rating: 9.0,
+    desc: "回到山野小村做饭、种地、过四季。社畜的精神 SPA，看饿了别怪我。",
+    tags: ["四季美食", "独居治愈", "解压"],
+    poster: "🍅"
+  },
+
+  // —— 喜剧/爆笑 ——
+  {
+    id: "kungfu-hustle",
+    title: "功夫",
+    year: 2004,
+    duration: 99,
+    genres: ["喜剧", "动作", "奇幻"],
+    moods: ["happy", "stressed", "excited"],
+    weather: ["any"],
+    env: ["bright", "any"],
+    time: ["evening", "night"],
+    people: [3, 4],
+    ageMin: 10, ageMax: 99,
+    rating: 8.7,
+    desc: "周星驰巅峰爆笑功夫片。包租婆狮吼功 + 如来神掌，几十遍都看不腻。",
+    tags: ["星爷", "下饭神片", "好友聚会"],
+    poster: "🐲"
+  },
+  {
+    id: "wo-bu-shi-yaoshen",
+    title: "我不是药神",
+    year: 2018,
+    duration: 117,
+    genres: ["喜剧", "犯罪", "文艺"],
+    moods: ["curious"],
+    weather: ["any"],
+    env: ["dim", "cool"],
+    time: ["evening", "night"],
+    people: [1, 2, 3],
+    ageMin: 14, ageMax: 99,
+    rating: 9.0,
+    desc: "前半段笑出鹅叫，后半段哭到面纸告急。徐峥年度封神之作。",
+    tags: ["国产佳作", "笑中带泪"],
+    poster: "💊"
+  },
+  {
+    id: "let-bullets-fly",
+    title: "让子弹飞",
+    year: 2010,
+    duration: 132,
+    genres: ["喜剧", "动作", "犯罪"],
+    moods: ["happy", "excited", "curious"],
+    weather: ["any"],
+    env: ["dim"],
+    time: ["evening", "night"],
+    people: [3, 2],
+    ageMin: 16, ageMax: 99,
+    rating: 8.9,
+    desc: "姜文 × 葛优 × 周润发，台词每句都能拎出来鞭尸十年。男人聚会必看。",
+    tags: ["姜文", "黑色幽默", "台词封神"],
+    poster: "💥"
+  },
+  {
+    id: "the-grand-budapest",
+    title: "布达佩斯大饭店",
+    year: 2014,
+    duration: 99,
+    genres: ["喜剧", "文艺", "冒险"],
+    moods: ["calm", "curious", "happy"],
+    weather: ["any"],
+    env: ["bright"],
+    time: ["afternoon", "evening"],
+    people: [1, 2],
+    ageMin: 14, ageMax: 99,
+    rating: 8.8,
+    desc: "韦斯·安德森糖果色童话。每一帧都是壁纸，节奏轻盈得像在吃马卡龙。",
+    tags: ["韦斯安德森", "色彩控", "强迫症友好"],
+    poster: "🏨"
+  },
+
+  // —— 动作/燃 ——
+  {
+    id: "mad-max-fury-road",
+    title: "疯狂的麦克斯：狂暴之路",
+    year: 2015,
+    duration: 120,
+    genres: ["动作", "科幻", "冒险"],
+    moods: ["stressed", "excited", "down"],
+    weather: ["hot", "sunny", "any"],
+    env: ["bright", "hot"],
+    time: ["evening", "night"],
+    people: [1, 3],
+    ageMin: 16, ageMax: 60,
+    rating: 8.6,
+    desc: "末日公路飙车两小时不带停。一脚油门就把所有 KPI 焦虑撞飞。",
+    tags: ["燃爆", "解压", "视听轰炸"],
+    poster: "🏍️"
+  },
+  {
+    id: "john-wick",
+    title: "疾速追杀",
+    year: 2014,
+    duration: 101,
+    genres: ["动作", "犯罪"],
+    moods: ["stressed", "excited"],
+    weather: ["any"],
+    env: ["dim"],
+    time: ["evening", "night", "latenight"],
+    people: [1, 3],
+    ageMin: 18, ageMax: 60,
+    rating: 7.9,
+    desc: "杀了狗的下场？基努·里维斯穿西装一路点名。剧情简单粗暴解压。",
+    tags: ["爽片", "深夜燃片"],
+    poster: "🔫"
+  },
+  {
+    id: "kung-fu-panda",
+    title: "功夫熊猫",
+    year: 2008,
+    duration: 92,
+    genres: ["动画", "动作", "喜剧", "家庭"],
+    moods: ["happy", "down", "stressed"],
+    weather: ["any"],
+    env: ["bright", "any"],
+    time: ["afternoon", "evening"],
+    people: [4, 3, 1],
+    ageMin: 5, ageMax: 99,
+    rating: 8.3,
+    desc: "胖胖阿宝逆袭神龙大侠。励志、笑点、武打三合一，老少咸宜。",
+    tags: ["亲子", "励志", "下饭"],
+    poster: "🐼"
+  },
+
+  // —— 科幻/烧脑 ——
+  {
+    id: "interstellar",
+    title: "星际穿越",
+    year: 2014,
+    duration: 169,
+    genres: ["科幻", "冒险", "文艺"],
+    moods: ["calm", "curious", "lonely"],
+    weather: ["any"],
+    env: ["dim"],
+    time: ["evening", "night"],
+    people: [1, 2],
+    ageMin: 14, ageMax: 60,
+    zodiac: ["水瓶座", "射手座", "魔羯座"],
+    rating: 9.4,
+    desc: "诺兰 × 汉斯季默。在虫洞那头，时间是父爱最长的形状。",
+    tags: ["诺兰", "硬核科幻", "情感核弹"],
+    poster: "🚀"
+  },
+  {
+    id: "inception",
+    title: "盗梦空间",
+    year: 2010,
+    duration: 148,
+    genres: ["科幻", "动作", "悬疑"],
+    moods: ["curious", "excited"],
+    weather: ["any"],
+    env: ["dim"],
+    time: ["evening", "night"],
+    people: [1, 3],
+    ageMin: 14, ageMax: 60,
+    rating: 9.4,
+    desc: "梦中梦中梦，陀螺到底停了没？看完想立刻拉一个朋友开会复盘。",
+    tags: ["诺兰", "烧脑", "二刷必备"],
+    poster: "🌀"
+  },
+  {
+    id: "arrival",
+    title: "降临",
+    year: 2016,
+    duration: 116,
+    genres: ["科幻", "悬疑", "文艺"],
+    moods: ["calm", "lonely", "curious"],
+    weather: ["cloudy", "rainy", "any"],
+    env: ["dim", "cool"],
+    time: ["evening", "night"],
+    people: [1, 2],
+    ageMin: 16, ageMax: 60,
+    rating: 7.7,
+    desc: "外星人来了，不是来打架，是来教你换一种方式爱人。安静而后劲大。",
+    tags: ["软科幻", "高级感", "适合独看"],
+    poster: "🛸"
+  },
+
+  // —— 悬疑/犯罪 ——
+  {
+    id: "parasite",
+    title: "寄生虫",
+    year: 2019,
+    duration: 132,
+    genres: ["悬疑", "犯罪", "文艺"],
+    moods: ["curious", "excited"],
+    weather: ["rainy", "any"],
+    env: ["dim"],
+    time: ["evening", "night"],
+    people: [1, 2, 3],
+    ageMin: 16, ageMax: 60,
+    rating: 8.7,
+    desc: "奉俊昊奥斯卡封神之作，前 30 分钟笑岔气，后半段坐立难安。",
+    tags: ["奉俊昊", "阶级寓言", "奥斯卡"],
+    poster: "🪲"
+  },
+  {
+    id: "memories-of-murder",
+    title: "杀人回忆",
+    year: 2003,
+    duration: 132,
+    genres: ["悬疑", "犯罪"],
+    moods: ["curious"],
+    weather: ["rainy", "cloudy"],
+    env: ["dim", "cool"],
+    time: ["night", "latenight"],
+    people: [1],
+    ageMin: 18, ageMax: 60,
+    rating: 8.9,
+    desc: "宋康昊那个回头眼神能上热搜十年。下雨夜 + 一杯热茶 = 完美氛围。",
+    tags: ["韩国神片", "悬疑天花板"],
+    poster: "🌧️"
+  },
+
+  // —— 爱情 ——
+  {
+    id: "before-sunrise",
+    title: "爱在黎明破晓前",
+    year: 1995,
+    duration: 101,
+    genres: ["爱情", "文艺"],
+    moods: ["romantic", "lonely", "calm"],
+    weather: ["any"],
+    env: ["dim", "cool"],
+    time: ["evening", "night"],
+    people: [2, 1],
+    ageMin: 16, ageMax: 60,
+    zodiac: ["双子座", "天秤座", "双鱼座"],
+    rating: 8.8,
+    desc: "维也纳一夜话。两个人就这么走着聊着，世界上最长情的告白叫\"再见明天\"。",
+    tags: ["爱在三部曲", "约会必备"],
+    poster: "🚆"
+  },
+  {
+    id: "la-la-land",
+    title: "爱乐之城",
+    year: 2016,
+    duration: 128,
+    genres: ["爱情", "文艺"],
+    moods: ["romantic", "down"],
+    weather: ["any"],
+    env: ["dim", "bright"],
+    time: ["evening", "night"],
+    people: [2, 1],
+    ageMin: 14, ageMax: 60,
+    rating: 8.3,
+    desc: "石头姐 + 高司令的洛杉矶歌舞梦。结尾那段平行宇宙，能哭一个礼拜。",
+    tags: ["歌舞", "约会向", "梦想题材"],
+    poster: "🎷"
+  },
+
+  // —— 家庭/亲子 ——
+  {
+    id: "coco",
+    title: "寻梦环游记",
+    year: 2017,
+    duration: 105,
+    genres: ["动画", "家庭", "奇幻"],
+    moods: ["down", "lonely", "calm"],
+    weather: ["any"],
+    env: ["any"],
+    time: ["afternoon", "evening", "night"],
+    people: [4, 2, 1],
+    ageMin: 5, ageMax: 99,
+    rating: 9.1,
+    desc: "皮克斯催泪机。\"亡灵的真正死亡，是被活着的人遗忘。\"全家一起看 + 一包纸巾。",
+    tags: ["皮克斯", "亲子催泪", "全年龄"],
+    poster: "💀"
+  },
+  {
+    id: "inside-out",
+    title: "头脑特工队",
+    year: 2015,
+    duration: 95,
+    genres: ["动画", "家庭", "喜剧"],
+    moods: ["down", "stressed", "curious"],
+    weather: ["any"],
+    env: ["bright"],
+    time: ["afternoon", "evening"],
+    people: [4, 1],
+    ageMin: 6, ageMax: 99,
+    rating: 8.7,
+    desc: "情绪小人在脑内开会，带娃看完，娃懂了什么叫\"难过也是好情绪\"。",
+    tags: ["情绪教育", "亲子", "皮克斯"],
+    poster: "🧠"
+  },
+  {
+    id: "totoro",
+    title: "龙猫",
+    year: 1988,
+    duration: 86,
+    genres: ["动画", "家庭", "治愈"],
+    moods: ["down", "calm", "happy"],
+    weather: ["sunny", "rainy", "any"],
+    env: ["bright", "any"],
+    time: ["morning", "afternoon"],
+    people: [4, 1],
+    ageMin: 3, ageMax: 99,
+    rating: 9.2,
+    desc: "下雨天等公交，遇见一只大肚子温柔怪兽。亲子治愈天花板。",
+    tags: ["宫崎骏", "亲子首选", "短片长治愈"],
+    poster: "🌳"
+  },
+
+  // —— 恐怖/惊悚（夜场）——
+  {
+    id: "shining",
+    title: "闪灵",
+    year: 1980,
+    duration: 144,
+    genres: ["恐怖", "悬疑"],
+    moods: ["excited", "curious"],
+    weather: ["snowy", "cold"],
+    env: ["dim", "cool"],
+    time: ["latenight", "night"],
+    people: [3, 1],
+    ageMin: 18, ageMax: 50,
+    rating: 8.4,
+    desc: "库布里克对称强迫症恐怖片。雪山酒店 + 双胞胎 + 杰克的笑脸，毛骨悚然。",
+    tags: ["库布里克", "深夜不寒而栗"],
+    poster: "🪓"
+  },
+
+  // —— 文艺/慢热 ——
+  {
+    id: "perfect-days",
+    title: "完美的日子",
+    year: 2023,
+    duration: 124,
+    genres: ["文艺", "治愈"],
+    moods: ["calm", "lonely", "stressed"],
+    weather: ["sunny", "cloudy", "any"],
+    env: ["bright", "cool"],
+    time: ["morning", "afternoon"],
+    people: [1],
+    ageMin: 18, ageMax: 99,
+    rating: 8.5,
+    desc: "维姆·文德斯。东京清洁工的日常被拍成诗，配着 70 年代电台老歌。",
+    tags: ["独自观影", "慢节奏", "下饭"],
+    poster: "🚽"
+  },
+  {
+    id: "burn-after-reading",
+    title: "在哥伦布",
+    year: 2017,
+    duration: 104,
+    genres: ["文艺", "爱情"],
+    moods: ["calm", "lonely"],
+    weather: ["cloudy", "any"],
+    env: ["bright", "cool"],
+    time: ["afternoon", "evening"],
+    people: [1, 2],
+    ageMin: 18, ageMax: 60,
+    rating: 7.6,
+    desc: "建筑控福音。两个陌生人在哥伦布城里走着聊着，构图克制得像呼吸。",
+    tags: ["建筑美学", "极简", "独看友好"],
+    poster: "🏛️"
+  },
+
+  // —— 冒险/视效大片 ——
+  {
+    id: "spider-verse",
+    title: "蜘蛛侠：纵横宇宙",
+    year: 2023,
+    duration: 140,
+    genres: ["动画", "动作", "冒险"],
+    moods: ["happy", "excited"],
+    weather: ["any"],
+    env: ["bright"],
+    time: ["evening", "night"],
+    people: [3, 4, 2],
+    ageMin: 8, ageMax: 60,
+    rating: 8.6,
+    desc: "把动画做成画展。多元宇宙的小蜘蛛全员上线，眼睛会怀孕。",
+    tags: ["视觉炸裂", "好友同看", "亲子也行"],
+    poster: "🕷️"
+  },
+  {
+    id: "lord-of-the-rings",
+    title: "指环王：护戒使者",
+    year: 2001,
+    duration: 178,
+    genres: ["奇幻", "冒险", "动作"],
+    moods: ["calm", "curious", "excited"],
+    weather: ["any"],
+    env: ["dim", "cool"],
+    time: ["afternoon", "evening", "night"],
+    people: [1, 3],
+    ageMin: 12, ageMax: 99,
+    rating: 9.1,
+    desc: "中土三部曲第一部。看完只想徒步去新西兰。",
+    tags: ["史诗", "长片", "氛围感"],
+    poster: "💍"
+  },
+
+  // —— 纪录/治愈 ——
+  {
+    id: "jiro",
+    title: "寿司之神",
+    year: 2011,
+    duration: 81,
+    genres: ["纪录", "治愈"],
+    moods: ["calm", "stressed"],
+    weather: ["any"],
+    env: ["bright", "cool"],
+    time: ["afternoon", "evening"],
+    people: [1, 2],
+    ageMin: 14, ageMax: 99,
+    rating: 8.4,
+    desc: "85 岁老爷爷捏一辈子寿司。看完会想认认真真吃一顿饭。",
+    tags: ["短", "下饭", "工匠精神"],
+    poster: "🍣"
+  },
+
+  // —— 爆米花动作 ——
+  {
+    id: "top-gun-maverick",
+    title: "壮志凌云：独行侠",
+    year: 2022,
+    duration: 130,
+    genres: ["动作", "冒险"],
+    moods: ["happy", "excited", "down"],
+    weather: ["sunny", "any"],
+    env: ["bright"],
+    time: ["evening", "night"],
+    people: [3, 2, 4],
+    ageMin: 10, ageMax: 99,
+    rating: 8.4,
+    desc: "阿汤哥 60 岁还在亲自开战机。爽到尖叫，结尾给爹味泪点收尾。",
+    tags: ["爆米花", "全家适合", "情怀"],
+    poster: "✈️"
+  }
+];
+
+window.MOVIE_META = {
+  moodMap: {
+    happy:    "开心想笑",
+    down:     "有点丧",
+    excited:  "想嗨",
+    calm:     "平静",
+    lonely:   "孤独",
+    stressed: "压力大",
+    romantic: "想恋爱",
+    curious:  "好奇想动脑"
+  },
+  weatherMap: {
+    sunny:  "晴",
+    rainy:  "雨",
+    cloudy: "阴/多云",
+    snowy:  "下雪",
+    hot:    "炎热",
+    cold:   "寒冷"
+  },
+  envMap: {
+    dim:    "昏暗安静",
+    bright: "明亮热闹",
+    hot:    "炎热夏夜",
+    cool:   "凉爽舒服"
+  },
+  timeMap: {
+    morning:   "上午",
+    afternoon: "下午",
+    evening:   "傍晚",
+    night:     "晚上",
+    latenight: "深夜"
+  }
+};

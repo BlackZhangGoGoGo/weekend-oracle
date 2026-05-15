@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="theme-color" content="#1a1039" />
+<title>周末厨神 🍳 · 周末好玩屋</title>
+<link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="stars"></div>
+
+  <main class="app">
+    <header class="hero">
+      <h1 class="title">周末厨神 🍳</h1>
+      <p class="subtitle">告诉我你的家乡、口味、厨房，我给你挑一桌上手菜</p>
+      <a href="./index.html" class="back-link" aria-label="返回主页">‹ 返回主页</a>
+    </header>
+
+    <!-- 输入卡 -->
+    <section class="card input-card" id="chefInputCard">
+      <!-- 家乡 -->
+      <div class="field">
+        <label for="chefRegion">🏠 你的家乡口味</label>
+        <select id="chefRegion">
+          <option value="">选一个最对你胃口的菜系</option>
+        </select>
+      </div>
+
+      <!-- 口味 -->
+      <div class="field">
+        <label>👅 今天想吃的味（可多选，1-3 个最合适）</label>
+        <div class="chef-chip-row" id="chefFlavorRow"></div>
+      </div>
+
+      <!-- 食材 -->
+      <div class="field">
+        <label>🛒 冰箱里有啥（可不选，让我随便发挥）</label>
+        <div class="chef-chip-row" id="chefIngredientRow"></div>
+      </div>
+
+      <!-- 餐厨条件 -->
+      <div class="field">
+        <label>🔪 你的厨房什么段位（可多选）</label>
+        <div class="chef-kitchen-row" id="chefKitchenRow"></div>
+      </div>
+
+      <button id="chefSummonBtn" class="summon-btn">
+        <span>🪄 召唤今日菜单</span>
+      </button>
+      <p id="chefErrorTip" class="error-tip"></p>
+    </section>
+
+    <!-- 结果 -->
+    <section class="chef-result hidden" id="chefResult">
+      <div class="chef-result-header">
+        <h2>为你挑了 <span id="chefResultCount">3</span> 道好菜 🍽️</h2>
+        <p class="chef-result-sub" id="chefResultSub"></p>
+      </div>
+      <div class="chef-recipe-list" id="chefRecipeList"></div>
+      <div class="actions">
+        <button id="chefAgainBtn" class="secondary-btn">换一桌 🔄</button>
+        <button id="chefResetBtn" class="ghost-btn">重新填</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>🍳 by 员工A · 周末不内卷，做饭比加班快乐</span>
+  </footer>
+
+  <script src="./chef-recipes.js"></script>
+  <script src="./chef-recipes-extra.js"></script>
+  <script src="./chef-recipes-extra2.js"></script>
+  <script src="./chef.js"></script>
+</body>
+</html>
