@@ -181,4 +181,102 @@
     inputCard.classList.remove("hidden");
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
+
+  /* ====== 菜谱总库（仿"魔法活动库"） ====== */
+  const libBtn      = $("openChefLibrary");
+  const libCount    = $("chefLibCount");
+  const libModal    = $("chefLibraryModal");
+  const libCloseBtn = $("closeChefLibrary");
+  const libFilters  = $("chefRegionFilters");
+  const libGrid     = $("chefLibraryGrid");
+
+  // 全量菜谱数（在 extra.js 加载后再读，确保拿到最终值）
+  function refreshLibCount() {
+    libCount.textContent = (window.CHEF_RECIPES || []).length;
+  }
+  refreshLibCount();
+
+  // 菜系标签 → 中文显示名（直接从 OPTS.regions 取，找不到就用原值）
+  function regionLabel(value) {
+    const item = OPTS.regions.find((r) => r.value === value);
+    return item ? item.label.replace(/^[^\u4e00-\u9fa5]+/, "") : value;
+  }
+
+  // 收集所有菜谱里实际出现过的菜系（去重 + 保留 CHEF_OPTIONS 中的顺序）
+  function collectRegions() {
+    const set = new Set();
+    (window.CHEF_RECIPES || []).forEach((r) => {
+      (r.region || []).forEach((reg) => set.add(reg));
+    });
+    const ordered = OPTS.regions
+      .map((r) => r.value)
+      .filter((v) => set.has(v));
+    // 兜底：如果 recipe 里有 OPTS 里没有的菜系（比如新菜系字符串），也补到末尾
+    set.forEach((v) => { if (!ordered.includes(v)) ordered.push(v); });
+    return ordered;
+  }
+
+  function renderLibFilters(activeRegion) {
+    const regions = collectRegions();
+    const all = [{ value: "all", label: "全部" }].concat(
+      regions.map((v) => ({ value: v, label: regionLabel(v) }))
+    );
+    libFilters.innerHTML = all.map((r) =>
+      `<span class="filter-chip ${r.value === activeRegion ? "active" : ""}" data-region="${r.value}">${r.label}</span>`
+    ).join("");
+
+    libFilters.querySelectorAll(".filter-chip").forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const reg = chip.dataset.region;
+        renderLibFilters(reg);
+        renderLibGrid(reg);
+      });
+    });
+  }
+
+  function renderLibGrid(activeRegion) {
+    const all = window.CHEF_RECIPES || [];
+    const list = activeRegion === "all"
+      ? all
+      : all.filter((r) => (r.region || []).includes(activeRegion));
+
+    if (!list.length) {
+      libGrid.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:var(--text-dim);padding:40px 0;">这个菜系下还没有菜，去试试别的吧～</div>`;
+      return;
+    }
+
+    libGrid.innerHTML = list.map((r) => {
+      const links = window.buildChefSearchLinks(r);
+      const xiachufang = links.find((l) => /下厨房/.test(l.name)) || links[0];
+      const tagHtml = (r.region || []).slice(0, 2).map((reg) =>
+        `<span class="lib-item-tag">${regionLabel(reg)}</span>`
+      ).join("");
+      const flavorHtml = (r.flavors || []).slice(0, 2).join(" · ");
+      const meta = `⏱ ${r.timeMin}min · ${"🌟".repeat(r.looks || 1)}`;
+      return `
+        <a class="lib-item chef-lib-item" href="${xiachufang ? xiachufang.url : "#"}" target="_blank" rel="noopener" title="点击去下厨房看做法">
+          <div class="chef-lib-head">
+            <span class="chef-lib-emoji">${r.emoji || "🍽️"}</span>
+            <div class="chef-lib-title-wrap">
+              <div class="lib-item-title">${r.name}</div>
+              <div class="chef-lib-tags">${tagHtml}</div>
+            </div>
+          </div>
+          <div class="lib-item-desc">${r.desc || ""}</div>
+          <div class="chef-lib-meta">${flavorHtml}${flavorHtml ? " · " : ""}${meta}</div>
+        </a>
+      `;
+    }).join("");
+  }
+
+  libBtn.addEventListener("click", () => {
+    refreshLibCount();
+    renderLibFilters("all");
+    renderLibGrid("all");
+    libModal.classList.remove("hidden");
+  });
+  libCloseBtn.addEventListener("click", () => libModal.classList.add("hidden"));
+  libModal.addEventListener("click", (e) => {
+    if (e.target === libModal) libModal.classList.add("hidden");
+  });
 })();

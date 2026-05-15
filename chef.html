@@ -65,6 +65,23 @@
         <button id="chefResetBtn" class="ghost-btn">重新填</button>
       </div>
     </section>
+
+    <!-- 菜谱总库入口 -->
+    <section class="library-entry">
+      <button id="openChefLibrary" class="link-btn">📚 翻翻全部菜谱（共 <span id="chefLibCount">0</span> 道）</button>
+    </section>
+
+    <!-- 菜谱总库弹层 -->
+    <div class="modal hidden" id="chefLibraryModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>菜谱总库 🍽️</h3>
+          <button class="close-btn" id="closeChefLibrary">×</button>
+        </div>
+        <div class="filter-row" id="chefRegionFilters"></div>
+        <div class="library-grid" id="chefLibraryGrid"></div>
+      </div>
+    </div>
   </main>
 
   <footer class="footer">
