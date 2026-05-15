@@ -17,10 +17,14 @@
 
 ```
 .
-├── index.html               # 页面入口
-├── style.css                # 所有样式（含像素小人、动画、移动端适配）
-├── app.js                   # 推荐算法 + 动画 + 金句池
+├── index.html               # 统一入口主页（周末占卜 + 遛娃神器 两个入口卡片）
+├── oracle.html              # 周末活动占卜屋页面
+├── kids.html                # 遛娃神器页面
+├── style.css                # 所有样式（含像素小人、动画、移动端适配、主页卡片）
+├── app.js                   # 占卜屋：推荐算法 + 动画 + 金句池
+├── kids.js                  # 遛娃神器：城市/年龄/出行方式推荐逻辑
 ├── activities.js            # 活动库加载器（异步 fetch 两个 JSON 合并去重）
+├── kids-spots.js            # 遛娃神器地点库
 ├── data/
 │   ├── base_activities.json # 基础库（45 条原始活动）
 │   └── daily_activities.json# 每日追加的增量库

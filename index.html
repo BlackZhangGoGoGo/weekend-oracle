@@ -6,220 +6,54 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="theme-color" content="#1a1039" />
-<title>周末活动占卜屋 ✨</title>
+<title>周末好玩屋 ✨ · 选个入口开始你的周末</title>
 <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
   <div class="stars"></div>
 
-  <!-- 施法中全屏覆盖层（召唤时出现，小人居中放大，粒子喷射） -->
-  <div class="casting-overlay hidden" id="castingOverlay" aria-hidden="true">
-    <div class="casting-stage">
-      <div class="casting-wizard" id="castingWizard">
-        <div class="hat"><div class="hat-star">★</div></div>
-        <div class="head">
-          <div class="eye left"></div>
-          <div class="eye right"></div>
-          <div class="mouth"></div>
-        </div>
-        <div class="body-wrap">
-          <div class="body"></div>
-          <div class="arm left"></div>
-          <div class="arm right">
-            <div class="wand"><div class="wand-tip"></div></div>
-          </div>
-        </div>
-        <div class="legs">
-          <div class="leg left"></div>
-          <div class="leg right"></div>
-        </div>
-      </div>
-      <div class="casting-sparkles" id="castingSparkles"></div>
-      <div class="casting-text">
-        <span class="dot">✨</span>
-        <span id="castingPhase">魔法小人正在占卜中</span>
-        <span class="dots"><i></i><i></i><i></i></span>
-      </div>
-    </div>
-  </div>
-
-  <main class="app">
-    <header class="hero">
-      <h1 class="title">周末活动占卜屋</h1>
-      <p class="subtitle">星座 × 年龄 × 数字，召唤一场属于你的有趣冒险</p>
-      <button
-        id="soundToggle"
-        class="sound-toggle"
-        type="button"
-        aria-label="音效开关"
-        title="开关施法音效"
-      >🔊</button>
+  <main class="app home-app">
+    <header class="hero home-hero">
+      <div class="home-logo" aria-hidden="true">✨🎈</div>
+      <h1 class="title">周末好玩屋</h1>
+      <p class="subtitle">两个魔法入口 · 一个让你做自己，一个让你带娃乐翻天</p>
     </header>
 
-    <!-- 魔法小人 -->
-    <section class="wizard-stage" aria-hidden="true">
-      <div id="wizard" class="wizard idle">
-        <!-- 帽子 -->
-        <div class="hat">
-          <div class="hat-star">★</div>
-        </div>
-        <!-- 头 -->
-        <div class="head">
-          <div class="eye left"></div>
-          <div class="eye right"></div>
-          <div class="mouth"></div>
-        </div>
-        <!-- 身体 -->
-        <div class="body-wrap">
-          <div class="body"></div>
-          <div class="arm left"></div>
-          <div class="arm right">
-            <div class="wand">
-              <div class="wand-tip"></div>
-            </div>
+    <section class="home-entries">
+      <!-- 入口 1：周末占卜 -->
+      <a href="./oracle.html" class="home-entry-card oracle" aria-label="进入周末活动占卜屋">
+        <div class="home-entry-emoji">🔮</div>
+        <div class="home-entry-text">
+          <div class="home-entry-title">周末活动占卜屋</div>
+          <div class="home-entry-sub">星座 × 年龄 × 数字<br/>召唤一场属于你的有趣冒险</div>
+          <div class="home-entry-tags">
+            <span class="home-tag">✨ 魔法占卜</span>
+            <span class="home-tag">🎯 智能推荐</span>
+            <span class="home-tag">📚 活动库</span>
           </div>
         </div>
-        <div class="legs">
-          <div class="leg left"></div>
-          <div class="leg right"></div>
+        <div class="home-entry-arrow">›</div>
+      </a>
+
+      <!-- 入口 2：遛娃神器 -->
+      <a href="./kids.html" class="home-entry-card kids" aria-label="进入遛娃神器">
+        <div class="home-entry-emoji">🧸</div>
+        <div class="home-entry-text">
+          <div class="home-entry-title">遛娃神器</div>
+          <div class="home-entry-sub">告诉我娃的情况<br/>给你一份周末出行锦囊</div>
+          <div class="home-entry-tags">
+            <span class="home-tag">🏙️ 按城市</span>
+            <span class="home-tag">👶 按年龄</span>
+            <span class="home-tag">🚗 按出行方式</span>
+          </div>
         </div>
-      </div>
-      <!-- 魔法粒子容器 -->
-      <div class="sparkles" id="sparkles"></div>
-    </section>
-
-    <!-- 输入卡 -->
-    <section class="card input-card" id="inputCard">
-      <div class="field">
-        <label for="zodiac">你的星座</label>
-        <select id="zodiac">
-          <option value="白羊座">♈ 白羊座</option>
-          <option value="金牛座">♉ 金牛座</option>
-          <option value="双子座">♊ 双子座</option>
-          <option value="巨蟹座">♋ 巨蟹座</option>
-          <option value="狮子座">♌ 狮子座</option>
-          <option value="处女座">♍ 处女座</option>
-          <option value="天秤座">♎ 天秤座</option>
-          <option value="天蝎座">♏ 天蝎座</option>
-          <option value="射手座">♐ 射手座</option>
-          <option value="摩羯座">♑ 摩羯座</option>
-          <option value="水瓶座">♒ 水瓶座</option>
-          <option value="双鱼座">♓ 双鱼座</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label for="age">你的年龄</label>
-        <input id="age" type="number" min="1" max="120" placeholder="例如 28" />
-      </div>
-
-      <div class="field">
-        <label>你的性别</label>
-        <div class="gender-row" id="genderRow">
-          <label class="gender-chip">
-            <input type="radio" name="gender" value="female" />
-            <span>♀ 女生</span>
-          </label>
-          <label class="gender-chip">
-            <input type="radio" name="gender" value="male" />
-            <span>♂ 男生</span>
-          </label>
-          <label class="gender-chip">
-            <input type="radio" name="gender" value="neutral" checked />
-            <span>⚧ 不想说/其他</span>
-          </label>
-        </div>
-      </div>
-
-      <div class="field">
-        <label>心之所向的 3 个数字（1–99）</label>
-        <div class="number-row">
-          <input type="number" class="num-input" min="1" max="99" placeholder="数字 1" />
-          <input type="number" class="num-input" min="1" max="99" placeholder="数字 2" />
-          <input type="number" class="num-input" min="1" max="99" placeholder="数字 3" />
-        </div>
-      </div>
-
-      <button id="summonBtn" class="summon-btn">
-        <span>🪄 召唤活动</span>
-      </button>
-      <p id="errorTip" class="error-tip"></p>
-    </section>
-
-    <!-- 结果卡 -->
-    <section class="card result-card hidden" id="resultCard">
-      <div class="result-header">
-        <span class="result-tag" id="resultCategory">户外</span>
-        <h2 id="resultTitle">活动名</h2>
-      </div>
-      <p class="result-desc" id="resultDesc"></p>
-
-      <div class="result-meta">
-        <div class="meta-item">
-          <span class="meta-label">难度</span>
-          <span class="meta-value" id="resultDifficulty">★★☆☆☆</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-label">人数</span>
-          <span class="meta-value" id="resultPeople">1 人</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-label">场地</span>
-          <span class="meta-value" id="resultPlace">室内</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-label">时长</span>
-          <span class="meta-value" id="resultDuration">约 1 小时</span>
-        </div>
-      </div>
-
-      <div class="reason-box">
-        <div class="reason-title">🔮 魔法小人的解读</div>
-        <blockquote class="reason-quote" id="resultQuote"></blockquote>
-        <p id="resultReason"></p>
-      </div>
-
-      <div class="actions">
-        <button id="againBtn" class="secondary-btn">再来一个 ✨</button>
-        <button id="resetBtn" class="ghost-btn">重新填写</button>
-      </div>
-    </section>
-
-    <!-- 活动库入口 -->
-    <section class="library-entry">
-      <button id="openLibrary" class="link-btn">📚 翻翻魔法活动库（全部 <span id="libCount">0</span> 条）</button>
-    </section>
-
-    <!-- 溜娃神器入口 -->
-    <section class="kids-entry">
-      <a href="./kids.html" class="kids-entry-card" aria-label="进入溜娃神器">
-        <div class="kids-entry-emoji">🧸</div>
-        <div class="kids-entry-text">
-          <div class="kids-entry-title">溜娃神器</div>
-          <div class="kids-entry-sub">周末带娃不再抓瞎 · 按城市 / 年龄 / 出行方式智能推荐</div>
-        </div>
-        <div class="kids-entry-arrow">›</div>
+        <div class="home-entry-arrow">›</div>
       </a>
     </section>
 
-    <!-- 活动库弹层 -->
-    <div class="modal hidden" id="libraryModal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3>魔法活动库</h3>
-          <button class="close-btn" id="closeLibrary">×</button>
-        </div>
-        <div class="filter-row" id="categoryFilters"></div>
-        <div class="library-grid" id="libraryGrid"></div>
-      </div>
-    </div>
+    <footer class="home-footer">
+      <p>选个入口，把周末安排得明明白白 ✨</p>
+    </footer>
   </main>
-
-  <footer class="footer">
-    <span>✍️ by 员工A · 让无聊日子少一点</span>
-  </footer>
-
-  <script src="./activities.js"></script>
-  <script src="./app.js"></script>
 </body>
 </html>

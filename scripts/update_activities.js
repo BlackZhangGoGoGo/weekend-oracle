@@ -180,7 +180,17 @@ const SEED_POOL = [
   { title: "一个人去看早场电影",        category: "cultural", tags: ["air", "独处", "治愈"], ageRange: [14, 70], people: "1 人", place: "电影院", duration: "2-3 小时", difficulty: 1, desc: "挑周日上午第一场，全场可能就你一个人。银幕那么大却安静得像私人影院，独处的爽感拉满。" },
   { title: "做一顿只给自己的精致饭",    category: "food", tags: ["earth", "手作", "治愈", "独处"], ageRange: [16, 70], people: "1 人", place: "家里", duration: "2 小时", difficulty: 2, desc: "不凑合、不外卖，为自己做一道平时嫌麻烦的菜，摆盘拍照。一个人吃饭也可以是隆重的。" },
   { title: "删 100 条无用消息和联系人", category: "solo", tags: ["air", "治愈", "独处"], ageRange: [16, 60], people: "1 人", place: "家里", duration: "1 小时", difficulty: 1, desc: "把微信里沉寂三年的群、再也不会聊的好友、看过就忘的公众号清一清。手机轻了，心也轻了。" },
-  { title: "把周末还没做完的小事逐个划掉", category: "indoor", tags: ["earth", "水", "治愈", "独处"], ageRange: [14, 70], people: "1 人", place: "家里", duration: "2 小时", difficulty: 1, desc: "列出那些拖了两周的小事（换灯泡、退快递、改简历、回那条微信），一口气干完。周一会感谢今天的你。" }
+  { title: "把周末还没做完的小事逐个划掉", category: "indoor", tags: ["earth", "水", "治愈", "独处"], ageRange: [14, 70], people: "1 人", place: "家里", duration: "2 小时", difficulty: 1, desc: "列出那些拖了两周的小事（换灯泡、退快递、改简历、回那条微信），一口气干完。周一会感谢今天的你。" },
+
+  /* —— 周三·动起来 候选补充 2026-05-13 —— */
+  { title: "骑共享单车刷街 15 公里",     category: "sport", tags: ["fire", "air", "健康", "挑战"], ageRange: [14, 55], people: "1-3 人", place: "城市绿道/江边", duration: "1.5-2 小时", difficulty: 3, desc: "扫一辆共享单车，沿着江边或最长的那条绿道刷到腿软。风从耳边过的感觉会让你忘记今天谁惹你生气了。" },
+  { title: "小区楼梯爬 20 层挑战",       category: "sport", tags: ["fire", "健康", "挑战"], ageRange: [14, 50], people: "1-2 人", place: "自家楼道", duration: "30 分钟", difficulty: 3, desc: "不用去健身房，从一楼爬到 20 楼再下来。心跳打到 160 那一下，你会知道自己其实没那么老。" },
+  { title: "跳绳 1000 下不间断",         category: "sport", tags: ["fire", "健康", "挑战"], ageRange: [10, 50], people: "1 人", place: "小区/阳台", duration: "30 分钟", difficulty: 3, desc: "一根绳、一块空地，跳够 1000 下中间可以短暂休息。出汗量远超你想象，心情也会被甩干净。" },
+  { title: "跟着 YouTube 做 30 分钟 HIIT", category: "sport", tags: ["fire", "健康", "挑战"], ageRange: [16, 45], people: "1 人", place: "家里", duration: "40 分钟", difficulty: 3, desc: "挑一个 30 分钟无器械 HIIT 视频，咬牙跟到最后。结束那一下趴在瑜伽垫上喘气，会觉得自己突然很有生命力。" },
+  { title: "江边/操场夜跑 3 公里",       category: "sport", tags: ["fire", "air", "健康"], ageRange: [14, 55], people: "1-3 人", place: "江边/学校操场", duration: "40 分钟", difficulty: 2, desc: "晚饭消化完出门跑 3km，不追求配速。跑完沿着河堤走回家那段才是最治愈的部分。" },
+  { title: "公园单双杠打卡 5 组",        category: "sport", tags: ["fire", "健康", "挑战"], ageRange: [16, 45], people: "1-2 人", place: "社区健身角", duration: "30 分钟", difficulty: 3, desc: "引体向上+双杠臂屈伸各 5 组，能做几个做几个。旁边大爷会用眼神替你加油。" },
+  { title: "去爬一次城市里的天台步道",    category: "outdoor", tags: ["fire", "earth", "健康", "独特"], ageRange: [14, 60], people: "1-3 人", place: "城市绿道/步道", duration: "2-3 小时", difficulty: 2, desc: "查一下本地的城市绿道或山脊步道，走完 5-8km。爬到高处看整座城的那一下，本周的班不白加。" },
+  { title: "约朋友羽毛球 1 小时",        category: "sport", tags: ["fire", "健康", "热闹"], ageRange: [12, 55], people: "2-4 人", place: "羽毛球馆/小区场地", duration: "1.5 小时", difficulty: 2, desc: "订一块场地约朋友打一小时。打完一身汗边吃烧烤边吐槽比赛，是周三最快回血的方式。" }
 ];
 
 /* ========== AI 生成（可选，预留接口）==========
