@@ -146,6 +146,27 @@
         <button id="movieResetBtn" class="ghost-btn">重新填写</button>
       </div>
     </section>
+
+    <!-- 片库入口 -->
+    <section class="library-entry">
+      <button id="movieOpenLibrary" class="link-btn">🎞 翻翻全部片库（共 <span id="movieLibCount">0</span> 部）</button>
+    </section>
+
+    <!-- 片库弹层 -->
+    <div class="modal hidden" id="movieLibraryModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>全部电影库 🎬</h3>
+          <button class="close-btn" id="movieCloseLibrary">×</button>
+        </div>
+        <div class="movie-lib-search">
+          <input type="search" id="movieLibSearch" placeholder="🔍 搜电影名 / 导演 / 标签…" autocomplete="off" />
+        </div>
+        <div class="filter-row" id="movieCategoryFilters"></div>
+        <div class="library-grid" id="movieLibraryGrid"></div>
+        <div class="movie-lib-empty hidden" id="movieLibEmpty">没找到符合条件的片子，试试别的关键词～</div>
+      </div>
+    </div>
   </main>
 
   <footer class="footer">

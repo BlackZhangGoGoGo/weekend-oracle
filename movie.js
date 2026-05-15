@@ -310,4 +310,150 @@
   ageEl.addEventListener("keydown", (e) => {
     if (e.key === "Enter") pickAndRender([]);
   });
+
+  // ============ 全部片库弹层 ============
+  const libBtn      = $("movieOpenLibrary");
+  const libCountEl  = $("movieLibCount");
+  const libModal    = $("movieLibraryModal");
+  const libCloseBtn = $("movieCloseLibrary");
+  const libGrid     = $("movieLibraryGrid");
+  const libFilters  = $("movieCategoryFilters");
+  const libSearch   = $("movieLibSearch");
+  const libEmpty    = $("movieLibEmpty");
+
+  // 安全访问片库
+  function getMovies() {
+    return Array.isArray(window.MOVIES) ? window.MOVIES : [];
+  }
+
+  // 初始化片库总数
+  if (libCountEl) libCountEl.textContent = getMovies().length;
+
+  // 类型分类（按 movies 里 genres 集合自动生成）
+  function collectGenres() {
+    const set = new Set();
+    getMovies().forEach(m => (m.genres || []).forEach(g => set.add(g)));
+    return [...set].sort();
+  }
+
+  let currentGenre = "all";
+  let currentKeyword = "";
+
+  function escapeHtml(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function ratingPill(r) {
+    const v = typeof r === "number" ? r.toFixed(1) : "—";
+    return `<span class="lib-movie-rating">🍅 ${v}</span>`;
+  }
+
+  function renderLibFilters() {
+    const genres = ["all", ...collectGenres()];
+    libFilters.innerHTML = genres.map((g) => {
+      const label = g === "all" ? `全部 · ${getMovies().length}` : g;
+      const active = g === currentGenre ? "active" : "";
+      return `<span class="filter-chip ${active}" data-genre="${escapeHtml(g)}">${label}</span>`;
+    }).join("");
+    libFilters.querySelectorAll(".filter-chip").forEach(chip => {
+      chip.addEventListener("click", () => {
+        libFilters.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+        currentGenre = chip.dataset.genre;
+        renderLibList();
+      });
+    });
+  }
+
+  function renderLibList() {
+    const kw = currentKeyword.trim().toLowerCase();
+    const list = getMovies().filter(m => {
+      // 类型筛选
+      if (currentGenre !== "all" && !(m.genres || []).includes(currentGenre)) return false;
+      // 关键词搜索：标题 / 标签 / 简介都查
+      if (kw) {
+        const hay = [
+          m.title,
+          m.year,
+          ...(m.tags || []),
+          ...(m.genres || []),
+          m.desc
+        ].join(" ").toLowerCase();
+        if (!hay.includes(kw)) return false;
+      }
+      return true;
+    });
+
+    if (!list.length) {
+      libGrid.innerHTML = "";
+      libEmpty.classList.remove("hidden");
+      return;
+    }
+    libEmpty.classList.add("hidden");
+
+    // 按评分降序，更顺眼
+    list.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+
+    libGrid.innerHTML = list.map(m => {
+      const genres = (m.genres || []).slice(0, 3).map(g => `<span class="lib-movie-genre">${escapeHtml(g)}</span>`).join("");
+      const tags = (m.tags || []).slice(0, 3).map(t => `<span class="lib-movie-tag">#${escapeHtml(t)}</span>`).join("");
+      return `
+        <div class="lib-item lib-movie-item" data-id="${escapeHtml(m.id)}">
+          <div class="lib-movie-head">
+            <span class="lib-movie-title">${escapeHtml(m.title)}</span>
+            <span class="lib-movie-year">${escapeHtml(m.year)}</span>
+          </div>
+          <div class="lib-movie-meta">
+            ${ratingPill(m.rating)}
+            <span class="lib-movie-dur">⏱ ${m.duration}min</span>
+          </div>
+          <div class="lib-movie-genres">${genres}</div>
+          <div class="lib-movie-desc">${escapeHtml(m.desc)}</div>
+          ${tags ? `<div class="lib-movie-tags">${tags}</div>` : ""}
+        </div>
+      `;
+    }).join("");
+  }
+
+  function openLibrary() {
+    // 每次打开都同步一下数量（防止脚本异步加载）
+    if (libCountEl) libCountEl.textContent = getMovies().length;
+    renderLibFilters();
+    renderLibList();
+    libModal.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  }
+  function closeLibrary() {
+    libModal.classList.add("hidden");
+    document.body.style.overflow = "";
+  }
+
+  if (libBtn) libBtn.addEventListener("click", openLibrary);
+  if (libCloseBtn) libCloseBtn.addEventListener("click", closeLibrary);
+  if (libModal) {
+    libModal.addEventListener("click", (e) => {
+      if (e.target === libModal) closeLibrary();
+    });
+  }
+  // ESC 关闭
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && libModal && !libModal.classList.contains("hidden")) closeLibrary();
+  });
+
+  // 搜索（防抖）
+  if (libSearch) {
+    let t = null;
+    libSearch.addEventListener("input", (e) => {
+      clearTimeout(t);
+      const v = e.target.value || "";
+      t = setTimeout(() => {
+        currentKeyword = v;
+        renderLibList();
+      }, 120);
+    });
+  }
 })();
