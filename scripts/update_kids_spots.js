@@ -21,6 +21,10 @@ const path = require("path");
 const ROOT = path.resolve(__dirname, "..");
 const DATA_DIR = path.join(ROOT, "data");
 const SPOTS_FILE = path.join(ROOT, "kids-spots.js");
+const EXTRA_FILES = [
+  path.join(ROOT, "kids-spots-extra.js"),
+  // 后续如果有 extra2 / extra3，加路径在这里就行
+];
 const LOG_FILE = path.join(DATA_DIR, "kids_update.log");
 
 /* ========== 工具 ========== */
@@ -150,6 +154,16 @@ function loadExistingNames() {
   while ((m = re.exec(text)) !== null) {
     names.add(fingerprint(m[1]));
   }
+  // 把 extra 文件里的名字也加入指纹集，避免和扩展库重复
+  EXTRA_FILES.forEach(file => {
+    if (!fs.existsSync(file)) return;
+    const t = fs.readFileSync(file, "utf8");
+    const r = /name:\s*"([^"]+)"/g;
+    let mm;
+    while ((mm = r.exec(t)) !== null) {
+      names.add(fingerprint(mm[1]));
+    }
+  });
   return { text, names };
 }
 
