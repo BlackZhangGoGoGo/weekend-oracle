@@ -2167,3 +2167,55 @@ button, input, select, label { touch-action: manipulation; }
   .movie-chip { padding: 8px 12px; font-size: 12.5px; }
 }
 
+
+/* ============ 溜娃方案库弹层卡片专属样式 ============ */
+.kids-lib-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.kids-lib-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+.kids-lib-city {
+  font-size: 11px;
+  padding: 2px 7px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 5px;
+  color: var(--text-dim);
+}
+.kids-lib-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 6px;
+}
+.kids-lib-meta .meta-pill {
+  font-size: 10.5px;
+  padding: 2px 7px;
+}
+.kids-lib-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+.kids-lib-tag {
+  font-size: 10.5px;
+  color: var(--accent-2);
+  padding: 1px 5px;
+  background: rgba(255, 122, 230, 0.1);
+  border-radius: 4px;
+}
+
+/* 弹层第二行筛选（场景类型）跟首行更紧凑些 */
+#spotsTypeFilters {
+  padding-top: 0;
+  padding-bottom: 8px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.06);
+}

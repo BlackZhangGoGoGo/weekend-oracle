@@ -122,6 +122,24 @@
         <button id="kidsResetBtn" class="ghost-btn">重新填写</button>
       </div>
     </section>
+
+    <!-- 全部方案库入口 -->
+    <section class="library-entry">
+      <button id="openSpotsLib" class="link-btn">📚 翻翻全部溜娃方案库（全部 <span id="spotsLibCount">0</span> 条）</button>
+    </section>
+
+    <!-- 全部方案库弹层 -->
+    <div class="modal hidden" id="spotsLibModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>溜娃方案库 🧸</h3>
+          <button class="close-btn" id="closeSpotsLib">×</button>
+        </div>
+        <div class="filter-row" id="spotsCityFilters"></div>
+        <div class="filter-row" id="spotsTypeFilters"></div>
+        <div class="library-grid" id="spotsLibGrid"></div>
+      </div>
+    </div>
   </main>
 
   <footer class="footer">
