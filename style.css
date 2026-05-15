@@ -1537,10 +1537,14 @@ button, input, select, label { touch-action: manipulation; }
   pointer-events: none;
 }
 .home-entry-card.oracle {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.45), rgba(255, 122, 230, 0.32));
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.65), rgba(255, 122, 230, 0.5));
+  border-color: rgba(255, 216, 107, 0.5);
+  box-shadow: 0 10px 32px rgba(139, 92, 246, 0.35);
 }
 .home-entry-card.kids {
-  background: linear-gradient(135deg, rgba(255, 122, 230, 0.32), rgba(255, 216, 107, 0.28));
+  background: linear-gradient(135deg, rgba(255, 122, 230, 0.55), rgba(255, 216, 107, 0.45));
+  border-color: rgba(255, 216, 107, 0.55);
+  box-shadow: 0 10px 32px rgba(255, 122, 230, 0.32);
 }
 .home-entry-card:active {
   transform: scale(0.985);
@@ -1610,7 +1614,12 @@ button, input, select, label { touch-action: manipulation; }
 
 /* ============ 周末厨神 · 主题 ============ */
 .home-entry-card.chef {
-  background: linear-gradient(135deg, rgba(255, 153, 51, 0.42), rgba(255, 216, 107, 0.32));
+  background: linear-gradient(135deg, rgba(255, 99, 71, 0.62), rgba(255, 184, 76, 0.55));
+  border-color: rgba(255, 200, 100, 0.6);
+  box-shadow: 0 10px 32px rgba(255, 120, 60, 0.35);
+}
+.home-entry-card.chef .home-entry-title {
+  color: #fff3d6;
 }
 
 /* 多选 chip 行 */
@@ -1917,7 +1926,12 @@ button, input, select, label { touch-action: manipulation; }
 
 /* ============ 看个电影 入口卡（首页） ============ */
 .home-entry-card.movie {
-  background: linear-gradient(135deg, rgba(85, 60, 200, 0.55), rgba(255, 216, 107, 0.28));
+  background: linear-gradient(135deg, rgba(30, 80, 200, 0.65), rgba(40, 200, 180, 0.5));
+  border-color: rgba(120, 220, 220, 0.55);
+  box-shadow: 0 10px 32px rgba(30, 80, 200, 0.35);
+}
+.home-entry-card.movie .home-entry-title {
+  color: #d6f4ff;
 }
 
 /* ============ 看个电影 · 表单 chip ============ */
