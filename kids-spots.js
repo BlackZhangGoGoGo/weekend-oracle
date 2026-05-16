@@ -672,6 +672,59 @@ const KIDS_SPOTS = [
     tags: ["主题乐园","森林","近郊"],
     desc: "森林主题游乐园，娃玩得开心爸妈也凉快。",
     tips: "美团购票较划算，避开正午高温。"
+  },
+  // —— 2026-05-16 自动追加 ——
+  {
+    name: "南京古生物博物馆",
+    city: "南京",
+    type: "博物馆",
+    ageMin: 5, ageMax: 14,
+    trip: ["solo","family","group"],
+    duration: "2小时",
+    cost: "低",
+    indoor: true,
+    tags: ["古生物","互动","小众"],
+    desc: "鸡鸣寺旁的小众博物馆，专门讲古生物，娃听得入迷。",
+    tips: "工作日基本没人，性价比超高。"
+  },
+  {
+    name: "武汉海昌极地海洋公园",
+    city: "武汉",
+    type: "动物",
+    ageMin: 2, ageMax: 12,
+    trip: ["family","group"],
+    duration: "一整天",
+    cost: "中高",
+    indoor: "both",
+    tags: ["海洋","极地","表演"],
+    desc: "极地动物+海洋表演+陆地动物，能完整玩一天。",
+    tips: "美团购票，建议自驾或地铁直达。"
+  },
+  {
+    name: "本地科普海洋馆 / 水母馆",
+    city: "通用",
+    type: "动物",
+    ageMin: 1, ageMax: 10,
+    trip: ["family","group"],
+    duration: "2小时",
+    cost: "中",
+    indoor: true,
+    tags: ["室内","拍照","全年龄"],
+    desc: "近年很多城市新开的水母主题馆，颜值高、娃专注度高。",
+    tips: "周末容易排队，建议工作日下午前往。"
+  },
+  {
+    name: "亲子卡丁车馆",
+    city: "通用",
+    type: "运动",
+    ageMin: 5, ageMax: 12,
+    trip: ["family","group"],
+    duration: "1-2小时",
+    cost: "中",
+    indoor: true,
+    tags: ["室内","刺激","男宝爱"],
+    desc: "近年亲子卡丁车馆很多商场都进驻，娃飙车爽到飞起。",
+    tips: "美团搜「亲子卡丁车」，体验前先量身高。"
   }
 ];
 
