@@ -725,6 +725,59 @@ const KIDS_SPOTS = [
     tags: ["室内","刺激","男宝爱"],
     desc: "近年亲子卡丁车馆很多商场都进驻，娃飙车爽到飞起。",
     tips: "美团搜「亲子卡丁车」，体验前先量身高。"
+  },
+  // —— 2026-05-17 自动追加 ——
+  {
+    name: "西安城墙骑行",
+    city: "西安",
+    type: "运动",
+    ageMin: 6, ageMax: 14,
+    trip: ["family","group"],
+    duration: "半天",
+    cost: "中",
+    indoor: false,
+    tags: ["骑行","古城","独特"],
+    desc: "在城墙上骑双人自行车 1.5 小时绕一圈，娃记一辈子。",
+    tips: "南门入口人最多，建议从含光门或文昌门上去。"
+  },
+  {
+    name: "亲子瑜伽 / 亲子拳击体验课",
+    city: "通用",
+    type: "运动",
+    ageMin: 4, ageMax: 12,
+    trip: ["family"],
+    duration: "1小时",
+    cost: "中",
+    indoor: true,
+    tags: ["亲子互动","运动","新鲜感"],
+    desc: "和娃一起上一节体验课，比起单独运动更有连接感。",
+    tips: "穿运动服，提前 1 天大众点评预约体验课。"
+  },
+  {
+    name: "小型亲子农庄一日游",
+    city: "通用",
+    type: "自然",
+    ageMin: 3, ageMax: 12,
+    trip: ["family","group"],
+    duration: "一整天",
+    cost: "中",
+    indoor: false,
+    tags: ["喂动物","采摘","结伴"],
+    desc: "近郊一两小时车程的小农庄，喂兔子骑小马采草莓，能玩一天。",
+    tips: "美团或大众点评搜「亲子农场」，建议提前订餐。"
+  },
+  {
+    name: "亲子烘焙工作坊",
+    city: "通用",
+    type: "手作",
+    ageMin: 4, ageMax: 12,
+    trip: ["family","group"],
+    duration: "2小时",
+    cost: "中",
+    indoor: true,
+    tags: ["美食","DIY","女宝爱"],
+    desc: "披萨/曲奇/蛋糕课二选一，烤完热腾腾带回家。",
+    tips: "提前预约，避免空腹去（娃容易咬生面团）。"
   }
 ];
 
