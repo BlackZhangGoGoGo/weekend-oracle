@@ -803,12 +803,16 @@ window.pickChefRecipes = function (input) {
 
 /**
  * 构造全网搜索链接（下厨房 + 小红书 + 哔哩哔哩三件套）
+ * 注：小红书 PC 站的 search_result 页未登录时只显示空壳，用户体验上等于「无法显示」，
+ *     所以小红书这条改走「百度站内搜 site:xiaohongshu.com」，搜出来点进去是单条笔记，
+ *     未登录用户也能看完整内容，绕开小红书自身的登录墙。
  */
 window.buildChefSearchLinks = function (recipe) {
   const q = encodeURIComponent(recipe.searchKey || recipe.name);
+  const xhsQuery = encodeURIComponent("site:xiaohongshu.com " + (recipe.searchKey || recipe.name));
   return [
     { name: "下厨房", emoji: "👩‍🍳", url: `https://www.xiachufang.com/search/?keyword=${q}` },
-    { name: "小红书", emoji: "📕",   url: `https://www.xiaohongshu.com/search_result?keyword=${q}&type=51` },
+    { name: "小红书", emoji: "📕",   url: `https://www.baidu.com/s?wd=${xhsQuery}` },
     { name: "B 站",   emoji: "📺",   url: `https://search.bilibili.com/all?keyword=${q}` }
   ];
 };
