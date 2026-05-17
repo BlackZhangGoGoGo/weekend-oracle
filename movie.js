@@ -183,6 +183,13 @@
     return s;
   }
 
+  // 安全访问观影渠道按钮渲染（缺省时不渲染，避免脚本未加载报错）
+  function watchHTML(movie, size) {
+    return (window.MOVIE_WATCH && typeof window.MOVIE_WATCH.renderButtons === "function")
+      ? window.MOVIE_WATCH.renderButtons(movie, size)
+      : "";
+  }
+
   function renderMain(movie, score, stars, reasons) {
     const card = document.createElement("div");
     card.className = "card movie-main-card";
@@ -209,6 +216,7 @@
           ${movie.tags.map(t => `<span class="tag">#${t}</span>`).join("")}
         </div>
         ${reasons.length ? `<div class="movie-reason">🎯 推荐理由：${reasons.join(" · ")}</div>` : ""}
+        ${watchHTML(movie, "main")}
       </div>
     `;
     mainCardWrap.innerHTML = "";
@@ -234,6 +242,7 @@
             <span>·</span>
             <span>${movie.genres.slice(0, 2).join(" · ")}</span>
           </div>
+          ${watchHTML(movie, "sm")}
         </div>
       `;
       altListWrap.appendChild(item);
@@ -414,6 +423,7 @@
           <div class="lib-movie-genres">${genres}</div>
           <div class="lib-movie-desc">${escapeHtml(m.desc)}</div>
           ${tags ? `<div class="lib-movie-tags">${tags}</div>` : ""}
+          ${watchHTML(m, "sm")}
         </div>
       `;
     }).join("");
