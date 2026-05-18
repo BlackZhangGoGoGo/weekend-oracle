@@ -1,5 +1,5 @@
 /**
- * 周末厨神 · 菜谱扩展库（v2 扩容）
+ * 一日厨神 · 菜谱扩展库（v2 扩容）
  * 在 chef-recipes.js 之后加载，向 CHEF_RECIPES 追加菜谱，
  * 并补全 CHEF_OPTIONS.regions（鲁/闽/徽/京津/中原/海南/广西/江西/草原）。
  *

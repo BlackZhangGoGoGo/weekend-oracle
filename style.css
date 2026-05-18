@@ -1612,7 +1612,7 @@ button, input, select, label { touch-action: manipulation; }
   .home-entry-arrow { font-size: 26px; }
 }
 
-/* ============ 周末厨神 · 主题 ============ */
+/* ============ 一日厨神 · 主题 ============ */
 .home-entry-card.chef {
   background: linear-gradient(135deg, rgba(255, 99, 71, 0.62), rgba(255, 184, 76, 0.55));
   border-color: rgba(255, 200, 100, 0.6);
@@ -2220,7 +2220,7 @@ button, input, select, label { touch-action: manipulation; }
   border-top: 1px dashed rgba(255, 255, 255, 0.06);
 }
 
-/* ============ 周末厨神 · 菜谱总库（复用 .lib-item 基础上微调） ============ */
+/* ============ 一日厨神 · 菜谱总库（复用 .lib-item 基础上微调） ============ */
 .chef-lib-item {
   display: block;
   text-decoration: none;

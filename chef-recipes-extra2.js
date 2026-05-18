@@ -1,5 +1,5 @@
 /**
- * 周末厨神 · 菜谱扩展库 第二批
+ * 一日厨神 · 菜谱扩展库 第二批
  * 加载顺序：chef-recipes.js → chef-recipes-extra.js → chef-recipes-extra2.js
  * 字符串中只用中文标点。
  */

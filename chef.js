@@ -1,5 +1,5 @@
 /**
- * 周末厨神 · 交互与渲染
+ * 一日厨神 · 交互与渲染
  */
 (function () {
   const $ = (id) => document.getElementById(id);

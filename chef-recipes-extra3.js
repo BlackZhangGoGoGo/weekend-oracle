@@ -1,5 +1,5 @@
 /**
- * 周末厨神 · 菜谱扩展库 第三批
+ * 一日厨神 · 菜谱扩展库 第三批
  * 加载顺序：chef-recipes.js → chef-recipes-extra.js → chef-recipes-extra2.js → chef-recipes-extra3.js
  * 字符串中只用中文标点，避免 ASCII 直引号嵌套截断。
  * 本批目标：补强冷门菜系（海南/广西/江西/徽/草原/东南亚）+ 川渝江浙日韩西餐通用补菜，单批 18 道。
