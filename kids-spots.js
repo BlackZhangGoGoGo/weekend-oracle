@@ -778,6 +778,33 @@ const KIDS_SPOTS = [
     tags: ["美食","DIY","女宝爱"],
     desc: "披萨/曲奇/蛋糕课二选一，烤完热腾腾带回家。",
     tips: "提前预约，避免空腹去（娃容易咬生面团）。"
+  },
+  // —— 2026-05-18 自动追加 ——
+  {
+    name: "夜游动物园 / 海洋馆",
+    city: "通用",
+    type: "动物",
+    ageMin: 4, ageMax: 12,
+    trip: ["family","group"],
+    duration: "3小时",
+    cost: "中",
+    indoor: "both",
+    tags: ["夜场","凉快","刺激"],
+    desc: "夏天傍晚才开放的夜场，凉快人少，看夜行动物超有意思。",
+    tips: "夜场票需要单独购买，建议带件薄外套和驱蚊水。"
+  },
+  {
+    name: "工厂参观 / 食品观光线",
+    city: "通用",
+    type: "科技",
+    ageMin: 5, ageMax: 12,
+    trip: ["family","group"],
+    duration: "2-3小时",
+    cost: "低",
+    indoor: true,
+    tags: ["DIY","涨知识","独特"],
+    desc: "巧克力工厂/牛奶厂/茶厂等开放参观，娃看产线着迷还能试吃。",
+    tips: "搜「亲子工厂参观」可以找到不少，需要提前预约。"
   }
 ];
 
